@@ -1,11 +1,10 @@
-import https from "https";
+const https = require("https");
 
 async function wait(timeInMs) {
     await new Promise(res => setTimeout(res, timeInMs));
 }
 
 async function getPageFromAPI(apiKey) {
-        this.apiKey = apiKey;
         const options = {
             method: "GET",
             hostname: "tasty.p.rapidapi.com",
@@ -38,11 +37,14 @@ async function getPageFromAPI(apiKey) {
         req.end();
 };
 
-async function app (_stream, apiKey) {
-    while (true) {
-        await getPageFromAPI(apiKey);
-        await wait(5000);
+module.exports = async function app (_stream, apiKey) {
+    try {
+        while (true) {
+            await getPageFromAPI(apiKey);
+            await wait(5000);
+        }
+    } catch (e) {
+        console.error(e);
     }
 };
 
-export default app;
