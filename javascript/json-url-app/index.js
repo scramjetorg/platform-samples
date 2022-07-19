@@ -4,29 +4,20 @@ async function wait(timeInMs) {
     await new Promise(res => setTimeout(res, timeInMs));
 }
 
-async function getPageFromAPI(apiKey) {
-        const options = {
-            method: "GET",
-            hostname: "tasty.p.rapidapi.com",
-            port: null,
-            path: "/recipes/auto-complete?prefix=chicken%20soup",
-            headers: {
-                "X-RapidAPI-Key": `${apiKey}`,
-                "X-RapidAPI-Host": "tasty.p.rapidapi.com",
-                useQueryString: true
-            }
-        };
-
-        const req = https.request(options, function(res) {
+async function getPageFromAPI(jsonUrl) {
+        const url = new URL(jsonUrl.trim());
+        const req = https.request(url, function(res) {
             let chunks = "";
 
             res.on("data", function(chunk) {
                 chunks += chunk;
             });
 
-            res.on("end", function() {
+            res.on("end", function(path) {
                 const json = JSON.parse(chunks);
-                console.log(json);
+                json.drinks.forEach(element => {
+                    console.log(element.strDrink)
+                });
             });
         });
 
@@ -37,14 +28,13 @@ async function getPageFromAPI(apiKey) {
         req.end();
 };
 
-module.exports = async function app (_stream, apiKey) {
+module.exports = async function app (_stream, arg1, arg2) {
     try {
         while (true) {
-            await getPageFromAPI(apiKey);
-            await wait(5000);
+            await getPageFromAPI(arg1);
+            await wait(+arg2);
         }
     } catch (e) {
         console.error(e);
     }
 };
-
