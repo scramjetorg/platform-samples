@@ -12,7 +12,7 @@ const util = require("./utils")
 module.exports = async function app (_stream, jsonUrl, interval, jsonPath) {
     try {
         while (true) {
-            await util.getJsonFromAPI(jsonUrl, jsonPath);
+            await util.printJsonFromAPI(jsonUrl, jsonPath);
             await util.wait(+interval);
         }
     } catch (e) {

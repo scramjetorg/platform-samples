@@ -44,27 +44,25 @@ function jsonPathToValue(jsonData, path) {
  * @param jsonUrl - a url API address
  * @param path - a json path to the element that value we want to get
  */
-async function getJsonFromAPI(jsonUrl, path) {
+async function printJsonFromAPI(jsonUrl, path) {
     const url = new URL(jsonUrl.trim());
-    const req = https.request(url, function(res) {
+    const res = https.get(url);
+
+    res.on("error", (e) => console.error(e));
+
+    let chunks = "";
+    try {
+        res.setEncoding("utf-8");
+
         let chunks = "";
-
-        res.on("data", function(chunk) {
+        for await (const chunk of res)
             chunks += chunk;
-        });
 
-        res.on("end", function() {
-            const json = JSON.parse(chunks);
-            // console.log() writes to stdout endpoint
-            console.log(jsonPathToValue(json, path));
-        });
-    });
-
-    req.on("error", (e) => {
+        const json = JSON.parse(chunks);
+        console.log(jsonPathToValue(json, path));
+    } catch (e) {
         console.error(e);
-    });
-
-    req.end();
+    }
 };
 
 module.exports = { wait, jsonPathToValue, getJsonFromAPI }
