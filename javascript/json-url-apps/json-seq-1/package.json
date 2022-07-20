@@ -1,0 +1,15 @@
+{
+    "name": "@scramjet/json-url-app",
+    "version": "0.1.0",
+    "description": "",
+    "license": "ISC",
+    "author": "Scramjet <open-source@scramjet.org>",
+    "main": "index.js",
+    "engines": {
+    "node": "^16.0.0"
+    },
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/transform-hub.git"
+    }
+}
