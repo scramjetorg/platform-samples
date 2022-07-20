@@ -16,26 +16,23 @@ async function wait(timeInMs) {
  * @param jsonUrl - a url API address
  */
 async function getJsonFromAPI(jsonUrl) {
+    return new Promise((resolve, reject) => {
         const url = new URL(jsonUrl.trim());
-        const req = https.request(url, function(res) {
-            let chunks = "";
+        https.request(url, async function(res) {
+            try {
+                res.setEncoding("utf-8");
 
-            res.on("data", function(chunk) {
-                chunks += chunk;
-            });
+                let chunks = "";
+                for await (const chunk of res) chunks += chunk;
 
-            res.on("end", function() {
-                const json = JSON.parse(chunks);
-                    // console.log() writes to stdout endpoint
-                    console.log(json)
-            });
-        });
-
-        req.on("error", (e) => {
-            console.error(e);
-        });
-
-        req.end();
+                resolve(JSON.parse(chunks));
+            } catch (e) {
+                reject(e);
+            }
+        })
+        .on("error", reject)
+        .end();
+    });
 };
 
 /**
@@ -47,12 +44,13 @@ async function getJsonFromAPI(jsonUrl) {
  * @param interval - how often to send a request
  */
 module.exports = async function app (_stream, jsonUrl, interval) {
-    try {
-        while (true) {
-            await getJsonFromAPI(jsonUrl);
+    while (true) {
+        try {
+            console.log(await getJsonFromAPI(jsonUrl));
+
             await wait(+interval);
+        } catch (e) {
+            console.error(e);
         }
-    } catch (e) {
-        console.error(e);
     }
 };
