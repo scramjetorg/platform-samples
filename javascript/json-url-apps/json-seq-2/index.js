@@ -1,4 +1,4 @@
-const util = require("./utils")
+const { wait, printJsonFromAPI } = require("./utils");
 
 /**
  * Requests external API every x seconds.
@@ -12,8 +12,8 @@ const util = require("./utils")
 module.exports = async function app (_stream, jsonUrl, interval, jsonPath) {
     try {
         while (true) {
-            await util.printJsonFromAPI(jsonUrl, jsonPath);
-            await util.wait(+interval);
+            await printJsonFromAPI(jsonUrl, jsonPath);
+            await wait(+interval);
         }
     } catch (e) {
         console.error(e);

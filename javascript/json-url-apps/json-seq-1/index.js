@@ -1,5 +1,4 @@
-const https = require("https");
-const { wait, printJsonFromAPI } = require("./utils");
+const { wait, getJsonFromAPI } = require("./utils");
 
 /**
  * Requests external API every x seconds.
@@ -10,13 +9,12 @@ const { wait, printJsonFromAPI } = require("./utils");
  * @param interval - how often to send a request
  */
 module.exports = async function app (_stream, jsonUrl, interval) {
-    while (true) {
-        try {
+    try {
+        while (true) {
             console.log(await getJsonFromAPI(jsonUrl));
-
             await wait(+interval);
-        } catch (e) {
+        }
+    } catch (e) {
             console.error(e);
         }
-    }
 };
