@@ -21,6 +21,7 @@
     "url": "https://github.com/scramjetorg/transform-hub.git"
   },
   "dependencies": {
+    "@scramjet/types": "^0.26.1",
     "mysql": "^2.18.1",
     "scramjet": "^4.35.20"
   }

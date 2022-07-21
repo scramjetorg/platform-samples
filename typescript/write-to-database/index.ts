@@ -1,6 +1,6 @@
-import { DataStream } from "scramjet";
+import { ReadableApp } from "@scramjet/types";
 import { Connection, createConnection } from "mysql";
-import { PassThrough, Transform } from "stream";
+import { PassThrough, Readable } from "stream";
 
 const createTodosQuery = `create table if not exists todos(
                             id int primary key auto_increment,
@@ -9,7 +9,7 @@ const createTodosQuery = `create table if not exists todos(
                         )`;
 
 const createInsertTodoQuery = (title) =>
-  `insert into todos (title) values (${title})`;
+  `insert into todos (title) values ("${title}")`;
 
 const connect = (connection: Connection): Promise<void> => {
   return new Promise((res, rej) => {
@@ -61,9 +61,26 @@ const disconnect = (connection: Connection): Promise<void> => {
   });
 };
 
-const app = async (input) => {
-  // create output stream
-  const out = new PassThrough({ encoding: "utf-8" });
+async function* chunksToLines(chunksAsync: Readable) {
+  let previous = "";
+  for await (const chunk of chunksAsync.pipe(
+    new PassThrough({ encoding: "utf-8" })
+  )) {
+    previous += chunk;
+    let eolIndex;
+    while ((eolIndex = previous.indexOf("\n")) >= 0) {
+      // line includes the EOL
+      const line = previous.slice(0, eolIndex + 1);
+      yield line;
+      previous = previous.slice(eolIndex + 1);
+    }
+  }
+  if (previous.length > 0) {
+    yield previous;
+  }
+}
+
+const app: ReadableApp<string, [string, string]> = async function* (input) {
   const connection = createConnection({
     host: "sql11.freemysqlhosting.net",
     user: "sql11507574",
@@ -72,25 +89,25 @@ const app = async (input) => {
   });
 
   try {
-    out.write("Connecting to database\n");
+    this.logger.debug("Connecting to database");
     await connect(connection);
-    out.write("Checking for todos table\n");
+    this.logger.debug("Checking for todos table");
     await createTodos(connection);
-    out.write("Awaiting inserts\n");
+    this.logger.debug("Awaiting inserts");
 
-    await DataStream.from(input)
-      .map(async (title) => {
-        out.write(title);
-        return title;
-      })
-      .run();
+    for await (const line of chunksToLines(input)) {
+      try {
+        this.logger.debug(`Insering ${line}`);
+        await insertTodo(connection)(line);
+      } catch (err) {
+        this.logger.error("Error while inserting", err);
+      }
+    }
   } catch (err) {
-    out.write(`Error ${err.message}\n`);
-    out.write("Disconnecting");
+    this.logger.error("Error while starting", err);
+    this.logger.debug("Disconnecting");
     await disconnect(connection);
   }
-
-  return out;
 };
 
 export default app;
