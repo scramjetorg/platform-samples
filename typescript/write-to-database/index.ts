@@ -81,7 +81,7 @@ async function* chunksToLines(chunksAsync: Readable) {
 }
 
 const app: ReadableApp<string, [string, string, string, string]> =
-  async function* (input, host, user, password, database) {
+  async function* (input) {
     const connection = createConnection({
       host: this.config.host as string,
       user: this.config.user as string,
