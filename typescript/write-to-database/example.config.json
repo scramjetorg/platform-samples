@@ -1,0 +1,6 @@
+{
+  "host": "example-host",
+  "user": "root",
+  "password": "",
+  "database": "test"
+}
