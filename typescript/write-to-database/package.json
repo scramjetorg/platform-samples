@@ -1,0 +1,28 @@
+{
+  "name": "@scramjet/write-to-database",
+  "version": "0.22.0",
+  "description": "Sequence that writes data to SQL database",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "cp -r package.json dist/ && (cd dist && npm i --only=production)",
+    "clean": "rm -rf ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@scramjet/types": "^0.13.1",
+    "@types/mysql": "^2.15.21",
+    "@types/node": "15.12.5",
+    "typescript": "^4.3.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/transform-hub.git"
+  },
+  "dependencies": {
+    "@scramjet/types": "^0.26.1",
+    "mysql": "^2.18.1",
+    "scramjet": "^4.35.20"
+  }
+}
