@@ -1,0 +1,6 @@
+{
+  "path": "test.json",
+  "branch": "main",
+  "repository": "username/repositoryname",
+  "token": "ghp_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+}
