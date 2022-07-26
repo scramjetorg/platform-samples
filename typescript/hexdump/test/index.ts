@@ -9,7 +9,7 @@ async function runTest() {
         }
     }
 
-    const readFile = createReadStream("./testFiles/testTar.tar.gz");
+    const readFile = createReadStream("scramjet.ico");
     const read = app.bind(context);
     (await read(readFile)).on("data", chunk => console.log(chunk));
 }
