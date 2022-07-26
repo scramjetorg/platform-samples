@@ -1,0 +1,18 @@
+{
+    "name": "@scramjet/gh-issues-to-clickup",
+    "version": "0.1.0",
+    "main": "./main.py",
+    "author": "Dariusz Adamczyk <dariusz.adamczyk@scramjet.org>",
+    "license": "GPL-3.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/scramjetorg/transform-hub.git"
+    },
+    "engines": {
+      "python3": "3.8.0"
+    },
+    "scripts": {
+      "build:refapps": "mkdir -p dist/__pypackages__/ && cp -ar *.py config.ini package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+      "clean": "rm -rf ./dist"
+    }
+}
