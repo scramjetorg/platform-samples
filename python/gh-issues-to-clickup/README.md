@@ -1,4 +1,5 @@
 # GitHub issues to Clickup task
+
 - [GitHub issues to Clickup task](#github-issues-to-clickup-task)
   - [Github](#github)
     - [Get github Personal Access Token](#get-github-personal-access-token)
@@ -7,7 +8,6 @@
     - [Create ClickUp Workspace](#create-clickup-workspace)
   - [Set config.ini file](#set-configini-file)
   - [Send Sequence to Scramjet Cloud Platform](#send-sequence-to-scramjet-cloud-platform)
-
 
 ## Github
 
@@ -25,46 +25,45 @@
 - [Settings > Apps > Generate](https://app.clickup.com/settings/apps)
 
 ### Create ClickUp Workspace
+
 - [Official instructions](https://help.clickup.com/hc/en-us/articles/6310502590487-How-do-I-create-a-new-Workspace-)
 - [Create Workspace](https://app.clickup.com/onboarding)
 
 Create new Workspace or use existing one.
-```
+
+```text
 Shorten the process of creating a new Workspace even further by clicking the + symbol in your Settings Menu. This will take you directly into the onboarding process for your new Workspace.
 ```
 
-Set name of newly created workspace to `config.ini` > `cuWorkspace = `
-
-
-
+Set name of newly created workspace to `config.ini` > `cu_workspace =`
 
 ## Set config.ini file
 
 ```bash
-
 cp python/gh-issues-to-clickup/config-example.ini python/gh-issues-to-clickup/config.ini
 ```
 
 Edit `config.ini` file:
+
 ```ini
 [github]
     ;github Personal Access Token
-    ghToken = GITHUB_TOKEN
+    gh_token = GITHUB_TOKEN
     ;github repository list to sync with clickup
     ;ClickUp Free plans can only have 5 spaces
-    ghRepos =   [ "scramjetorg/scramjet-cloud-docs",
+    gh_repos =   [ "scramjetorg/scramjet-cloud-docs",
                 "scramjetorg/transform-hub",
                 "scramjetorg/framework-js",
                 "scramjetorg/framework-python" ]
 
 [clickup]
     ;clickup token
-    cuToken = CLICKUP_TOKEN
+    cu_token = CLICKUP_TOKEN
     ;clickup API URL
-    cuApiUrl = https://api.clickup.com/api/v2/
+    cu_api_url = https://api.clickup.com/api/v2/
     ; clickup Workspace Name
     ;https://help.clickup.com/hc/en-us/articles/6311525171223-Hierarchy-structure-in-ClickUp
-    cuWorkspace = <ClickUp Workspace Name >
+    cu_workspace = <ClickUp Workspace Name >
 ```
 
 ## Send Sequence to Scramjet Cloud Platform

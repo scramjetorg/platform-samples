@@ -3,27 +3,27 @@ import logging
 import json
 import asyncio
 
-class Clickup:
 
-    def __init__(self, apiUrl, cuToken, repository=None):
-        self.apiUrl = apiUrl
-        self.cuToken = cuToken
+class Clickup:
+    def __init__(self, api_url, cu_token, repository=None):
+        self.api_url = api_url
+        self.cu_token = cu_token
         self.repository = None
 
     def background(f):
         def wrapped(*args, **kwargs):
-            return asyncio.get_event_loop().run_in_executor(None, f, *args, **kwargs)
+            return asyncio.get_event_loop().run_in_executor(
+                None, f, *args, **kwargs)
 
         return wrapped
 
-    def getWorkspace(self):
-
-    
-        r = requests.get(self.apiUrl+'team/', headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)})
+    def get_workspace(self):
+        r = requests.get(self.api_url+'team/', headers={
+            'Content-Type': 'application/json',
+            'Authorization': '{}'.format(self.cu_token)})
 
         response = r.text
-        logging.debug('getWorkspace: %s', response)
+        logging.debug('get_workspace: %s', response)
 
         try:
             r.raise_for_status()
@@ -33,14 +33,14 @@ class Clickup:
 
         return json.dumps(json.loads(response))
 
+    def get_spaces(self, cu_workspace_id):
+        r = requests.get(
+            self.api_url+'team/{}/space'.format(cu_workspace_id), headers={
+                'Content-Type': 'application/json',
+                'Authorization': '{}'.format(self.cu_token)})
 
-    def getSpaces(self, cuWorkspaceId):
-
-
-        r = requests.get(self.apiUrl+'team/{}/space'.format(cuWorkspaceId), headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)})
         response = r.text
-        logging.debug('getSpaces: %s', response)
+        logging.debug('get_spaces: %s', response)
 
         try:
             r.raise_for_status()
@@ -50,12 +50,13 @@ class Clickup:
 
         return json.dumps(json.loads(response))
 
-    def getList(self, cuSpaceId):
-
-        r = requests.get(self.apiUrl+'space/{}/list?archived=false'.format(cuSpaceId), headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)})
+    def get_list(self, cu_space_id):
+        r = requests.get(
+            self.api_url+'space/{}/list?archived=false'.format(cu_space_id), headers={
+                'Content-Type': 'application/json',
+                'Authorization': '{}'.format(self.cu_token)})
         response = r.text
-        logging.debug('getList: %s', response)
+        logging.debug('get_list: %s', response)
 
         try:
             r.raise_for_status()
@@ -65,13 +66,13 @@ class Clickup:
 
         return json.dumps(json.loads(response))
 
-    def getTask(self, cuListId):
-
-
-        r = requests.get(self.apiUrl+'list/{}/task'.format(cuListId), headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)})
+    def get_task(self, culist_id):
+        r = requests.get(
+            self.api_url+'list/{}/task'.format(culist_id), headers={
+                'Content-Type': 'application/json',
+                'Authorization': '{}'.format(self.cu_token)})
         response = r.text
-        logging.debug('getTask: %s', response)
+        logging.debug('get_task: %s', response)
 
         try:
             r.raise_for_status()
@@ -81,46 +82,46 @@ class Clickup:
 
         return json.dumps(json.loads(response))
 
-    def searchSpace(self, repository, cuWorkspaceId):
+    def search_space(self, repository, cu_workspace_id):
         # Get Spaces
-        space = json.loads(self.getSpaces(cuWorkspaceId))
+        space = json.loads(self.get_spaces(cu_workspace_id))
 
-        spaceLenght = len(space['spaces'])
+        space_lenght = len(space['spaces'])
 
-        for i in range(spaceLenght):
+        for i in range(space_lenght):
             if repository == space['spaces'][i]['name']:
-                return  space['spaces'][i]['id']
+                return space['spaces'][i]['id']
             else:
                 pass
 
-    def searchWorkspace(self, cuWorkspace):
+    def search_workspace(self, cu_workspace):
         # Get Workspace
-        workspace = json.loads(self.getWorkspace())
+        workspace = json.loads(self.get_workspace())
 
-        workspaceLenght = len(workspace['teams'])
+        workspace_lenght = len(workspace['teams'])
 
-        for i in range(workspaceLenght):
-            if cuWorkspace == workspace['teams'][i]['name']:
-                logging.debug('searchWorkspace: %s', workspace['teams'][i]['id'])
+        for i in range(workspace_lenght):
+            if cu_workspace == workspace['teams'][i]['name']:
+                logging.debug('search_workspace: %s', workspace['teams'][i]['id'])
+
                 return workspace['teams'][i]['id']
             else:
                 pass
 
-    def searchList(self, repository, cuSpaceId):
+    def search_list(self, repository, cu_space_id):
         # Get Lists
-        list = json.loads(self.getList(cuSpaceId))
-        logging.debug('searchList: %s',  list)
-        listLenght = len(list['lists'])
+        list = json.loads(self.get_list(cu_space_id))
+        logging.debug('search_list: %s',  list)
+        list_lenght = len(list['lists'])
 
-        for i in range(listLenght):
+        for i in range(list_lenght):
             if "Issues "+repository == list['lists'][i]['name']:
-                logging.debug('searchList: %s',  list['lists'][i]['id'])
-                return  list['lists'][i]['id']
+                logging.debug('search_list: %s',  list['lists'][i]['id'])
+                return list['lists'][i]['id']
             else:
                 pass
 
-    def createCuSpace(self, repository, cuWorkspaceId ):
-
+    def create_cu_space(self, repository, cu_workspace_id):
         values = '''
         {{
             "name": "{0}",
@@ -158,14 +159,14 @@ class Clickup:
             }}
             }}
         }}'''
-        jsonData = values.format(repository)
+        json_data = values.format(repository)
 
-
-        r = requests.post(self.apiUrl+'team/{}/space'.format(cuWorkspaceId), headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)},
-                    data=jsonData )
+        r = requests.post(
+            self.api_url+'team/{}/space'.format(cu_workspace_id), headers={
+                'Content-Type': 'application/json',
+                'Authorization': '{}'.format(self.cu_token)}, data=json_data)
         response = r.text
-        logging.debug('createCuSpace: %s', response)
+        logging.debug('create_cu_space: %s', response)
 
         try:
             r.raise_for_status()
@@ -173,9 +174,7 @@ class Clickup:
         except requests.exceptions.HTTPError as err:
             logging.error("%s, %s", err, response)
 
-
-    def createCuList(self, repository, cuSpaceId ):
-
+    def create_cu_list(self, repository, cu_space_id):
         values = """
         {{
             "name": "Issues {0}",
@@ -186,13 +185,14 @@ class Clickup:
             "status": "red"
         }}
         """
-        jsonData = values.format(repository)
+        json_data = values.format(repository)
 
-        r = requests.post(self.apiUrl+'space/{0}/list'.format(cuSpaceId), headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)},
-                    data=jsonData )
+        r = requests.post(
+            self.api_url+'space/{0}/list'.format(cu_space_id), headers={
+                'Content-Type': 'application/json',
+                'Authorization': '{}'.format(self.cu_token)}, data=json_data)
         response = r.json()
-        logging.debug('createCuList: %s', response)
+        logging.debug('create_cu_list: %s', response)
 
         try:
             r.raise_for_status()
@@ -201,7 +201,8 @@ class Clickup:
             logging.error("%s, %s", err, response)
 
     @background
-    def createCuTask(self, repository, cuListId, title, issueDesc, issueNo ):
+    def create_cu_task(
+            self, repository, culist_id, title, issue_desc, issue_no):
         values = """
         {{
             "name": {0},
@@ -225,12 +226,15 @@ class Clickup:
         }}
         """
 
-        jsonData = values.format(json.dumps(title), issueDesc, repository, issueNo)
-        r = requests.post(self.apiUrl+'list/{0}/task'.format(cuListId), headers={'Content-Type':'application/json',
-                    'Authorization': '{}'.format(self.cuToken)},
-                    data=jsonData )
+        json_data = values.format(
+                        json.dumps(title), issue_desc, repository, issue_no)
+
+        r = requests.post(
+            self.api_url+'list/{0}/task'.format(culist_id), headers={
+                'Content-Type': 'application/json',
+                'Authorization': '{}'.format(self.cu_token)}, data=json_data)
         response = r.json()
-        logging.debug('createCuTask: %s', response)
+        logging.debug('create_cu_task: %s', response)
 
         try:
             r.raise_for_status()

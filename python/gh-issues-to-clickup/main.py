@@ -1,16 +1,16 @@
 import argparse
 import configparser
-from genericpath import exists
 import json
 from clickupController import Clickup
 from githubController import GhClass
 import logging
 
-def run(context=None, input=None ):
+
+def run(context=None, input=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', default='config.ini', required=False)
-    parser.add_argument('-l', '--loglevel', default='INFO', choices=['INFO', 'DEBUG', 'ERROR'])
-
+    parser.add_argument('-l', '--loglevel', default='INFO',
+                        choices=['INFO', 'DEBUG', 'ERROR'])
 
     args = parser.parse_args()
     config = configparser.ConfigParser()
@@ -22,39 +22,38 @@ def run(context=None, input=None ):
         FORMAT = "[%(asctime)s] %(levelname)s: %(message)s "
     logging.basicConfig(format=FORMAT, level=args.loglevel.upper())
 
-
-    ghToken = config['github']['ghToken']
-    ghRepos = json.loads(config.get("github","ghRepos"))
-    cuToken = config['clickup']['cuToken']
-    cuApiUrl = config['clickup']['cuApiUrl']
-    cuWorkspace = config['clickup']['cuWorkspace']
+    gh_token = config['github']['gh_token']
+    gh_repos = json.loads(config.get("github","gh_repos"))
+    cu_token = config['clickup']['cu_token']
+    cu_api_url = config['clickup']['cu_api_url']
+    cu_workspace = config['clickup']['cu_workspace']
 
     while True:
-        for repository in ghRepos:
-            logging.info("Checking new issues in %s",repository)
-            gh = GhClass(ghToken, repository)
-            
-            cu = Clickup(cuApiUrl, cuToken)
-            cuWorkspaceId = cu.searchWorkspace(cuWorkspace)
+        for repository in gh_repos:
+            logging.info("Checking new issues in %s", repository)
+            gh = GhClass(gh_token, repository)
 
-            cu.createCuSpace(repository, cuWorkspaceId )
-            spaceId = cu.searchSpace(repository, cuWorkspaceId )
+            cu = Clickup(cu_api_url, cu_token)
+            cu_workspace_id = cu.search_workspace(cu_workspace)
 
-            cu.createCuList(repository, spaceId)
-            listId = cu.searchList(repository, spaceId)
+            cu.create_cu_space(repository, cu_workspace_id)
+            space_id = cu.search_space(repository, cu_workspace_id)
 
-            issues = gh.getGhIssues(repository)
-            task = json.loads(cu.getTask(listId))
+            cu.create_cu_list(repository, space_id)
+            list_id = cu.search_list(repository, space_id)
+
+            issues = gh.get_gh_issues(repository)
+            task = json.loads(cu.get_task(list_id))
 
             for i in range(len(issues)):
-                issueTitle = issues[i]['title']
-                issueDesc = issues[i]['url']
-                issueNo = issues[i]['issueNo']
-                url = "https://github.com/"+repository+"/issues/"+issueNo
-                #check if ticket is already imported
-                check = [x for x in task["tasks"] if x["text_content"]=="{}".format(url)]
+                issue_title = issues[i]['title']
+                issue_desc = issues[i]['url']
+                issue_no = issues[i]['issue_no']
+                url = "https://github.com/"+repository+"/issues/"+issue_no
+                # check if ticket is already imported
+                check = [x for x in task["tasks"] if x["text_content"] == "{}".format(url)]
                 if not check:
-                    logging.info("Importing %s issue #%s",repository, issueNo)
-                    cu.createCuTask(repository, listId, issueTitle, issueDesc, issueNo)
+                    logging.info("Importing %s issue #%s", repository, issue_no)
+                    cu.create_cu_task(repository, list_id, issue_title, issue_desc, issue_no)
                 else:
                     pass
