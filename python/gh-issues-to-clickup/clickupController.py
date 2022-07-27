@@ -91,8 +91,6 @@ class Clickup:
         for i in range(space_lenght):
             if repository == space['spaces'][i]['name']:
                 return space['spaces'][i]['id']
-            else:
-                pass
 
     def search_workspace(self, cu_workspace):
         # Get Workspace
@@ -105,8 +103,6 @@ class Clickup:
                 logging.debug('search_workspace: %s', workspace['teams'][i]['id'])
 
                 return workspace['teams'][i]['id']
-            else:
-                pass
 
     def search_list(self, repository, cu_space_id):
         # Get Lists
@@ -118,8 +114,6 @@ class Clickup:
             if "Issues "+repository == list['lists'][i]['name']:
                 logging.debug('search_list: %s',  list['lists'][i]['id'])
                 return list['lists'][i]['id']
-            else:
-                pass
 
     def create_cu_space(self, repository, cu_workspace_id):
         values = '''

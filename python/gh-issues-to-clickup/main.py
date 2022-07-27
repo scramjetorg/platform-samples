@@ -55,5 +55,3 @@ def run(context=None, input=None):
                 if not check:
                     logging.info("Importing %s issue #%s", repository, issue_no)
                     cu.create_cu_task(repository, list_id, issue_title, issue_desc, issue_no)
-                else:
-                    pass
