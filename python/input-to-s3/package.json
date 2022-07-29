@@ -1,0 +1,18 @@
+{
+    "name": "@scramjet/input-to-s3",
+    "version": "0.1.0",
+    "main": "./main.py",
+    "author": "Dariusz Adamczyk <dariusz.adamczyk@scramjet.org>",
+    "license": "GPL-3.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/scramjetorg/transform-hub.git"
+    },
+    "engines": {
+      "python3": "3.9.0"
+    },
+    "scripts": {
+      "build:refapps": "rm -rf dist/; mkdir -p dist/__pypackages__/ && cp -ar *.py *.ini package.json dist/ && pip3.9 install -t dist/__pypackages__/ -r requirements.txt;  ",
+      "clean": "rm -rf ./dist"
+    }
+}
