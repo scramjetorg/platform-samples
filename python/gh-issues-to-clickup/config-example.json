@@ -1,0 +1,21 @@
+{
+    "github": {
+        "gh_token": "GITHUB_TOKEN",
+        "gh_repos": [ 
+            "scramjetorg/transform-hub", 
+            "scramjetorg/reference-apps", 
+            "scramjetorg/framework-js", 
+            "scramjetorg/framework-python"
+        ]
+    },
+    "clickup": {
+        "-- clickup token": 0,
+        "cu_token": "CLICKUP_TOKEN",
+        "-- ;clickup API URL": 0,
+        "cu_api_url": "https://api.clickup.com/api/v2/",
+        "-- ; clickup Workspace Name": 0,
+        "-- ;https://help.clickup.com/hc/en-us/articles/6311525171223-Hierarchy-structure-in-ClickUp": 0,
+        "cu_workspace": "<ClickUp Workspace Name >"
+    }
+}
+

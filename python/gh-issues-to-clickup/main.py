@@ -1,5 +1,4 @@
 import argparse
-import configparser
 import json
 from clickupController import Clickup
 from githubController import GhClass
@@ -8,13 +7,11 @@ import logging
 
 def run(context=None, input=None):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--config', default='config.ini', required=False)
     parser.add_argument('-l', '--loglevel', default='INFO',
                         choices=['INFO', 'DEBUG', 'ERROR'])
 
     args = parser.parse_args()
-    config = configparser.ConfigParser()
-    config.read(args.config)
+    config = context.config
 
     if args.loglevel.upper() == 'DEBUG':
         FORMAT = "[%(asctime)s %(filename)s->%(name)s->%(funcName)s():%(lineno)s ] %(levelname)s: %(message)s "
@@ -23,7 +20,7 @@ def run(context=None, input=None):
     logging.basicConfig(format=FORMAT, level=args.loglevel.upper())
 
     gh_token = config['github']['gh_token']
-    gh_repos = json.loads(config.get("github","gh_repos"))
+    gh_repos = config['github']['gh_repos']
     cu_token = config['clickup']['cu_token']
     cu_api_url = config['clickup']['cu_api_url']
     cu_workspace = config['clickup']['cu_workspace']
