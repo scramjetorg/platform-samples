@@ -24,3 +24,5 @@ jobs:
       - name: Pack sample sequences
         run: npm run pack
 
+      - name: List packages
+        run: ls -la dist/
