@@ -1,5 +1,4 @@
-
-# Read-TarGz-stats
+# Stream through tar.gz file and output stats
 
 Sequence reads tar.gz file from input and returns JSON containing basic informations about archived files along with unpacked data.
 

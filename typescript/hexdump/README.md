@@ -1,7 +1,4 @@
-
-# Hexdump
-
-Sequence returns input in hex format.
+# Sequence returns input in hex format
 
 ## Running
 
@@ -43,6 +40,9 @@ si inst output -
 ```bash
 # replace INSTANCE_ID with actual instance ID and pipe scramjet.ico as binary to instance input
 si inst input <INSTANCE_ID> scramjet.ico -t application/octet-stream
+
+# In another terminal
+si inst output <INSTANCE_ID>
 ```
 
 Check output in second terminal to see hex format of scramjet.ico file.
