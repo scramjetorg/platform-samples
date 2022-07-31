@@ -44,7 +44,7 @@ si pack dist
 si seq send dist.tar.gz
 
 # start a Sequence
-si seq start -
+si seq start - -f config.json
 
 # view messages in topic
 si topic get messages

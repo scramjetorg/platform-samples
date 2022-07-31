@@ -2,7 +2,6 @@ import { ReadableApp } from "@scramjet/types";
 import { PassThrough } from "stream";
 
 import { Client, Intents } from 'discord.js';
-import { token } from './config.json';
 
 import formatter from './utils';
 
@@ -21,6 +20,7 @@ type HasTopicInformation = {
 
 export = async function (_stream: any) {
     const ps: PassThrough & HasTopicInformation = new PassThrough({ objectMode: true });
+    const token = `${this.config.token}`;
 
     const client = new Client({
         intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],

@@ -24,7 +24,7 @@ const opts = minimist(process.argv.slice(2), {
         list: "l",
         install: "i",
         build: "b",
-        dist: "d",
+        dist: "D",
         verbose: "v",
         fast: "f",
         help: ["h", "?"],
