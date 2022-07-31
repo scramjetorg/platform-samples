@@ -8,7 +8,7 @@ First, build kaffka-consumer sample
 
 ```bash
 cd kaffka-consumer
-yarn build:refapps
+npm run build
 ```
 
 Now you can run STH and deploy Sequence

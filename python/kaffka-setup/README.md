@@ -32,7 +32,7 @@ DEVELOPMENT=1 sth --runtime-adapter=process
 On last terminal you need to make few things. First you need to build our two samples. You can run command visible below in main directory of platform-samples project to build all samples, or you can run it directly from the kaffka-transformer and kaffka-consumer directories.
 
 ```bash
-yarn build:refapps
+npm run build
 ```
 
 Once you've built these packages, you need to run consumer Sequence first. Please note that we are passing two arguments to Sequence, topic name and server name.

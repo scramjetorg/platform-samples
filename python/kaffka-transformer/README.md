@@ -8,7 +8,7 @@ First, build kaffka-transformer sample
 
 ```bash
 cd kaffka-transformer
-yarn build:refapps
+npm run build
 ```
 
 Now you can run STH and deploy Sequence

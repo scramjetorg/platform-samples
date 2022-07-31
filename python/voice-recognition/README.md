@@ -34,7 +34,7 @@ Thanks to **DEVELOPMENT** flag, you will be able to see sample output on termina
 cd samples/voice-recognition
 
 # install dependencies
-yarn build:refapss
+npm run build:refapss
 
 # Deploy sample to STH
 si seq deploy dist/

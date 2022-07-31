@@ -15,7 +15,7 @@ scramjet-transform-hub
 
 # ...or use script
 cd transform-hub
-yarn start -P 8000
+npm run start -P 8000
 ```
 
 ### The Second terminal
