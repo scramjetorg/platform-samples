@@ -8,10 +8,10 @@ const { wait, getJsonFromAPI } = require("./utils");
  * @param jsonUrl - json url address
  * @param interval - how often to send a request
  */
-module.exports = async function app (_stream, jsonUrl, interval) {
+module.exports = async function* app (_stream, jsonUrl, interval) {
     try {
         while (true) {
-            console.log(await getJsonFromAPI(jsonUrl));
+            yield await getJsonFromAPI(jsonUrl);
             await wait(+interval);
         }
     } catch (e) {

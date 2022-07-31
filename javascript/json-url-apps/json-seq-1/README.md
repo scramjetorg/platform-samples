@@ -56,13 +56,13 @@ InstanceClient {
 The result of called sequence's function is a json object. It is printed out in the console using `console.log()`, it means that the Sequence writes it to stdout instance endpoint. To read this endpoint stream please use the command:
 
 ```bash
-si inst stdout -
+si inst output -
 ```
 
 Result:
 
 ```bash
-$ si inst stdout -
+$ si inst output -
 { name: 'bella', age: 35, count: 40138 }
 { name: 'bella', age: 35, count: 40138 }
 ```
