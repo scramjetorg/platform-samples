@@ -6,7 +6,7 @@
   - [ClickUp](#clickup)
     - [Get Clickup Token](#get-clickup-token)
     - [Create ClickUp Workspace](#create-clickup-workspace)
-  - [Set config.ini file](#set-configini-file)
+  - [Set config.json file](#set-configjson-file)
   - [Send Sequence to Scramjet Cloud Platform](#send-sequence-to-scramjet-cloud-platform)
 
 ## Github
@@ -35,35 +35,33 @@ Create new Workspace or use existing one.
 Shorten the process of creating a new Workspace even further by clicking the + symbol in your Settings Menu. This will take you directly into the onboarding process for your new Workspace.
 ```
 
-Set name of newly created workspace to `config.ini` > `cu_workspace =`
+Set name of newly created workspace to `config.json` > `cu_workspace =`
 
-## Set config.ini file
+## Set config.json file
 
 ```bash
-cp python/gh-issues-to-clickup/config-example.ini python/gh-issues-to-clickup/config.ini
+cp python/gh-issues-to-clickup/config-example.json python/gh-issues-to-clickup/config.json
 ```
 
-Edit `config.ini` file:
+Edit `config.json` file:
 
-```ini
-[github]
-    ;github Personal Access Token
-    gh_token = GITHUB_TOKEN
-    ;github repository list to sync with clickup
-    ;ClickUp Free plans can only have 5 spaces
-    gh_repos =   [ "scramjetorg/scramjet-cloud-docs",
-                "scramjetorg/transform-hub",
-                "scramjetorg/framework-js",
-                "scramjetorg/framework-python" ]
-
-[clickup]
-    ;clickup token
-    cu_token = CLICKUP_TOKEN
-    ;clickup API URL
-    cu_api_url = https://api.clickup.com/api/v2/
-    ; clickup Workspace Name
-    ;https://help.clickup.com/hc/en-us/articles/6311525171223-Hierarchy-structure-in-ClickUp
-    cu_workspace = <ClickUp Workspace Name >
+```json
+{
+    "github": {
+        "gh_token": "GITHUB_TOKEN",
+        "gh_repos": [
+            "scramjetorg/transform-hub", 
+            "scramjetorg/reference-apps", 
+            "scramjetorg/framework-js", 
+            "scramjetorg/framework-python"
+        ]
+    },
+    "clickup": {
+        "cu_token": "CLICKUP_TOKEN",
+        "cu_api_url": "https://api.clickup.com/api/v2/",
+        "cu_workspace": "<ClickUp Workspace Name>"
+    }
+}
 ```
 
 ## Send Sequence to Scramjet Cloud Platform
@@ -73,7 +71,7 @@ sudo update-alternatives --config python # set python3 to 3.9 (/usr/bin/python3.
 
 cd python/gh-issues-to-clickup
 yarn build:refapps # build sequence
-si seq deploy dist/ # deploy and run sequence
+si seq deploy -f config.json dist/ # deploy and run sequence
 ```
 
 Go to `clickup.com` and choosen `Workspace` and then check if the GH issues have been imported
