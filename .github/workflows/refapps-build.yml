@@ -1,0 +1,28 @@
+name: Make a refapps release with compiled package archives
+
+on: pull_request
+
+jobs:
+  build-only:
+    name: Build refapps
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Nodejs v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build sample sequences
+        run: npm run build
+
+      - name: Pack sample sequences
+        run: npm run pack
+
+      - name: List packages
+        run: ls -la dist/

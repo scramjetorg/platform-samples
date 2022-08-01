@@ -19,37 +19,17 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Build reference apps
-        run: yarn build:refapps
+        run: npm run build
 
-      - name: Prefix python packages to prevent name clash
-        run: |
-          cd python;
-          for pkg in *.tar.gz; do
-            mv $pkg python-$pkg;
-          done
-      
-      - name: Prefix typescript packages to prevent name clash
-        run: |
-          cd typescript;
-          for pkg in *.tar.gz; do
-            mv $pkg typescript-$pkg;
-          done
-      
-      - name: Prefix javascript packages to prevent name clash
-        run: |
-          cd javascript;
-          for pkg in *.tar.gz; do
-            mv $pkg javascript-$pkg;
-          done
+      - name: Build reference apps
+        run: npm run pack
 
       - name: Create a release and upload artifacts
         run: >
           gh release create ${{ github.ref }}
-          javascript/*.tar.gz
-          typescript/*.tar.gz
-          python/*.tar.gz
+          dist/*.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.SCRAMJET_BOT_TOKEN }}

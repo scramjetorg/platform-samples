@@ -1,50 +1,35 @@
 {
-    "name": "@scramjet/reference-apps",
-    "version": "0.22.0",
-    "private": true,
-    "description": "A collection of reference applications for Scramjet platform.",
-    "main": "index.js",
-    "bic": {
-      "only": [
-        "packages"
-      ],
-      "skip": [
-        "template"
-      ]
-    },
-    "bin": {
-      "scramjet-transform-hub": "dist/sth/bin/hub.js"
-    },
-    "scripts": {
-      "build": "yarn build:refapps",
-      "prebuild:refapps": "scripts/build-all.js --dirs javascript/* typescript/* --config-name=tsconfig.json",
-      "build:refapps": "LOCAL_PACKAGES=true lerna run build:refapps",
-      "postbuild:refapps": "LOCAL_PACKAGES=true lerna run postbuild:refapps",
-      "clean": "lerna run clean && yarn clean:root",
-      "clean:root": "rm -rf ./dist/",
-      "clean:modules": "find -name node_modules -or -name __pypackages__ -prune -exec rm -rf {} ';' 2> /dev/null"
-    },
-    "author": "Scramjet <open-source@scramjet.org>",
-    "license": "AGPL-3.0",
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/scramjetorg/platform-samples.git"
-    },
-    "devDependencies": {
-      "fs-extra": "^9.1.0",
-      "glob": "^7.1.7",
-      "lerna": "^4.0.0",
-      "tar": "^6.1.0",
-      "typescript": "^4.3.4"
-    },
-    "workspaces": {
-      "packages": [
-        "javascript/*",
-        "typescript/*",
-        "python/*"
-      ]
-    },
-    "dependencies": {
-      "minimist": "^1.2.6"
-    }
+  "name": "@scramjet/samples",
+  "version": "0.22.0",
+  "private": true,
+  "description": "A collection of example applications for Scramjet Cloud Platform.",
+  "scripts": {
+    "all": "npm run build && npm run pack",
+    "build": "scripts/run-script.js -w packages build",
+    "pack": "export DIST_DIR=$PWD/dist/; mkdir -p $DIST_DIR; scripts/run-script.js -w packages pack:pub",
+    "test": "scripts/run-script.js -w packages test",
+    "clean": "LOCAL_PACKAGES=true scripts/run-script.js -w packages clean && npm run clean:root",
+    "clean:root": "rm -rf ./dist/",
+    "clean:modules": "find -name node_modules -or -name __pypackages__ -prune -exec rm -rf {} ';' 2> /dev/null"
+  },
+  "author": "Scramjet <open-source@scramjet.org>",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples.git"
+  },
+  "devDependencies": {
+    "@npmcli/run-script": "^4.1.7",
+    "fs-extra": "^9.1.0",
+    "glob": "^7.1.7",
+    "globrex": "^0.1.2",
+    "minimist": "^1.2.6"
+  },
+  "workspaces": {
+    "packages": [
+      "javascript/*",
+      "typescript/*",
+      "python/*"
+    ]
   }
+}

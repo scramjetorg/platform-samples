@@ -1,5 +1,4 @@
-
-# Read-TarGz-stats
+# Stream through tar.gz file and output stats
 
 Sequence reads tar.gz file from input and returns JSON containing basic informations about archived files along with unpacked data.
 
@@ -15,7 +14,7 @@ scramjet-transform-hub
 
 # ...or use script
 cd transform-hub
-yarn start -P 8000
+npm run start -P 8000
 ```
 
 ### The Second terminal

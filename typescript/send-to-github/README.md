@@ -20,7 +20,7 @@ cd samples/send-to-github
 yarn
 
 # transpile TS->JS and copy node_modules and package.json to dist/
-yarn build
+npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
 si sequence deploy ./dist -f config.json
