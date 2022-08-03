@@ -1,6 +1,6 @@
 # Samples
 
-Try out our samples prepared some samples for you. We differentiated them according to the language in which they were written.
+Try out our samples prepared for you. We differentiated them according to the language in which they were written.
 
 Every sample contains a short readme with a guidance describing the procedure for running the example. The execution will be performed from the command line using our CLI, which full description and documentation you will find [here](https://docs.scramjet.org/platform/cli-reference).
 
