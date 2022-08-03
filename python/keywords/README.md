@@ -2,12 +2,6 @@
 
 Easy example of usage Kaffka with Scramjet platform. As the part of this PR, three different directories are created for organizational purposes. You need also 3 different terminals to check the whole.
 
-Run STH in terminal
-
-```bash
-DEVELOPMENT=1 sth --runtime-adapter=process
-```
-
 Build this sample with `yarn` command
 
 ```bash
