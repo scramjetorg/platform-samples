@@ -2,7 +2,7 @@
 
 In this sample you can send data to Kafka topic from input.
 
-If you are looking for more advanced demo of usage, please check [README](../kafka-setup/README.md)
+If you are looking for more advanced demo of usage, please check [README](../../guides/kafka-setup/README.md)
 
 First, build kafka-transformer sample
 
