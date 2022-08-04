@@ -11,6 +11,8 @@ Python packages work in a similar way to all the others. They need to pack the d
 - [kafka-transformer](python/kafka-transformer/) - Sequence sending data to any Kafka topic
 - [kafka-consumer](python/kafka-consumer/) - Sequence fetching data from any Kafka topic
 - [voice-recognition](python/voice-recognition) - a sample Sequence that performs voice recognition in real time.
+- [gh-issues-to-clickup](python/gh-issues-to-clickup) - a sample that allows pushing github issues to clickup
+- [markdown-keywords](python/markdown-keywords) - a sample that accepts a markdown and extracts keywords from that markdown
 
 ## JavaScript samples
 
