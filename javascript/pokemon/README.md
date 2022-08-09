@@ -27,7 +27,7 @@ npm install
 # go back to samples/ directory
 cd ../
 
-# deploy 'hello-snowman' Sequence
+# deploy 'pokemon' Sequence
 si seq deploy pokemon
 
 # see the Instance output
