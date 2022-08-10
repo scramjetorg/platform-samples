@@ -12,7 +12,7 @@ module.exports = async function(input) {
         encoding: "utf-8",
         transform: async (chunk, _encoding, callback) => {
             const pokemon = await loadPokemon(chunk);
-            console.log(pokemon);
+            console.log(inspect(pokemon, false, 4));
             const weight = pokemon.weight/10;
             callback(null, `${weight.toString()}\n`);
         }
