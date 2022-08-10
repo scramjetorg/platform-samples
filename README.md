@@ -24,6 +24,7 @@ JavaScript packages are pretty straight forward in use. After the dependency ins
 - [test-output](javascript/test-output) - Sequence that simply writes random values to the output stream.
 - [json-url-stdout](javascript/json-url-stdout/) - Make a real-time JSON API scraper (stdout version)
 - [json-url-output](javascript/json-url-output/) - Make a real-time JSON API scraper (output version)
+- [pokemon](javascript/pokemon/) - Sequence that takes any pokemon name as an input and scrapes data from the Pokemon API, writes it to the output and stdout stream.
 
 ## TypeScript samples
 
