@@ -1,5 +1,6 @@
 const { Transform, Stream } = require("stream");
 const { loadPokemon } = require("./utils");
+const { inspect } = require("util");
 
 /**
  * Sequence that transforms each pokemon name into a pokemon data
