@@ -16,7 +16,7 @@
     "@scramjet/types": "^0.26.1",
     "@types/mysql": "^2.15.21",
     "@types/node": "15.12.5",
-    "typescript": "^4.3.4",
+    "typescript": "^4.7.4",
     "@scramjet/cli": "^0.26.1"
   },
   "repository": {
@@ -26,6 +26,6 @@
   "dependencies": {
     "@scramjet/types": "^0.26.1",
     "mysql": "^2.18.1",
-    "scramjet": "^4.35.20"
+    "scramjet": "^4.36.7"
   }
 }

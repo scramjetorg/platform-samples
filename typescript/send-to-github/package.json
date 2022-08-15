@@ -15,7 +15,7 @@
   "devDependencies": {
     "@scramjet/types": "^0.26.1",
     "@types/node": "15.12.5",
-    "typescript": "^4.3.4",
+    "typescript": "^4.7.4",
     "@scramjet/cli": "^0.26.1"
   },
   "repository": {
@@ -23,7 +23,7 @@
     "url": "https://github.com/scramjetorg/transform-hub.git"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "scramjet": "^4.35.20"
+    "axios": "^0.24.0",
+    "scramjet": "^4.36.7"
   }
 }

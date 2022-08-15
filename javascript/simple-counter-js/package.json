@@ -7,7 +7,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "scramjet": "^4.35.20"
+    "scramjet": "^4.36.7"
   },
   "scripts": {
     "build": "mkdir -p dist/ && cp *.js package.json README.md dist/ && (cd dist && npm install --omit=dev)",
