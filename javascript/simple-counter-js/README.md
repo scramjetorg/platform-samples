@@ -74,7 +74,7 @@ cd samples/simple-counter-js
 npm install
 
 # make a compressed package with Sequence
-si pack . -o simple-counter-js.tar.gz
+si seq pack . -o simple-counter-js.tar.gz
 
 # send Sequence to transform hub, this will output Sequence ID
 si seq send simple-counter-js.tar.gz
