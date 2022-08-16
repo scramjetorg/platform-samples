@@ -23,7 +23,7 @@ Create a file called `config.json` and add:
 ```json
 {
     "token": "DISCORD_BOT_TOKEN_GOES_HERE"
-} 
+}
 ```
 
 Add `config.json` to main directory in `discord-read` sample and follow running process below:
@@ -38,7 +38,7 @@ npm install
 npm run build
 
 # make a compressed package with Sequence
-si pack dist
+si seq pack dist
 
 # send Sequence to transform hub, this will output Sequence ID
 si seq send dist.tar.gz

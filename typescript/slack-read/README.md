@@ -22,7 +22,7 @@ npm install
 npm run build
 
 # make a compressed package with Sequence
-si pack dist
+si seq pack dist
 
 # send Sequence to transform hub, this will output Sequence ID
 si seq send dist.tar.gz
