@@ -12,11 +12,11 @@ interface Company {
 
 /**
  * Get company name from LinkedIn URL
- * 
+ *
  * @param {Company} company
- * @returns {String} Company Name
+ * @returns {string} Company Name
  */
-function getCompanyName(company: Company): String | null {
+function getCompanyName(company: Company): string | null {
     if (company.LinkedIn) {
         const { pathname } = new URL(company.LinkedIn);
 
@@ -31,12 +31,12 @@ function getCompanyName(company: Company): String | null {
 
 /**
  * Get company data from Rapid API
- * 
- * @param {String} companyName
- * @param {String} apiKey - Rapid API key
- * @returns {Object}
+ *
+ * @param {string} companyName
+ * @param {string} apiKey - Rapid API key
+ * @returns {object}
  */
-async function getDataFromRapiAPI(companyName: String | null, apiKey: String) {
+async function getDataFromRapiAPI(companyName: string | null, apiKey: string) {
     if (companyName === null) return null;
 
     const options = {
@@ -52,11 +52,11 @@ async function getDataFromRapiAPI(companyName: String | null, apiKey: String) {
     return (await axios.request(options as AxiosRequestConfig)).data
 }
 
-/** 
+/**
  * Get title, description, keywords and first 1000 characters from website
- * 
- * @param {String} url
- * @returns {Object}
+ *
+ * @param {string} url
+ * @returns {object}
  */
 async function scrape(url: string) {
     if (!url) return null;

@@ -19,9 +19,9 @@
     "url": "https://github.com/scramjetorg/platform-samples.git"
   },
   "devDependencies": {
-    "@npmcli/run-script": "^4.1.7",
+    "@npmcli/run-script": "^4.2.1",
     "fs-extra": "^9.1.0",
-    "glob": "^7.1.7",
+    "glob": "^7.2.3",
     "globrex": "^0.1.2",
     "minimist": "^1.2.6"
   },
