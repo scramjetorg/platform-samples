@@ -2,11 +2,15 @@
     "name": "@scramjet/gh-issues-to-clickup",
     "version": "0.1.0",
     "main": "./main.py",
-    "author": "Dariusz Adamczyk <dariusz.adamczyk@scramjet.org>",
+    "author": "daro1337",
     "license": "GPL-3.0",
+    "description": "Sequence that sends GitHub issues to dedicated ClickUp list",
+    "keywords": [
+      "sample"
+  ],
     "repository": {
       "type": "git",
-      "url": "https://github.com/scramjetorg/transform-hub.git"
+      "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/gh-issues-to-clickup"
     },
     "engines": {
       "python3": "3.8.0"
