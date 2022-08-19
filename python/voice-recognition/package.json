@@ -6,7 +6,9 @@
   "license": "GPL-3.0",
   "description": "This Sequence is a trivial example of voice recognition with Scramjet and speech_recognition Python library.",
   "keywords": [
-    "sample"
+    "sample",
+    "voice",
+    "recognize"
   ],
   "repository": {
     "type": "git",

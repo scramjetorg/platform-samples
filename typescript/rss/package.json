@@ -1,8 +1,23 @@
 {
-  "name": "rss",
+  "name": "@scramjet/rss",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "author": "iaforek",
+  "license": "GPL-3.0",
+  "description": "Sequence that gets a list of RSS feed URLs from file, then retrieves each feed and passes links to scraper. Scraper reads content of each URL. Next, keywords are matched and a score given for each URL.",
+  "keywords": [
+    "rss",
+    "sample",
+    "sth",
+    "scramjet-transform-hub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/rss"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -10,22 +25,6 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scramjetorg/scramjet-cloud-docs.git"
-  },
-  "keywords": [
-    "rss",
-    "sample",
-    "sth",
-    "scramjet-transform-hub"
-  ],
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/scramjetorg/scramjet-cloud-docs/issues"
-  },
-  "homepage": "https://github.com/scramjetorg/scramjet-cloud-docs#readme",
   "dependencies": {
     "@types/node": "^15.12.5",
     "axios": "^0.24.0",
@@ -35,7 +34,7 @@
     "typescript": "^4.7.4"
   },
   "devDependencies": {
-    "@scramjet/types": "^0.26.1",
+    "@scramjet/types": "^0.28.0",
     "@types/node": "15.12.5",
     "typescript": "^4.7.4"
   }

@@ -1,8 +1,22 @@
 {
   "name": "@scramjet/scraping",
   "version": "0.13.1",
-  "description": "This is a simple and trivial example of scraping web pages.",
   "main": "app.js",
+  "author": "pietrzakacper",
+  "license": "GPL-3.0",
+  "description": "This is a simple and trivial example of scraping web pages.",
+  "keywords": [
+    "sample",
+    "scrape",
+    "scraping"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/platform-samples/tree/main/typescript/scraping"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -10,19 +24,13 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
-  },
   "dependencies": {
     "axios": "^0.24.0",
     "cheerio": "*",
     "scramjet": "^4.36.7"
   },
   "devDependencies": {
-    "@scramjet/types": "^0.26.1",
+    "@scramjet/types": "^0.28.0",
     "@types/node": "15.12.5",
     "typescript": "^4.7.4"
   }
