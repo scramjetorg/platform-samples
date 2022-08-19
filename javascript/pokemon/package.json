@@ -1,13 +1,19 @@
 {
   "name": "@scramjet/pokemon",
-  "version": "0.0.1",
-  "description": "",
-  "main": "./index.js",
-  "author": "Scramjet <open-source@scramjet.org>",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "a-tylenda",
   "license": "GPL-3.0",
+  "description": "",
+  "keywords": [
+    "sample"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/pokemon"
+  },
+  "engines": {
+    "node": "^16.0.0"
   },
   "dependencies": {
     "node-fetch": "^2.6.7"

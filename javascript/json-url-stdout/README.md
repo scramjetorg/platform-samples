@@ -1,6 +1,6 @@
 # Json url based Sequence with `jsonUrl`, `interval` and `jsonPath` arguments
 
-This is a Sequence similar to `json-seq-1`. It also pulls the data from JSON url every x seconds and writes it to Instance stdout endpoint, but in this example one more argument is added → `jsonPath`. The file structure has also changed, the `utils.js` file has been added, to which the functions responsible for downloading json from the API, the json pull interval and the third function were the `jsonPath` given in string is converted into a path indicating a specific element nested in the json body.
+This is a Sequence similar to `json-url-output`. It also pulls the data from JSON url every x seconds and writes it to Instance stdout endpoint, but in this example one more argument is added → `jsonPath`. The file structure has also changed, the `utils.js` file has been added, to which the functions responsible for downloading json from the API, the json pull interval and the third function were the `jsonPath` given in string is converted into a path indicating a specific element nested in the json body.
 
 The Sequence takes three arguments:
 
