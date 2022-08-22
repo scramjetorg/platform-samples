@@ -1,6 +1,6 @@
 # Json url based Sequence with `jsonUrl` and `interval` arguments
 
-This is a simple Sequence that pulls data from JSON url every x seconds and writes it to Instance stdout endpoint. 
+This is a simple Sequence that pulls data from JSON url every x seconds and writes it to Instance stdout endpoint.
 The Sequence takes two arguments:
 
 - `jsonUrl` - it is the address where the data in json format is available. List of free and open API that you can use as `jsonUrl` argument:

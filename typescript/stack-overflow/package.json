@@ -1,8 +1,23 @@
 {
   "name": "@scramjet/stack-overflow",
   "version": "0.13.1",
-  "description": "This a sequence that gets the number of changes in Stack Overflow tag count. This queries SO API every X minutes, gathers, compares and outputs result as difference.",
   "main": "index.js",
+  "author": "iaforek",
+  "license": "GPL-3.0",
+  "description": "This a Sequence that gets the number of changes in Stack Overflow tag count. This queries SO API every x minutes, gathers, compares and outputs result as difference.",
+  "keywords": [
+    "sample",
+    "stack-overflow",
+    "sth",
+    "scramjet-transform-hub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/stack-overflow"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -10,19 +25,13 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
-  },
   "dependencies": {
     "axios": "^0.24.0",
     "cheerio": "*",
     "scramjet": "^4.36.7"
   },
   "devDependencies": {
-    "@scramjet/types": "^0.26.1",
+    "@scramjet/types": "^0.28.0",
     "@types/node": "15.12.5",
     "typescript": "^4.7.4"
   }
