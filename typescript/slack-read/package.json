@@ -1,8 +1,24 @@
 {
   "name": "@scramjet/slack-read",
   "version": "0.0.1",
-  "description": "",
   "main": "index.js",
+  "author": "pietrzakacper",
+  "license": "GPL-3.0",
+  "description": "Sequence that reads messages from Slack and writes to topic.",
+  "keywords": [
+    "sample",
+    "slack",
+    "connection",
+    "sth",
+    "scramjet-transform-hub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/slack-read"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --only=production)",
@@ -10,26 +26,14 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "ISC",
-  "keywords": [
-    "slack",
-    "connection",
-    "sth",
-    "scramjet-transform-hub"
-  ],
-  "devDependencies": {
-    "@scramjet/types": "^0.26.1",
-    "@types/node": "15.12.5",
-    "scramjet": "^4.36.7",
-    "typescript": "^4.7.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scramjetorg/scramjet-cloud-docs.git"
-  },
   "dependencies": {
     "axios": "^0.24.0",
     "ws": "^8.8.1"
+  },
+  "devDependencies": {
+    "@scramjet/types": "^0.28.0",
+    "@types/node": "15.12.5",
+    "scramjet": "^4.36.7",
+    "typescript": "^4.7.4"
   }
 }

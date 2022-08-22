@@ -1,9 +1,25 @@
 {
   "name": "@scramjet/transform-string-stream",
   "version": "0.13.1",
+  "main": "index.js",
+  "author": "pietrzakacper",
+  "license": "GPL-3.0",
   "description": "Sequence that modifies incoming stream of strings by adding a prefix and a suffix.",
-  "main": "index",
-  "types": "dist/index",
+  "keywords": [
+    "sample",
+    "sth",
+    "scramjet-transform-hub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/transform-string-stream"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "assets": [
+    "name.txt"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -11,27 +27,12 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "engines": {
-    "node": ">=10"
-  },
-  "scramjet": {
-    "image": "node"
-  },
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "devDependencies": {
-    "@scramjet/types": "^0.26.1",
-    "@types/node": "15.12.5",
-    "typescript": "^4.7.4"
-  },
   "dependencies": {
     "scramjet": "^4.36.7"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
-  },
-  "assets": [
-    "name.txt"
-  ]
+  "devDependencies": {
+    "@scramjet/types": "^0.28.0",
+    "@types/node": "15.12.5",
+    "typescript": "^4.7.4"
+  }
 }
