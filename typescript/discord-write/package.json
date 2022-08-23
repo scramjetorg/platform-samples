@@ -6,7 +6,8 @@
   "license": "GPL-3.0",
   "description": "Sequence that reads messages from topic and writes to Discord via webhook.",
   "keywords": [
-    "sample"
+    "sample",
+    "discord"
   ],
   "repository": {
     "type": "git",

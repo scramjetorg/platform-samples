@@ -1,16 +1,16 @@
 # Slack Read
 
-Read messages from Slack and write to topic.
+Read messages from Slack and write to topic. This Sequence is a topic provider, it writes data under a topic name `messages-slack-outbound` in `"application/x-ndjson"` content type.
 
 In order to read messages from Slack you need to create application first. Go to [Slack API](https://api.slack.com/apps) and `Create New App`.
-Next, select you app and under `Settings` -> select `Socket Mode`.
+Next, select your app and under `Settings` -> select `Socket Mode`.
 Enable Socket Mode as per message:
 
 > To start receiving payloads in Socket Mode, turn on the toggle below and call the apps.connections.open endpoint using an App Level Token to establish a connection.
 
 After enabling socket mode, follow link to App Level Tokens, scroll down to `App-Level Tokens` and generate new token. Give it a name and select scope: `connections:write`.
 
-Copy SOCKET_MODE_TOKEN. It will look like: `xapp-1-A....`
+Copy SOCKET_MODE_TOKEN. It will look like: `xapp-1-A....` and save it on your disc, you will need it later on.
 
 ## Running
 
@@ -28,8 +28,11 @@ si seq pack dist
 si seq send dist.tar.gz
 
 # start a Sequence, provide SOCKET_MODE_TOKEN as the second parameter
-si seq start - <SOCKET_MODE_TOKEN>
+si seq start - --args [\"SOCKET_MODE_TOKEN\"]
+
+# check Slack connection status displayed via stdout stream
+si inst stdout -
 
 # view messages in topic
-si topic get messages
+si topic get messages-slack-outbound
 ```

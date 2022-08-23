@@ -6,7 +6,8 @@
   "license": "GPL-3.0",
   "description": "Sequence that reads messages from Discord channel and writes to topic.",
   "keywords": [
-    "sample"
+    "sample",
+    "discord"
   ],
   "repository": {
     "type": "git",

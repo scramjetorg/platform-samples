@@ -1,4 +1,4 @@
-# crypto-prices ![bitcoin](../../images/bitcoin1.png) ![zcash](../../images/zcash1.png) ![ethereum](../../images/etherum1.png)
+# crypto-prices
 
 Sequence that keeps printing current crypto prices for a provided pair of currencies every 3 seconds.
 
@@ -25,7 +25,7 @@ scramjet-transform-hub
 
 ```bash
 # go to 'crypto-prices' directory
-cd samples/crypto-prices
+cd typescript/crypto-prices
 
 # install dependencies
 npm install
@@ -48,6 +48,16 @@ si seq pack dist/ -o crypto-prices.tar.gz    # compress 'dist/' directory into f
 si seq send crypto-prices.tar.gz    # send packed Sequence to STH, this will output Sequence ID
 
 si seq start -    # start the Sequence, this will output Instance ID
+```
+
+## Start with params
+
+```bash
+# run another Sequence by passing in arguments, any pair [cryptocurrency, currency]
+$ si seq start - --args [\"ETH\",\"PLN\"]
+
+# or similar with deploy
+si seq deploy dist --args [\"ETH\",\"PLN\"]
 ```
 
 ## Output

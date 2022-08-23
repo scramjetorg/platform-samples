@@ -1,6 +1,6 @@
 # Discord Read
 
-Read messages from Discord channel and write to topic.
+Read messages from Discord channel and write to topic. This Sequence is a topic provider, it writes data under a topic name `messages-slack-inbound` in `"application/x-ndjson"` content type.
 
 [Discord Documentation](https://discord.js.org/#/docs/discord.js/stable/general/welcome)
 
@@ -14,7 +14,13 @@ In order to read messages from Discord we need to create a bot first:
 * You can customize its name and icon.
 * Expand `OAuth2` and select `URL Generator`.
 * Select `bot` under scopes and `Read Messages/View Channels` under bot permissions. Copy URL.
-* Paste the URL into web browser address bar. Connect to Discord message will appear. Select your server from `Add To Server` dropdown and click on `Continue`.
+* Paste the URL into web browser address bar. Connect to Discord message will appear. Select your server from `Add To Server` dropdown and click on `Continue`. If you don't have any servers you need to create one in those simple steps:
+    1. Start the Discord app for desktop or smartphone/tablet.
+    2. Log into your Discord account.
+    3. Click on the plus symbol on the left-hand side of the page.
+    4. Select the option “Create a server”.
+    5. Enter the name of your new Discord server.
+    6. Click on “Create”.
 * Confirm permissions on the next screen by clicking `Authorize` button.
 * You will get a confirmation saying: *you may now close this window or tab*.
 
@@ -46,6 +52,9 @@ si seq send dist.tar.gz
 # start a Sequence
 si seq start - -f config.json
 
-# view messages in topic
-si topic get messages
+# check Discord API connection via stdout stream
+si inst stdout -
+
+# type some messages on any channel on your Discord server and view the messages in topic
+si topic get messages-slack-inbound
 ```

@@ -1,6 +1,6 @@
 # Discord Write
 
-Read messages from topic and write to Discord via webhook.
+Read messages from topic and write to Discord via webhook. This Sequence is a topic consumer, to make it work you need start another Sequence → sample [slack-read](../slack-read/) that provides topic data under topic name `"messages-slack-outbound"`.
 
 [Discord Documentation](https://discord.com/developers/docs/resources/webhook)
 
@@ -24,7 +24,7 @@ si seq pack dist
 si seq send dist.tar.gz
 
 # start a Sequence, provide DISCORD_WEBHOOK_URL as the second parameter
-si seq start - <DISCORD_WEBHOOK_URL>
+si seq start - --args [\"DISCORD_WEBHOOK_URL\"]
 
 # view messages in topic
 si topic get messages
