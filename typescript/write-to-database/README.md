@@ -1,6 +1,8 @@
 # write-to-database
 
-Sequence writes data to MySQL database.
+Sequence that writes data to MySQL database.
+
+___
 
 ## Preparations
 
@@ -25,7 +27,7 @@ npm install
 npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
-si sequence deploy ./dist -f config.json
+si sequence deploy dist -f config.json
 
 # see the Instance log
 si inst log -

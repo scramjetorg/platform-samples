@@ -1,5 +1,7 @@
 # Slack Write
 
+___
+
 Read messages from topic and write to Slack. This Sequence is a topic consumer, to make it work you need start another Sequence → sample [discord-read](../discord-read/) that provides topic data  under topic name `"messages-slack-inbound"`.
 
 In order to get SLACK_WEBHOOK_URL you need to create application in Slack first.

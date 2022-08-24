@@ -4,9 +4,7 @@ Sequence that keeps printing current crypto prices for a provided pair of curren
 
 ___
 
-> 📽️ The video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel [How to check cryptocurrency prices using Scramjet?](https://www.youtube.com/watch?v=BPLKPVVyHNY&t=3s). Give a 👍 if you liked it and "Subscribe" to the channel to keep up to date with new videos.
-
-___
+> 📽️ There is video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel [How to check cryptocurrency prices using Scramjet?](https://www.youtube.com/watch?v=BPLKPVVyHNY&t=3s). Give a 👍 if you liked it and "Subscribe" to the channel to keep up to date with new videos.
 
 ## Running
 

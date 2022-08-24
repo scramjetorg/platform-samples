@@ -2,6 +2,8 @@
 
 Sequence that keeps printing mediawiki event stream.
 
+___
+
 ## Running
 
 > ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.

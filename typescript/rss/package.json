@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "iaforek",
   "license": "GPL-3.0",
-  "description": "Sequence that gets a list of RSS feed URLs from file, then retrieves each feed and passes links to scraper. Scraper reads content of each URL. Next, keywords are matched and a score given for each URL.",
+  "description": "A Sequence that works as a web feed, monitors website for a new content.",
   "keywords": [
     "rss",
     "sample",

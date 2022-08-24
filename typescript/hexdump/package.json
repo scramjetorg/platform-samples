@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "ErykSol",
   "license": "GPL-3.0",
-  "description": "Sequence that takes data from input and returns this data in hex format on output",
+  "description": "A simple Sequence that takes file as an input and returns a hexadecimal view of this file on output.",
   "keywords": [
     "sample"
   ],

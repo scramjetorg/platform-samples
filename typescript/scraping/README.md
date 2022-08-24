@@ -2,16 +2,14 @@
 
 This is a simple and trivial example of scraping web pages.
 
+___
+
 The scraper takes URL and CSS ID selector as input parameters and returns data every second.
 
 To test this please use URL: <https://www.timeanddate.com/worldclock/poland> and ID: `#ct`. Scraper will connect to the website and read (scrap) the current time. Next, it returns this as a stream.
 As URL and ID are parametrized we can use other websites too. For example, URL: <https://time.is/> and ID: `#clock`
 
-___
-
 > 📽️ The video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel 👉 [How to scrape websites using Scramjet Transform Hub?](https://www.youtube.com/watch?v=w7c_YgBvcGo&t=3s). Give a 👍 if you liked it and "Subscribe" to the channel to keep up to date with new videos.
-
-___
 
 ## Running
 
@@ -30,7 +28,7 @@ npm install
 npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
-si seq deploy dist --args '[\"https://www.timeanddate.com/worldclock/poland\",\"#ct\"]'
+si seq deploy dist --args '["https://www.timeanddate.com/worldclock/poland", "#ct"]'
 
 # See output
 si inst output -

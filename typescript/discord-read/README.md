@@ -1,5 +1,7 @@
 # Discord Read
 
+___
+
 Read messages from Discord channel and write to topic. This Sequence is a topic provider, it writes data under a topic name `messages-slack-inbound` in `"application/x-ndjson"` content type.
 
 [Discord Documentation](https://discord.js.org/#/docs/discord.js/stable/general/welcome)

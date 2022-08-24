@@ -2,6 +2,8 @@
 
 Sequence reads tar.gz file from input and returns JSON containing basic information about archived files along with unpacked data.
 
+___
+
 ## Running
 
 > ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
@@ -12,7 +14,7 @@ Open two terminals and run the following commands:
 
 ```bash
 # go to 'read-targz-stats' directory
-cd samples/read-targz-stats
+cd typescript/read-targz-stats
 
 # install dependencies
 npm install
@@ -22,7 +24,7 @@ npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
 si seq deploy dist
-# copy instance _id - you'll use this in 3rd terminal window
+# copy instance _id - you'll use this in 2nd terminal window
 
 # see the Instance output
 si inst output -
@@ -31,12 +33,12 @@ si inst output -
 ### The second terminal
 
 ```bash
+# create test.tar.gz file from testFiles directory
+tar -czvf testTar.tar.gz testFiles
+
 # replace INSTANCE_ID with actual instance ID and pipe packed tar.gz file as binary to instance input
-si inst input <INSTANCE_ID> testFiles/testTar.tar.gz -t application/octet-stream
-
+si inst input <INSTANCE_ID> testTar.tar.gz -t application/octet-stream
 ```
-
-Check output in second terminal to see hex format of scramjet.ico file.
 
 ## Example output
 

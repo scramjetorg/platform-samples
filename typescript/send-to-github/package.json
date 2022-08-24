@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "kociolekscramjet",
   "license": "GPL-3.0",
-  "description": "Sequence committing a JSON object to a file on Github",
+  "description": "A Sequence that commits a JSON object to a file on Github",
   "keywords": [
     "sample"
   ],

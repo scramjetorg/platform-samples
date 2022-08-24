@@ -1,5 +1,7 @@
 # RSS
 
+___
+
 This sample gets a list of RSS feed URLs from `./config/rss.json` file. Then it retrieves each feed and passes links to scraper.
 Scraper reads content of each URL. Next, keywords are matched and a score given for each URL.
 
@@ -41,6 +43,10 @@ si seq start - --args [\"SLACK_WEBHOOK_URL\"]
 
 # See output - actual output will be send to slack channel
 si inst output -
+"GETTING RSS LINKS...\n"
+"GETTING RSS LINKS...\n"
+"GETTING RSS LINKS...\n"
+"GETTING RSS LINKS...\n"
 
 # Optional commands below:
 

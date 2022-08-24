@@ -1,5 +1,7 @@
 # Linkedin
 
+___
+
 Sequence that reads CSV input (e.g. dump of companies from crunchbase), uses RapidAPI to gather additional data from LinkedIn and outputs aggregated details.
 
 ## Pre-configuration

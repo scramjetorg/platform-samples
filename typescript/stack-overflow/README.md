@@ -1,8 +1,9 @@
 # stack-overflow
 
 Sequence that gets the number of changes in Stack Overflow tag count.
-
 This queries SO API every X minutes, gathers, compares and outputs result as a difference.
+
+___
 
 ## Running
 
@@ -21,7 +22,8 @@ npm install
 npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
-si seq deploy dist --args [minutes, \"request_key\"]
+si seq deploy dist --args '[minutes, "request_key"]'
+# "request_key" argument is optional, e.g.: si seq deploy dist --args [1]
 
 # See Instance output
 si inst output -

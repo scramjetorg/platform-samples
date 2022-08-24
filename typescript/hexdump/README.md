@@ -1,6 +1,8 @@
 # Sequence returns input in hex format
 
-A simple Sequence that takies file as an input and returns a hexadecimal view of this file on output.
+A simple Sequence that takes file as an input and returns a hexadecimal view of this file on output.
+
+___
 
 ## Running
 

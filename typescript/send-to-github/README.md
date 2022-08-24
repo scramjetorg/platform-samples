@@ -1,6 +1,8 @@
 # send-to-github
 
-Sequence committing a JSON object to a file on Github. If the file does not exist a new file is created. If the file exists contents of the file are updated.
+___
+
+In this sample, Sequence after deployment takes JSON objects on input stream and commits it to a file on Github. If the file does not exist a new file is created. If the file exists contents of the file are updated.
 
 ## Preparations
 

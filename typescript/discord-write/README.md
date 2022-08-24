@@ -1,5 +1,7 @@
 # Discord Write
 
+___
+
 Read messages from topic and write to Discord via webhook. This Sequence is a topic consumer, to make it work you need start another Sequence → sample [slack-read](../slack-read/) that provides topic data under topic name `"messages-slack-outbound"`.
 
 [Discord Documentation](https://discord.com/developers/docs/resources/webhook)

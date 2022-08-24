@@ -1,5 +1,7 @@
 # Slack Read
 
+___
+
 Read messages from Slack and write to topic. This Sequence is a topic provider, it writes data under a topic name `messages-slack-outbound` in `"application/x-ndjson"` content type.
 
 In order to read messages from Slack you need to create application first. Go to [Slack API](https://api.slack.com/apps) and `Create New App`.
