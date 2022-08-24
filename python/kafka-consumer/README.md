@@ -2,22 +2,31 @@
 
 In this sample you can retrieve data from Kafka topic and show the result on 'output'.
 
-If you are looking for more advanced demo of usage, please check [README](../kafka-setup/README.md)
+___
+
+If you are looking for more advanced demo of usage, please check [README](../../guides/kafka-setup/README.md)
+
+## Running
+
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
 First, build kafka-consumer sample
 
 ```bash
-cd kafka-consumer
+# go to 'kafka-consumer' directory
+cd python/kafka-consumer
+
+# build
 npm run build
 ```
 
-Now you can run STH and deploy Sequence
+If you run this sample on Self Hosted Hub, please start it with process adapter option:
 
 ```bash
 DEVELOPMENT=1 sth --runtime-adapter=process
 ```
 
-On the second terminal
+**The second terminal**
 
 ```bash
 si seq deploy kafka-consumer/dist --args [{\"topic\":\"TOPIC\"},{\"server\":\"0.0.0.0:29092\"}]

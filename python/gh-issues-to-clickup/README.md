@@ -1,5 +1,7 @@
 # GitHub issues to Clickup task
 
+___
+
 - [GitHub issues to Clickup task](#github-issues-to-clickup-task)
   - [Github](#github)
     - [Get github Personal Access Token](#get-github-personal-access-token)
@@ -8,6 +10,8 @@
     - [Create ClickUp Workspace](#create-clickup-workspace)
   - [Set config.json file](#set-configjson-file)
   - [Send Sequence to Scramjet Cloud Platform](#send-sequence-to-scramjet-cloud-platform)
+
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
 ## Github
 
@@ -50,9 +54,9 @@ Edit `config.json` file:
     "github": {
         "gh_token": "GITHUB_TOKEN",
         "gh_repos": [
-            "scramjetorg/transform-hub", 
-            "scramjetorg/reference-apps", 
-            "scramjetorg/framework-js", 
+            "scramjetorg/transform-hub",
+            "scramjetorg/reference-apps",
+            "scramjetorg/framework-js",
             "scramjetorg/framework-python"
         ]
     },
@@ -74,4 +78,4 @@ yarn build:refapps # build sequence
 si seq deploy -f config.json dist/ # deploy and run sequence
 ```
 
-Go to `clickup.com` and choosen `Workspace` and then check if the GH issues have been imported
+Go to `clickup.com` and chosen `Workspace` and then check if the GH issues have been imported.

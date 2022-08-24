@@ -14,5 +14,9 @@
   },
   "engines": {
     "node": "^16.0.0"
+  },
+  "devDependencies": {
+    "@scramjet/cli": "^0.28.0",
+    "@scramjet/types": "^0.28.0"
   }
 }

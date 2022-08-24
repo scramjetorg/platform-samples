@@ -4,7 +4,7 @@
     "main": "./main.py",
     "author": "daro1337",
     "license": "GPL-3.0",
-    "description": "Sequence that sends GitHub issues to dedicated ClickUp list",
+    "description": "Sequence that sends GitHub issues to dedicated ClickUp list.",
     "keywords": [
       "sample"
   ],

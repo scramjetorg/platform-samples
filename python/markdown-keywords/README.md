@@ -1,23 +1,47 @@
 # Sequence suggesting keywords for header in *.md
 
+___
+
 Easy example of usage Kaffka with Scramjet platform.
 
-Build this sample with `yarn` command
+## Running
+
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+Open two terminals and run the following commands:
+
+**The first terminal:**
 
 ```bash
-yarn build:refapps
+# go to 'markdown-keywords' directory
+cd python/markdown-keywords
+
+# build
+npm run build
+```
+
+If you run this sample on Self Hosted Hub, please start it with process adapter option:
+
+```bash
+DEVELOPMENT=1 sth --runtime-adapter=process
 ```
 
 Once you've built it, you need to deploy it.
 
 ```bash
-si seq deploy keywords/dist
+si seq deploy dist
 ```
 
-Now you can pass *.md file to instance input.
+Now you can pass *.md file to instance input., for example `README.md`
 
 ```bash
-si inst input - <path_to_file>
+si inst input - README.md
 ```
 
-Now you should be able to see output on STH logs in first terminal.
+**The second terminal**
+
+Now you should be able to see on the output the content of `README.md` file:
+
+```bash
+si inst output <INSTANCE_ID>
+```

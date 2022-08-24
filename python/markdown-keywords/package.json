@@ -1,5 +1,5 @@
 {
-  "name": "@scramjet/python-keywords",
+  "name": "@scramjet/python-markdown-keywords",
   "version": "0.18.7",
   "main": "./main.py",
   "author": "Tatarinho",
@@ -16,7 +16,7 @@
     "python3": "3.5.0"
   },
   "scripts": {
-    "build:refapps": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+    "build": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
     "clean": "rm -rf ./dist"
   }
 }
