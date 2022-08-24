@@ -10,6 +10,10 @@ Before start you need `DISCORD_WEBHOOK_URL`. In Discord go to your server. Then 
 
 WebHook URL has following format: `https://discord.com/api/webhooks/{webhook.id}/{webhook.token}` where `webhook.id` are numbers and `webhook.token` are letters and numbers.
 
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+Open the terminal and run the following commands:
+
 ```bash
 # install dependencies
 npm install
@@ -25,7 +29,4 @@ si seq send dist.tar.gz
 
 # start a Sequence, provide DISCORD_WEBHOOK_URL as the second parameter
 si seq start - --args [\"DISCORD_WEBHOOK_URL\"]
-
-# view messages in topic
-si topic get messages
 ```

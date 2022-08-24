@@ -4,20 +4,11 @@ Sequence reads tar.gz file from input and returns JSON containing basic informat
 
 ## Running
 
-Open three terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-### The First Terminal
+Open two terminals and run the following commands:
 
-```bash
-# start sth by executing command...
-scramjet-transform-hub
-
-# ...or use script
-cd transform-hub
-npm run start -P 8000
-```
-
-### The Second terminal
+### The first Terminal
 
 ```bash
 # go to 'read-targz-stats' directory
@@ -37,7 +28,7 @@ si seq deploy dist
 si inst output -
 ```
 
-### The third terminal
+### The second terminal
 
 ```bash
 # replace INSTANCE_ID with actual instance ID and pipe packed tar.gz file as binary to instance input

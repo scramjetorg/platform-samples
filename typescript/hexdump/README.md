@@ -1,25 +1,18 @@
 # Sequence returns input in hex format
 
+A simple Sequence that takies file as an input and returns a hexadecimal view of this file on output.
+
 ## Running
 
-Open three terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-### The First Terminal
+Open two terminals and run the following commands:
 
-```bash
-# start sth by executing command...
-scramjet-transform-hub
-
-# ...or use script
-cd transform-hub
-npm run start -P 8000
-```
-
-### The Second terminal
+### The first terminal
 
 ```bash
 # go to 'hexdump' directory
-cd samples/hexdump
+cd typescript/hexdump
 
 # install dependencies
 npm install
@@ -35,17 +28,14 @@ si seq deploy dist
 si inst output -
 ```
 
-### The third terminal
+### The second terminal
 
 ```bash
 # replace INSTANCE_ID with actual instance ID and pipe scramjet.ico as binary to instance input
 si inst input <INSTANCE_ID> scramjet.ico -t application/octet-stream
-
-# In another terminal
-si inst output <INSTANCE_ID>
 ```
 
-Check output in second terminal to see hex format of scramjet.ico file.
+Check output in the third terminal to see hex format of scramjet.ico file.
 
 ## Expected output
 

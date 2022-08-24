@@ -19,6 +19,10 @@ RSS Feed URL as in `./config/rss.json`
 
 ## Running
 
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+Open the terminal and run the following commands:
+
 ```bash
 # install dependencies
 npm install
@@ -33,7 +37,7 @@ si seq pack dist
 si seq send dist.tar.gz
 
 # start a Sequence, this will output Instance ID. Provide slack webhook URL as input parameter
-si seq start - <SLACK_WEBHOOK_URL>
+si seq start - --args [\"SLACK_WEBHOOK_URL\"]
 
 # See output - actual output will be send to slack channel
 si inst output -

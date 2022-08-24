@@ -9,28 +9,19 @@ As URL and ID are parametrized we can use other websites too. For example, URL: 
 
 ___
 
-### The video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel 👉 [How to scrape websites using Scramjet Transform Hub?](https://www.youtube.com/watch?v=w7c_YgBvcGo&t=3s)
+> 📽️ The video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel 👉 [How to scrape websites using Scramjet Transform Hub?](https://www.youtube.com/watch?v=w7c_YgBvcGo&t=3s). Give a 👍 if you liked it and "Subscribe" to the channel to keep up to date with new videos.
 
 ___
 
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
-
 ## Running
 
-Open two terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
+Open the terminal and run the following commands:
 
 ```bash
 # go to 'scraping' directory
-cd samples/scraping
+cd typescript/scraping
 
 # install dependencies
 npm install
@@ -39,12 +30,12 @@ npm install
 npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
-si seq deploy dist --args '["https://www.timeanddate.com/worldclock/poland", "#ct"]'
+si seq deploy dist --args '[\"https://www.timeanddate.com/worldclock/poland\",\"#ct\"]'
 
 # See output
 si inst output -
 
-# Optional commands below:
+# Optional commands:
 
 # Check console.log messages
 si inst stdout -
@@ -60,14 +51,13 @@ si seq pack dist/ -o scraping.tar.gz    # compress 'scraping/' directory into fi
 
 si seq send scraping.tar.gz    # send compressed Sequence to STH, this will output Sequence ID
 
-si seq start - --args '["https://www.timeanddate.com/worldclock/poland", "#ct"]'    # start the Sequence with arguments, this will output Instance ID
+si seq start - --args '[\"https://www.timeanddate.com/worldclock/poland\", \#ct\"]'    # start the Sequence with arguments, this will output Instance ID
 ```
 
 ## Output
 
 ```bash
 $ si inst output -
-Request ok: http://127.0.0.1:8000/api/v1/instance/41783884-2e97-4b78-9639-aac5d7ff8447/output status: 200 OK
 13:06:10
 13:06:15
 13:06:20

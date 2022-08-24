@@ -36,6 +36,9 @@ Add `config.json` to main directory in `discord-read` sample and follow running 
 
 ## Running
 
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+
 ```bash
 # install dependencies
 npm install

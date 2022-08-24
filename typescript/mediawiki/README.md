@@ -2,24 +2,15 @@
 
 Sequence that keeps printing mediawiki event stream.
 
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
-
 ## Running
 
-Open two terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
+Open the terminal and run the following commands:
 
 ```bash
 # go to 'mediawiki' directory
-cd samples/mediawiki
+cd typescript/mediawiki
 
 # install dependencies
 npm install
@@ -40,7 +31,7 @@ si inst stdout -
 si inst stderr -
 
 # Send event, e.g. `drain`: `si inst emit <instance-id> drain "{}"`
-si inst emit - <event> <payload>
+si inst event emit - <event> <payload>
 ```
 
 > 💡**NOTE:** Command `deploy` performs three actions at once: `pack`, `send` and `start` the Sequence. It is the same as if you would run those three commands separately:
@@ -50,7 +41,7 @@ si seq pack dist/ -o mediawiki.tar.gz    # compress 'dist/' directory into file 
 
 si seq send mediawiki.tar.gz    # send packed Sequence to STH, this will output Sequence ID
 
-si seq start - [<search>]   # start the Sequence, this will output Instance ID. Search is optional and can be used to filter out results, e.g. "data.server_name === 'en.wikipedia.org'"
+si seq start - --args [\"<search>\"]   # start the Sequence, this will output Instance ID. Search is optional and can be used to filter out results, e.g. "data.server_name === 'en.wikipedia.org'"
 ```
 
 ## Example Event
