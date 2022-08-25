@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.7",
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   }
 }

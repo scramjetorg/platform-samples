@@ -37,7 +37,7 @@
     "@scramjet/cli": "^0.28.0"
   },
   "dependencies": {
-    "scramjet": "^4.36.7",
+    "scramjet": "^4.36.8",
     "tar-stream": "^2.2.0"
   }
 }

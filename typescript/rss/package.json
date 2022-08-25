@@ -31,7 +31,7 @@
     "axios": "^0.24.0",
     "cheerio": "*",
     "rss-parser": "^3.12.0",
-    "scramjet": "^4.36.7",
+    "scramjet": "^4.36.8",
     "typescript": "^4.7.4"
   },
   "devDependencies": {

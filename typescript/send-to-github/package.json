@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   }
 }

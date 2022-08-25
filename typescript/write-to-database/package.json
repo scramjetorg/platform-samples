@@ -29,7 +29,7 @@
   "dependencies": {
     "@scramjet/types": "^0.28.0",
     "mysql": "^2.18.1",
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   },
   "devDependencies": {
     "@scramjet/types": "^0.28.0",

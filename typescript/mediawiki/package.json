@@ -34,6 +34,6 @@
   "dependencies": {
     "@types/eventsource": "^1.1.9",
     "eventsource": "^1.1.2",
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   }
 }

@@ -19,6 +19,6 @@
     "node": "^16.0.0"
   },
   "dependencies": {
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   }
 }

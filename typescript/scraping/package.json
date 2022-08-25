@@ -29,7 +29,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cheerio": "*",
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   },
   "devDependencies": {
     "@scramjet/types": "^0.28.0",

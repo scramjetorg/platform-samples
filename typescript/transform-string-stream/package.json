@@ -30,7 +30,7 @@
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
   "dependencies": {
-    "scramjet": "^4.36.7"
+    "scramjet": "^4.36.8"
   },
   "devDependencies": {
     "@scramjet/types": "^0.28.0",
