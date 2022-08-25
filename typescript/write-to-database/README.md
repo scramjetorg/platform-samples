@@ -1,12 +1,14 @@
 # write-to-database
 
-Sequence writes data to MySQL database.
+Sequence that writes data to MySQL database.
+
+___
 
 ## Preparations
 
 Before proceeding setup MySQL database. The database can be setup locally when using the local version of transform-hub. Free MySQL hostings are good too e.g. freemysqlhosting.net.
 
-Remember to setup transform-hub locally or use the platform's environment for sequence deployment.
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
 ## Running
 
@@ -16,16 +18,16 @@ To start the sequence run commands below:
 
 ```bash
 # go to sample directory
-cd samples/write-to-database
+cd typescript/write-to-database
 
 # install dependencies
-yarn
+npm install
 
 # transpile TS->JS and copy node_modules and package.json to dist/
 npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
-si sequence deploy ./dist -f config.json
+si sequence deploy dist -f config.json
 
 # see the Instance log
 si inst log -
@@ -51,11 +53,11 @@ si inst input <id>
 asdf
 ```
 
-After that the logs should show that new element should be added to the table.
+After that the logs should show that new element is added to the table.
 
 ```json
-{"level":"DEBUG","msg":"Insering asdf\n","ts":1658405665408,"from":"Sequence","Runner":{"id":"91c3ccb1-3a9d-46b7-bde2-7bfd693620f8"}}
-{"level":"DEBUG","msg":"Insering asdf\n","ts":1658405665408,"from":"Sequence","CSIController":{"id":"91c3ccb1-3a9d-46b7-bde2-7bfd693620f8"}}
+{"level":"DEBUG","msg":"Inserting asdf\n","ts":1658405665408,"from":"Sequence","Runner":{"id":"91c3ccb1-3a9d-46b7-bde2-7bfd693620f8"}}
+{"level":"DEBUG","msg":"Inserting asdf\n","ts":1658405665408,"from":"Sequence","CSIController":{"id":"91c3ccb1-3a9d-46b7-bde2-7bfd693620f8"}}
 ```
 
 Check the contents of the table to see if everything is in place.

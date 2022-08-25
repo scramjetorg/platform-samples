@@ -2,6 +2,8 @@
 
 Sequence that reads incoming stream (input), and and modifies it by adding a text message according to the incoming data.
 
+___
+
 Stream is generated in [stream-gen.js](../tools/stream-gen-tool/stream-gen.js) file, where numbers in range of <-50,50> are randomly chosen and sent as Celsius degrees to `hello-snowman` Instance API endpoint `/input`.
 
 Our `hello-snowman` app will read and interpret these Celsius degrees, and will inform us about state of our Snowman:
@@ -18,29 +20,22 @@ Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
  Snowman ⛄ is melting! 🥵
 ```
 
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
-
 ## Running
 
-Open three terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+Open two terminals and run the following commands:
 
 **The first terminal:**
 
 ```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
-
-```bash
 # go to 'hello-snowman' directory
-cd samples/hello-snowman
+cd javascript/hello-snowman
 
 # install dependencies
 npm install
 
-# go back to samples/ directory
+# go back to javascript/ directory
 cd ../
 
 # deploy 'hello-snowman' Sequence
@@ -60,7 +55,7 @@ si seq send hello-snowman.tar.gz    # send compressed Sequence to STH, this will
 si seq start -    # start the Sequence, this will output Instance ID
 ```
 
-**In the third terminal**
+**The second terminal**
 
 ```bash
 # Start stream generator tool with Instance ID as parameter

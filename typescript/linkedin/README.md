@@ -1,5 +1,7 @@
 # Linkedin
 
+___
+
 Sequence that reads CSV input (e.g. dump of companies from crunchbase), uses RapidAPI to gather additional data from LinkedIn and outputs aggregated details.
 
 ## Pre-configuration
@@ -14,24 +16,15 @@ Create `config.json` file with following content:
 
 ## Running
 
-Open three terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The First Terminal:**
+Open two terminals and run the following commands:
 
-```bash
-# start sth by executing command...
-scramjet-transform-hub
-
-# ...or use script
-cd transform-hub
-yarn start -P 8000
-```
-
-**The Second terminal**
+**The first Terminal:**
 
 ```bash
 # go to 'crypto-prices' directory
-cd samples/linkedin
+cd typescript/linkedin
 
 # install dependencies
 npm install
@@ -42,18 +35,19 @@ npm run build
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
 si seq deploy dist -f config.json
 # optionally you can provide the rate limit from command line also.
-si seq deploy dist -f config.json 150
+si seq deploy dist -f config.json --args [150]
+si seq start - -f config.json --args [150]
 # copy instance _id - you'll use this in 3rd terminal window
 
 # see the Instance output
 si inst output -
 ```
 
-**The third terminal**
+**The second terminal**
 
 ```bash
 # replace INSTANCE_ID with actual instance ID and pipe CSV output to instance input
-cat companies.csv | si inst input INSTANCE_ID
+cat companies-06-07-2022.csv | si inst input INSTANCE_ID
 ```
 
 **Rapid API**

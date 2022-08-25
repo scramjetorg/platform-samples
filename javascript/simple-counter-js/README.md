@@ -1,30 +1,23 @@
 # simple-counter
 
-A simple Sequence, that counts and logs the number in one-second intervals. As a default, the counter is started with 0 and ends with 1000. These values can be changed by passing the `start` and `end` parameters.
+___
 
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
+As a default, the counter is started with 0 and ends with 1000. These values can be changed by passing the `start` and `end` parameters.
 
 ## Running
 
-Open two terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
+Open the terminal and run the following commands:
 
 ```bash
 # go to 'simple-counter-js' directory
-cd samples/simple-counter-js
+cd javascript/simple-counter-js
 
 # instal dependencies
 npm install
 
-# go back to samples/ directory
+# go back to javascript/ directory
 cd ../
 
 # deploy 'simple-counter-js' Sequence

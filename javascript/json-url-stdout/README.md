@@ -1,6 +1,8 @@
-# Json url based Sequence with `jsonUrl`, `interval` and `jsonPath` arguments
+# JSON url stdout
 
-This is a Sequence similar to `json-url-output`. It also pulls the data from JSON url every x seconds and writes it to Instance stdout endpoint, but in this example one more argument is added → `jsonPath`. The file structure has also changed, the `utils.js` file has been added, to which the functions responsible for downloading json from the API, the json pull interval and the third function were the `jsonPath` given in string is converted into a path indicating a specific element nested in the json body.
+___
+
+This is a Sequence similar to [json-url-output](../json-url-output/). It also pulls the data from JSON url every x seconds, but data is written to Instance stdout endpoint. Also one more argument is added → `jsonPath`.
 
 The Sequence takes three arguments:
 
@@ -12,56 +14,30 @@ The Sequence takes three arguments:
 
 - `interval` - time given in milliseconds (1s = 1000ms), with this parameter, we define how often the request is to be sent to the API, the time should be given in milliseconds, for example, providing this argument with a value of 5000 will result in sending the request every 5 seconds.
 
-- `jsonPath` - it is the path to the element contained in the json object structure. The path points at the element which value we want to read.
+- `jsonPath` - it is the path indicating a specific element nested in the json body. The path points at the element which value we want to read.
 
-## Start STH
+## Running
 
-Use command:
-
-`sth` or `scramjet-transform-hub`
-
-> Make sure your config is set to local STH: `si config reset all`
-
-## Sequence deployment
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
 Sequence is ready to use, id doesn't use any external modules so no dependencies need to be installed.
 
-### Deploy
-
-SI command to deploy the Sequence: `si seq deploy <path-to-sequence> --args [<jsonUrl>,<interval>,<jsonPath>]`, for example:
+Open the terminal and run the following commands:
 
 ```bash
-si seq deploy javascript/json-url-apps/json-seq-2 --args [\"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita\",10000,\"drinks[0].strDrink\"]
-```
+# go to 'javascript' directory
+cd javascript
 
-> Make sure there are no white spaces between the arguments in the args array.
+# deploy 'json-url-output' Sequence
+si seq deploy json-url-stdout --args [\"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita\",10000,\"drinks[0].strDrink\"]
 
-The result of calling this command should be the info printed in the console similar to this one:
-
-```bash
-$ si seq deploy javascript/json-url-apps/json-seq-2 --args [\"https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita\",10000,\"drinks[0].strDrink\"]
-InstanceClient {
-  host: HostClient {
-    apiBase: 'http://127.0.0.1:8000/api/v1',
-    client: ClientUtils {
-      apiBase: 'http://127.0.0.1:8000/api/v1',
-      fetch: [Function (anonymous)],
-      normalizeUrlFn: [Function: normalizeUrl]
-    }
-  },
-  _id: '286e1473-dff9-4543-b98b-56285b3953f1',
-  instanceURL: 'instance/286e1473-dff9-4543-b98b-56285b3953f1'
-}
-```
-
-### Read Instance stdout
-
-The result of called sequence's function is a value of key `"strDrink"` (in this case thi value is `"Margarita"`). It is printed out in the console using `console.log()`, it means that the Sequence writes it to stdout instance endpoint. To read this endpoint stream please use the command:
-
-```bash
+# see the Instance stdout
 si inst stdout -
 ```
 
+## Read Instance stdout
+
+The result of called sequence's function is a value of key `"strDrink"` (in this case thi value is `"Margarita"`). It is printed out in the console using `console.log()`, it means that the Sequence writes it to stdout instance endpoint.
 Result:
 
 ```bash

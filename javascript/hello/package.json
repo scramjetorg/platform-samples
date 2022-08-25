@@ -4,7 +4,7 @@
   "main": "./index",
   "author": "pietrzakacper",
   "license": "GPL-3.0",
-  "description": "Sequence that modifies incoming stream of strings by saying Hello",
+  "description": "Sequence that modifies incoming stream of strings by adding Hello.",
   "keywords": [
     "sample"
   ],

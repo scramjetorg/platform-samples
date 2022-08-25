@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "MichalCz",
   "license": "GPL-3.0",
-  "description": "A simple sequence, that counts and logs the number in 1s intervals.",
+  "description": "A simple Sequence, that counts and logs the number in 1s intervals.",
   "keywords": [
     "sample"
   ],

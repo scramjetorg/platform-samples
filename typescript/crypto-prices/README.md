@@ -1,31 +1,20 @@
-# crypto-prices ![bitcoin](../../images/bitcoin1.png) ![zcash](../../images/zcash1.png) ![ethereum](../../images/etherum1.png)
+# crypto-prices
 
 Sequence that keeps printing current crypto prices for a provided pair of currencies every 3 seconds.
 
 ___
 
-### The video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel [How to check cryptocurrency prices using Scramjet?](https://www.youtube.com/watch?v=BPLKPVVyHNY&t=3s)
-
-___
-
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
+> 📽️ There is video that illustrates the execution of the sample is on our [YouTube](https://www.youtube.com/channel/UChgTmKeuAsKj8kDnylkmP6Q) channel [How to check cryptocurrency prices using Scramjet?](https://www.youtube.com/watch?v=BPLKPVVyHNY&t=3s). Give a 👍 if you liked it and "Subscribe" to the channel to keep up to date with new videos.
 
 ## Running
 
-Open two terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
+Open the terminal and run the following commands:
 
 ```bash
 # go to 'crypto-prices' directory
-cd samples/crypto-prices
+cd typescript/crypto-prices
 
 # install dependencies
 npm install
@@ -48,6 +37,16 @@ si seq pack dist/ -o crypto-prices.tar.gz    # compress 'dist/' directory into f
 si seq send crypto-prices.tar.gz    # send packed Sequence to STH, this will output Sequence ID
 
 si seq start -    # start the Sequence, this will output Instance ID
+```
+
+## Start with params
+
+```bash
+# run another Sequence by passing in arguments, any pair [cryptocurrency, currency]
+$ si seq start - --args [\"ETH\",\"PLN\"]
+
+# or similar with deploy
+si seq deploy dist --args [\"ETH\",\"PLN\"]
 ```
 
 ## Output

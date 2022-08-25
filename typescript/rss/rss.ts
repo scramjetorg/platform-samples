@@ -6,7 +6,7 @@ const parser = new Parser();
 
 /**
  * Get links from RSS Feed
- * 
+ *
  * @param {string} url RSS URL
  * @returns {Array} Array of links
  */
@@ -17,11 +17,11 @@ async function getLinks(url: string) {
 }
 
 /**
- * Check if content matches keywords and calcualte weight of each keyword occurance.
- * 
+ * Check if content matches keywords and calculate weight of each keyword occurrence.
+ *
  * @param {string} content Page content to be checked
  * @param {Array} keywords  Array of keywords and weights
- * @returns {Array} 
+ * @returns {Array}
  */
 function checkKeywords(content: string, keywords: Array<any>): Array<any> {
 
@@ -40,7 +40,7 @@ function checkKeywords(content: string, keywords: Array<any>): Array<any> {
 
 /**
  * Post message to slack
- * 
+ *
  * @param {string} title Title
  * @param {string} url URL
  * @param {Array} results Keywords
@@ -51,8 +51,8 @@ async function postToSlack(slackWebhookUrl: string, title: string, url: string, 
 }
 
 /**
- * Calucalte total score for given keywords 
- * 
+ * Calculate total score for given keywords
+ *
  * @param keywords
  * @returns {number}
  */

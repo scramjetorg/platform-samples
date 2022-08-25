@@ -2,22 +2,35 @@
 
 In this sample you can send data to Kafka topic from input.
 
+___
+
 If you are looking for more advanced demo of usage, please check [README](../../guides/kafka-setup/README.md)
+
+## Running
+
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+Open two terminals and run the following commands:
+
+**The first terminal:**
 
 First, build kafka-transformer sample
 
 ```bash
-cd kafka-transformer
+# go to 'kafka-transformer' directory
+cd python/kafka-transformer
+
+# build
 npm run build
 ```
 
-Now you can run STH and deploy Sequence
+If you run this sample on Self Hosted Hub, please start it with process adapter option:
 
 ```bash
 DEVELOPMENT=1 sth --runtime-adapter=process
 ```
 
-On the second terminal
+**The second terminal**
 
 ```bash
 si seq deploy kafka-transformer/dist --args [{\"topic\":\"TOPIC\"},{\"server\":\"0.0.0.0:29092\"}]

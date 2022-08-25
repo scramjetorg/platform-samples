@@ -2,29 +2,22 @@
 
 Sequence that just writes random values to output stream.
 
-> :bulb: **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
+___
 
 ## Running
 
-Open two terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
+Open the terminal and run the following commands:
 
 ```bash
 # go to 'test-output' directory
-cd samples/test-output
+cd javascript/test-output
 
 # install dependencies
 npm install
 
-# go back to samples/ directory
+# go back to javascript/ directory
 cd ../
 
 # deploy 'hello' Sequence
