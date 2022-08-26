@@ -1,6 +1,6 @@
 {
   "name": "@scramjet/write-to-database",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "main": "index.js",
   "author": "kociolekscramjet",
   "license": "GPL-3.0",

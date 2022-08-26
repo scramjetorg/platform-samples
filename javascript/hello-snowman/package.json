@@ -1,6 +1,6 @@
 {
   "name": "@scramjet/hello-snowman",
-  "version": "0.13.1",
+  "version": "0.23.0",
   "main": "./index",
   "author": "pietrzakacper",
   "license": "GPL-3.0",

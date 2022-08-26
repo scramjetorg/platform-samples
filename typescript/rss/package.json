@@ -1,6 +1,6 @@
 {
   "name": "@scramjet/rss",
-  "version": "1.0.0",
+  "version": "0.23.0",
   "main": "index.js",
   "author": "iaforek",
   "license": "GPL-3.0",

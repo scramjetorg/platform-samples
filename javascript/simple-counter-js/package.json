@@ -1,6 +1,6 @@
 {
   "name": "@scramjet/simple-counter-js",
-  "version": "0.13.1",
+  "version": "0.23.0",
   "main": "index.js",
   "author": "MichalCz",
   "license": "GPL-3.0",

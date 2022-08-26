@@ -1,6 +1,6 @@
 {
   "name": "@scramjet/python-voice-recognition",
-  "version": "0.18.7",
+  "version": "0.23.0",
   "main": "./main.py",
   "author": "Tatarinho",
   "license": "GPL-3.0",

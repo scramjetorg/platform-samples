@@ -1,22 +1,22 @@
 {
     "name": "@scramjet/gh-issues-to-clickup",
-    "version": "0.1.0",
+    "version": "0.23.0",
     "main": "./main.py",
     "author": "daro1337",
     "license": "GPL-3.0",
     "description": "Sequence that sends GitHub issues to dedicated ClickUp list.",
     "keywords": [
-      "sample"
-  ],
+        "sample"
+    ],
     "repository": {
-      "type": "git",
-      "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/gh-issues-to-clickup"
+        "type": "git",
+        "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/gh-issues-to-clickup"
     },
     "engines": {
-      "python3": "3.8.0"
+        "python3": "3.8.0"
     },
     "scripts": {
-      "build:refapps": "mkdir -p dist/__pypackages__/ && cp -ar *.py *.ini package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
-      "clean": "rm -rf ./dist"
+        "build:refapps": "mkdir -p dist/__pypackages__/ && cp -ar *.py *.ini package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+        "clean": "rm -rf ./dist"
     }
 }
