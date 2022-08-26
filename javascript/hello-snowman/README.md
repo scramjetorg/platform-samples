@@ -4,7 +4,7 @@ Sequence that reads incoming stream (input), and and modifies it by adding a tex
 
 ___
 
-Stream is generated in [stream-gen.js](../tools/stream-gen-tool/stream-gen.js) file, where numbers in range of <-50,50> are randomly chosen and sent as Celsius degrees to `hello-snowman` Instance API endpoint `/input`.
+Stream is generated in [stream-gen.js](https://github.com/scramjetorg/platform-samples/blob/main/javascript/hello-snowman/lib/stream-gen.js) file, where numbers in range of <-50,50> are randomly chosen and sent as Celsius degrees to `hello-snowman` Instance API endpoint `/input`.
 
 Our `hello-snowman` app will read and interpret these Celsius degrees, and will inform us about state of our Snowman:
 
@@ -22,11 +22,18 @@ Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
 
 ## Running
 
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+This sample can be run only on Self Hosted Hub, go on and [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) for the sequence deployment.
 
-Open two terminals and run the following commands:
+Open three terminals and run the following commands:
 
 **The first terminal:**
+
+```bash
+# start the Hub locally
+scramjet-transform-hub
+```
+
+**The second terminal:**
 
 ```bash
 # go to 'hello-snowman' directory
@@ -42,7 +49,7 @@ cd ../
 si seq deploy hello-snowman
 
 # see the Instance output
-si inst output -    # nothing happens until some is sent to input
+si inst output -    # nothing happens until data is sent to input
 ```
 
 > 💡**NOTE:** Command `deploy` performs three actions at once: `pack`, `send` and `start` the Sequence. It is the same as if you would run those three commands separately:
@@ -55,19 +62,13 @@ si seq send hello-snowman.tar.gz    # send compressed Sequence to STH, this will
 si seq start -    # start the Sequence, this will output Instance ID
 ```
 
-**The second terminal**
+**The third terminal**
 
 ```bash
 # Start stream generator tool with Instance ID as parameter
-node ./tools/stream-gen-tool/stream-gen.js <instance_id>
-```
+node javascript/hello-snowman/lib/stream-gen.js <instance_id>
 
-## Output
-
-Now you should see the output in the console:
-
-```js
-$ si inst output -
+#
 ----------------------------------------
 Message# 1 | Temperature measure
 INPUT | -16
@@ -89,4 +90,27 @@ INPUT | -46
 OUTPUT| Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
 
 ----------------------------------------
+```
+
+## Output
+
+Now you should see the output in the second terminal:
+
+```bash
+$ si inst output -
+
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is melting! 🥵
+Snowman ⛄ is melting! 🥵
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is melting! 🥵
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is freezing 🥶 Winter is coming ❄️ ❄️ ❄️ ❄️ ❄️
+Snowman ⛄ is melting! 🥵
+Snowman ⛄ is melting! 🥵
+Snowman ⛄ is melting! 🥵
 ```
