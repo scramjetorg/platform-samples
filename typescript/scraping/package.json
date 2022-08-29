@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/scramjetorg/platform-samples/tree/typescript/scraping"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/scraping"
   },
   "engines": {
     "node": ">=14"
