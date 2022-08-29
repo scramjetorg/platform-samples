@@ -6,7 +6,10 @@
   "license": "GPL-3.0",
   "description": "A simple Sequence, that counts and logs the number in 1s intervals.",
   "keywords": [
-    "sample"
+    "easy",
+    "streaming",
+    "counter",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",

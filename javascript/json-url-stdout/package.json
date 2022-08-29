@@ -6,7 +6,11 @@
   "license": "GPL-3.0",
   "description": "Sequence that pulls data from JSON url every x seconds and writes it to Instance stdout endpoint.",
   "keywords": [
-    "sample"
+    "easy",
+    "API",
+    "data collection",
+    "Big Data/BI",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",

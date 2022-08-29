@@ -6,7 +6,9 @@
   "license": "GPL-3.0",
   "description": "Sequence that writes random values to output stream.",
   "keywords": [
-    "sample"
+    "easy",
+    "random generator",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",

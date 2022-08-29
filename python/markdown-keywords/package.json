@@ -6,7 +6,11 @@
   "license": "GPL-3.0",
   "description": "Sequence that suggests keywords for header in *.md. This is also an easy example of usage Kaffka with Scramjet platform.",
   "keywords": [
-    "sample"
+    "medium",
+    "Natural Language",
+    "keyword extraction",
+    "Big Data/BI/MarTech",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",

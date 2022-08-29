@@ -6,11 +6,15 @@
   "license": "GPL-3.0",
   "description": "Sequence that keeps printing current crypto prices for a provided pair of currencies every 1s.",
   "keywords": [
-    "sample"
+    "medium",
+    "fintech",
+    "crypto",
+    "BI",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/platform-samples/tree/main/typescript/crypto-prices"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/typescript/crypto-prices"
   },
   "engines": {
     "node": ">=14"

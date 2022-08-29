@@ -6,13 +6,15 @@
   "license": "GPL-3.0",
   "description": "This is a simple and trivial example of scraping web pages.",
   "keywords": [
-    "sample",
-    "scrape",
-    "scraping"
+    "easy",
+    "web scraping",
+    "Big Data",
+    "BI",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/platform-samples/tree/main/typescript/scraping"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/typescript/scraping"
   },
   "engines": {
     "node": ">=14"

@@ -6,11 +6,15 @@
   "license": "GPL-3.0",
   "description": "This sequence processes CSV input and retrieves additional company data from LinkedIn via RapidAPI",
   "keywords": [
-    "sample"
+    "advanced",
+    "LinkedIn",
+    "social media",
+    "BI/MarTech",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/platform-samples/tree/main/typescript/linkedin"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/typescript/linkedin"
   },
   "engines": {
     "node": ">=14"

@@ -6,7 +6,10 @@
   "license": "GPL-3.0",
   "description": "A simple Sequence that takes file as an input and returns a hexadecimal view of this file on output.",
   "keywords": [
-    "sample"
+    "easy",
+    "data encoding",
+    "hexadecimal",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",

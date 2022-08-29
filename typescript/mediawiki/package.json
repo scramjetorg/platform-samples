@@ -6,11 +6,15 @@
   "license": "GPL-3.0",
   "description": "Sequence that keeps printing mediawiki event stream.",
   "keywords": [
-    "sample"
+    "easy",
+    "MediaWiki",
+    "Wikipedia",
+    "Big Data",
+    "data operator"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/platform-samples/tree/main/typescript/mediawiki"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/typescript/mediawiki"
   },
   "engines": {
     "node": ">=14"

@@ -6,7 +6,11 @@
   "license": "GPL-3.0",
   "description": "Sequence that can retrieve data from Kafka topic and show the result on 'output'.",
   "keywords": [
-    "sample"
+    "advanced",
+    "Kafka",
+    "message queue",
+    "Big Data/BI",
+    "Data Consumer"
   ],
   "repository": {
     "type": "git",

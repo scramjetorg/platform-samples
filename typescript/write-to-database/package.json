@@ -6,11 +6,11 @@
   "license": "GPL-3.0",
   "description": "Sequence that writes data to SQL database",
   "keywords": [
-    "sample",
-    "database",
-    "SQL",
-    "sth",
-    "scramjet-transform-hub"
+    "medium",
+    "Database",
+    "MySQL",
+    "BI",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",

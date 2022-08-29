@@ -6,9 +6,11 @@
   "license": "GPL-3.0",
   "description": "Sequence that modifies incoming stream of strings by adding a prefix and a suffix.",
   "keywords": [
-    "sample",
-    "sth",
-    "scramjet-transform-hub"
+    "easy",
+    "streaming",
+    "data transformation",
+    "preprocessing",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",
