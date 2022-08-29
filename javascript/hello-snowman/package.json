@@ -6,7 +6,10 @@
   "license": "GPL-3.0",
   "description": "Sequence that reads incoming stream (input) and modifies it by adding a text message according to the incoming data.",
   "keywords": [
-    "sample"
+    "easy",
+    "streaming",
+    "data transformation",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",

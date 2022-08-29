@@ -6,10 +6,11 @@
   "license": "GPL-3.0",
   "description": "This a Sequence that gets the number of changes in Stack Overflow tag count. This queries SO API every x minutes, gathers, compares and outputs result as difference.",
   "keywords": [
-    "sample",
-    "stack-overflow",
-    "sth",
-    "scramjet-transform-hub"
+    "medium",
+    "Stack Overflow",
+    "Q&A",
+    "Big Data",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",

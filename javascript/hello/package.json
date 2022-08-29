@@ -6,7 +6,10 @@
   "license": "GPL-3.0",
   "description": "Sequence that modifies incoming stream of strings by adding Hello.",
   "keywords": [
-    "sample"
+    "easy",
+    "streaming",
+    "data transformation",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",

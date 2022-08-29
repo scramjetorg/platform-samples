@@ -6,7 +6,10 @@
   "license": "GPL-3.0",
   "description": "Sequence that reads tar.gz file from input and returns JSON containing basic information about archived files along with unpacked data.",
   "keywords": [
-    "sample"
+    "easy",
+    "data transformation",
+    "file extraction",
+    "Data Transformer"
   ],
   "repository": {
     "type": "git",

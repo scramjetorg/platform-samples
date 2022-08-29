@@ -19,7 +19,7 @@ cd javascript/pokemon
 # install dependencies
 npm install
 
-# go back to samples/ directory
+# go back to javascript/ directory
 cd ../
 
 # deploy 'pokemon' Sequence

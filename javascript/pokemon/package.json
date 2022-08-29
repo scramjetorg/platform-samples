@@ -6,7 +6,10 @@
   "license": "GPL-3.0",
   "description": "A Sequence that reads incoming data via input stream, then based on that data, a request is sent to external API.",
   "keywords": [
-    "sample"
+    "easy",
+    "API",
+    "data collection",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",

@@ -6,11 +6,11 @@
   "license": "GPL-3.0",
   "description": "Sequence that reads messages from topic and writes to Slack.",
   "keywords": [
-    "sample",
-    "slack",
-    "connection",
-    "sth",
-    "scramjet-transform-hub"
+    "advanced",
+    "Slack",
+    "massaging",
+    "bot",
+    "Data Consumer"
   ],
   "repository": {
     "type": "git",

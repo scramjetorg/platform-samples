@@ -6,10 +6,11 @@
   "license": "GPL-3.0",
   "description": "A Sequence that works as a web feed, monitors website for a new content.",
   "keywords": [
-    "rss",
-    "sample",
-    "sth",
-    "scramjet-transform-hub"
+    "easy",
+    "RSS",
+    "feeds",
+    "Big Data",
+    "Data Producer"
   ],
   "repository": {
     "type": "git",
