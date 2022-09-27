@@ -1,0 +1,24 @@
+{
+  "name": "@scramjet/telegram-write",
+  "version": "0.1.0",
+  "main": "main.py",
+  "author": "S4Adam",
+  "license": "GPL-3.0",
+  "description": "Forwards input to a specified telegram channel.",
+  "keywords": [
+    "easy",
+    "Telegram",
+    "Business Automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/telegram-write"
+  },
+  "engines": {
+    "python3": "3.8.0"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp -t ./dist/ *.py *.json",
+    "clean": "rm -rf ./dist"
+  }
+}
