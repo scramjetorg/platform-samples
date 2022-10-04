@@ -1,10 +1,14 @@
 # send-to-github
 
-Sequence committing a JSON object to a file on Github. If the file does not exist a new file is created. If the file exists contents of the file are updated.
+___
+
+In this sample, Sequence after deployment takes JSON objects on input stream and commits it to a file on Github. If the file does not exist a new file is created. If the file exists contents of the file are updated.
 
 ## Preparations
 
 For the sequence to work the Github repository is necessary. Also Personal Access Token needs to be provided and it can be obtained [here](https://github.com/settings/tokens).
+
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
 ## Running
 
@@ -14,16 +18,16 @@ To start the sequence run the commands below:
 
 ```bash
 # go to sample directory
-cd samples/send-to-github
+cd typescript/send-to-github
 
 # install dependencies
-yarn
+npm install
 
 # transpile TS->JS and copy node_modules and package.json to dist/
 npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
-si sequence deploy ./dist -f config.json
+si sequence deploy dist -f config.json
 
 # see the Instance log
 si inst log -

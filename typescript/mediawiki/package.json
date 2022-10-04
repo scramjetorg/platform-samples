@@ -1,8 +1,24 @@
 {
   "name": "@scramjet/mediawiki",
-  "version": "0.13.1",
+  "version": "0.23.0",
+  "main": "index.js",
+  "author": "iaforek",
+  "license": "GPL-3.0",
   "description": "Sequence that keeps printing mediawiki event stream.",
-  "main": "./index.js",
+  "keywords": [
+    "easy",
+    "MediaWiki",
+    "Wikipedia",
+    "Big Data",
+    "data operator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/mediawiki"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -10,20 +26,14 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
-  },
   "devDependencies": {
-    "@scramjet/types": "^0.13.1",
+    "@scramjet/types": "^0.28.0",
     "@types/node": "15.12.5",
-    "typescript": "^4.3.4"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@types/eventsource": "^1.1.6",
-    "eventsource": "^1.1.0",
-    "scramjet": "^4.35.20"
+    "@types/eventsource": "^1.1.9",
+    "eventsource": "^1.1.2",
+    "scramjet": "^4.36.7"
   }
 }

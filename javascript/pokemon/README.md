@@ -1,21 +1,16 @@
 # pokemon
 
-A Sequence that reads incoming data via input stream (pokemon name), then, based on that data, a request is sent to the api. The returned data is saved to the instance `stdout` endpoint, while the weight of the pokemon whose name was given in input is returned to the output of the instance.
+___
 
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
+In this sample we use open API from <https://pokeapi.co>. Pokemon name will be passed into the instance's input, then a request is sent to the API. The returned data is saved to the instance `stdout` endpoint, and the weight of the pokemon whose name was given in input is returned to the output of the instance.
 
 ## Running
 
-Open three terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+
+Open two terminals and run the following commands:
 
 **The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
 
 ```bash
 # go to 'pokemon' directory
@@ -24,7 +19,7 @@ cd javascript/pokemon
 # install dependencies
 npm install
 
-# go back to samples/ directory
+# go back to javascript/ directory
 cd ../
 
 # deploy 'pokemon' Sequence
@@ -44,7 +39,7 @@ si seq send pokemon.tar.gz    # send compressed Sequence to STH, this will outpu
 si seq start -    # start the Sequence, this will output Instance ID
 ```
 
-**In the third terminal**
+**The second terminal**
 
 ```bash
 # send pokemon name as instance input which will be read from stdin

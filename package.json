@@ -1,6 +1,6 @@
 {
   "name": "@scramjet/samples",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "private": true,
   "description": "A collection of example applications for Scramjet Cloud Platform.",
   "scripts": {
@@ -19,9 +19,9 @@
     "url": "https://github.com/scramjetorg/platform-samples.git"
   },
   "devDependencies": {
-    "@npmcli/run-script": "^4.1.7",
+    "@npmcli/run-script": "^4.2.1",
     "fs-extra": "^9.1.0",
-    "glob": "^7.1.7",
+    "glob": "^7.2.3",
     "globrex": "^0.1.2",
     "minimist": "^1.2.6"
   },

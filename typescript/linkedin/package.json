@@ -1,8 +1,24 @@
 {
   "name": "@scramjet/linkedin",
-  "version": "0.13.1",
-  "description": "This sequence processes CSV input and retrieves additional company data from LinkedIn via RapidAPI",
+  "version": "0.23.0",
   "main": "index.js",
+  "author": "iaforek",
+  "license": "GPL-3.0",
+  "description": "This sequence processes CSV input and retrieves additional company data from LinkedIn via RapidAPI",
+  "keywords": [
+    "advanced",
+    "LinkedIn",
+    "social media",
+    "BI/MarTech",
+    "Data Producer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/linkedin"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -10,21 +26,15 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
-  },
   "dependencies": {
-    "axios": "^0.21.4",
+    "axios": "^0.24.0",
     "cheerio": "*",
     "csv-parser": "^3.0.0",
-    "scramjet": "^4.36.0"
+    "scramjet": "^4.36.7"
   },
   "devDependencies": {
-    "@scramjet/types": "^0.22.0",
+    "@scramjet/types": "^0.28.0",
     "@types/node": "15.12.5",
-    "typescript": "^4.3.4"
+    "typescript": "^4.7.4"
   }
 }

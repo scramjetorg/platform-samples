@@ -7,7 +7,7 @@ On first terminal:
 setup kafka in docker container
 
 ```bash
-cd docs/kafka-setup
+cd guides/kafka-setup
 docker-compose up -d
 ```
 
@@ -50,16 +50,16 @@ si seq deploy python/kafka-transformer/dist --args [{\"topic\":\"scramjet\"},{\"
 You should be able to list both instances with command:
 
 ```bash
-si inst ls`
+si inst ls
 ```
 
-Last step is to start sending some data to transformer Sequence, which send it to Kafka topic.
+Last step is to start sending some data to transformer Sequence, which sends it to Kafka topic.
 
 ```bash
 si inst input -
 ```
 
-Type anything you want to blinking terminal, you should then see same data in first terminal, which shows logs from kafka directly, but also you should be able to see information on STH terminal. It should look similar to:
+Type anything you want to blinking terminal, you should then see same data in the first terminal, which shows logs from kafka directly, but also you should be able to see information on STH terminal. It should look similar to:
 
 ```bash
 Topic name=scramjet, Message=b'test message'

@@ -1,8 +1,24 @@
 {
-  "name": "rss",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@scramjet/rss",
+  "version": "0.23.0",
   "main": "index.js",
+  "author": "iaforek",
+  "license": "GPL-3.0",
+  "description": "A Sequence that works as a web feed, monitors website for a new content.",
+  "keywords": [
+    "easy",
+    "RSS",
+    "feeds",
+    "Big Data",
+    "Data Producer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/rss"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
@@ -10,33 +26,17 @@
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scramjetorg/scramjet-cloud-docs.git"
-  },
-  "keywords": [
-    "rss",
-    "sample",
-    "sth",
-    "scramjet-transform-hub"
-  ],
-  "author": "Scramjet <open-source@scramjet.org>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/scramjetorg/scramjet-cloud-docs/issues"
-  },
-  "homepage": "https://github.com/scramjetorg/scramjet-cloud-docs#readme",
   "dependencies": {
-    "@types/node": "^16.11.12",
+    "@types/node": "^15.12.5",
     "axios": "^0.24.0",
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "*",
     "rss-parser": "^3.12.0",
     "scramjet": "^4.36.7",
-    "typescript": "^4.5.2"
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
-    "@scramjet/types": "^0.11.0-0",
-    "@types/node": "^16.11.12",
-    "typescript": "^4.5.2"
+    "@scramjet/types": "^0.28.0",
+    "@types/node": "15.12.5",
+    "typescript": "^4.7.4"
   }
 }

@@ -1,15 +1,24 @@
 {
-    "name": "@scramjet/pokemon",
-    "version": "0.0.1",
-    "description": "",
-    "main": "./index.js",
-    "author": "Scramjet <open-source@scramjet.org>",
-    "license": "GPL-3.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/scramjetorg/transform-hub.git"
-    },
-    "dependencies": {
-        "node-fetch": "^2.6.1"
-    }
+  "name": "@scramjet/pokemon",
+  "version": "0.23.0",
+  "main": "index.js",
+  "author": "a-tylenda",
+  "license": "GPL-3.0",
+  "description": "A Sequence that reads incoming data via input stream, then based on that data, a request is sent to external API.",
+  "keywords": [
+    "easy",
+    "API",
+    "data collection",
+    "Data Producer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/pokemon"
+  },
+  "engines": {
+    "node": "^16.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
 }

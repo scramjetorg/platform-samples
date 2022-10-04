@@ -1,18 +1,26 @@
 {
-  "name": "@scramjet/python-keywords",
-  "version": "0.18.7",
+  "name": "@scramjet/python-markdown-keywords",
+  "version": "0.23.0",
   "main": "./main.py",
-  "author": "Raspberries <3 <open-source@scramjet.org>",
+  "author": "Tatarinho",
   "license": "GPL-3.0",
+  "description": "Sequence that suggests keywords for header in *.md. This is also an easy example of usage Kaffka with Scramjet platform.",
+  "keywords": [
+    "medium",
+    "Natural Language",
+    "keyword extraction",
+    "Big Data/BI/MarTech",
+    "Data Transformer"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/scramjetorg/transform-hub.git"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/markdown-keywords"
   },
   "engines": {
     "python3": "3.5.0"
   },
   "scripts": {
-    "build:refapps": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+    "build": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
     "clean": "rm -rf ./dist"
   }
 }

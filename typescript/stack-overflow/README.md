@@ -1,27 +1,19 @@
 # stack-overflow
 
-Get number of changes in Stack Overflow tag count.
+Sequence that gets the number of changes in Stack Overflow tag count.
+This queries SO API every X minutes, gathers, compares and outputs result as a difference.
 
-This queries SO API every X minutes, gathers, compares and outputs result as difference.
-
-> 💡 **Please note that the sample below requires some previous installations before you start running it, you will find them [here](../../README.md#3-install-scramjet-transform-hub).**
+___
 
 ## Running
 
-Open two terminals and run the following commands:
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-**The first terminal:**
-
-```bash
-# start sth
-scramjet-transform-hub
-```
-
-**The second terminal**
+Open the terminal and run the following commands:
 
 ```bash
 # go to 'stack-overflow' directory
-cd samples/stack-overflow
+cd typescript/stack-overflow
 
 # install dependencies
 npm install
@@ -31,6 +23,7 @@ npm run build
 
 # deploy the Sequence from the dist/ directory, which contains transpiled code, package.json and node_modules
 si seq deploy dist --args '[minutes, "request_key"]'
+# "request_key" argument is optional, e.g.: si seq deploy dist --args [1]
 
 # See Instance output
 si inst output -
@@ -51,7 +44,7 @@ si seq pack dist/ -o stack-overflow.tar.gz    # compress 'dist/' directory into 
 
 si seq send stack-overflow.tar.gz    # send packed Sequence to STH, this will output Sequence ID
 
-si seq start - --args '[minutes, "request_key"]'   # start the Sequence with arguments ("request_key" argument is optional), this will output Instance ID
+si seq start - --args [minutes, \"request_key\"]  # start the Sequence with arguments ("request_key" argument is optional), this will output Instance ID
 ```
 
 ## Example output
