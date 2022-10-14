@@ -1,8 +1,8 @@
 from scramjet.streams import Stream
 import requests
 
-provides = {
-   'provides': 'telegram-inbound',
+requires = {
+   'requires': 'telegram-inbound',
    'contentType': 'text/plain'
 }
 

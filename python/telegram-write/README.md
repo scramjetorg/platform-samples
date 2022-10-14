@@ -1,8 +1,8 @@
 # Send to Telegram
 
-This is a piece of cake sample which simply forwards stream input to a telegram channel.
+This is a piece of cake sample which simply forwards stream input to a telegram channel (in form of messages).
 
-It reads messages from user input or **telegram-inbound** Topic.
+It reads messages from **telegram-inbound** Topic.
 
 ___
 ## Prerequisites
@@ -12,6 +12,8 @@ You need to [add a bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot) 
 The easiest way to achieve that is to follow a few steps given by BotFather here: 
 
 https://t.me/botfather
+
+and type `/newbot`.
 
 After you input a username for your bot, you will see a message from BotFather that includes this part:
 
@@ -40,6 +42,14 @@ Now open `config.json` file and paste your **bot token** and **channel id**:
         "channel": "Put-ChannelID-here"
     }
 }
+
+At last, our bot must be added to the desired channel. In the Telegram client:
+
+1. Inside the channel, click the 3-dotted line in the right upper corner.
+2. Click on "Manage channel" -> "Administrators" -> "Add Administrator".
+3. Type in your bot's name and click on it.
+4. Hit 'save'.
+
 ```
 
 ## Running
@@ -60,10 +70,9 @@ npm run build
 si seq deploy dist -f config.json
 
 # Input some data
-si inst input -
+si inst output -
 ```
-
-Now type something in and you should see the same phrase on your telegram channel.
+As soon as anything comes through the Topic, it will be forwarded to the Telegram channel.
 ___
 
 
