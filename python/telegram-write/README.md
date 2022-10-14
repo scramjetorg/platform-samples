@@ -69,8 +69,6 @@ npm run build
 # Deploy sample to STH
 si seq deploy dist -f config.json
 
-# Input some data
-si inst output -
 ```
 As soon as anything comes through the Topic, it will be forwarded to the Telegram channel.
 ___
