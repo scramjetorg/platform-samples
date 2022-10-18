@@ -3,9 +3,9 @@ import feedparser
 from scramjet.streams import Stream
 
 
-# it will send data to the 'telegram-inbound' Topic
+# it will send data to the specified Topic
 provides = {
-    'provides': 'telegram-inbound',
+    'provides': 'exampletopicname',
     'contentType': 'text/plain'
 }
 
@@ -22,16 +22,20 @@ URL = f"https://rpilocator.com/feed/?country={REGIONS}&cat={MODELS}"
 
 async def scrape_rp(stream):
     first_check = feedparser.parse(URL).entries
-    stock_ids=[entry.id for entry in first_check]
+    stock_ids=[]
 
+    for entry in first_check:
+        stock_ids.append(entry.id)
+        stream.write(entry.title[18:] + "| URL: " + entry.link)
+        
     await asyncio.sleep(DELAY)
 
     while True:
-        new_data = feedparser.parse(URL)
-        for entry in new_data.entries:
+        new_data = feedparser.parse(URL).entries
+        for entry in new_data:
             if entry.guid not in stock_ids:
                 stock_ids.append(entry.guid)
-                stream.write(entry.link)
+                stream.write(entry.title + "| URL: " + entry.link)
         await asyncio.sleep(DELAY)
 
 async def run(context, input):

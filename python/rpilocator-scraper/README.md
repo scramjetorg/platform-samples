@@ -1,10 +1,18 @@
 # Send to Telegram
 
-This sample watches [rpilocator](https://rpilocator.com/feed/) for new stock. It then sends its urls to the **telegram-inbound** Topic.
+This sample watches [rpilocator](https://rpilocator.com/feed/) for new stock. It then sends its urls to the specified Topic.
 
 ___
 ## Prerequisites
 Open *main.py* file and configure the following settings:
+
+- **topic name:** change ```example-topic-name``` to the desired Topic
+```
+provides = {
+    'provides': 'example-topic-name',
+    'contentType': 'text/plain'
+}
+```
 
 - **specify models:** CM3,CM4,PI3,PI4,PIZERO
 
@@ -37,6 +45,9 @@ npm run build
 
 # Deploy sample to STH
 si seq deploy dist
+
+# Get the output
+si topic get <topicName>
 
 ```
 
