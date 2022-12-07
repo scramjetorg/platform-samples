@@ -24,7 +24,7 @@ jobs:
       - name: Build reference apps
         run: npm run build
 
-      - name: Build reference apps
+      - name: Pack reference apps
         run: npm run pack
 
       - name: Create a release and upload artifacts
