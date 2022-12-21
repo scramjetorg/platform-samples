@@ -1,4 +1,4 @@
-name: Make a refapps release with compiled package archives
+name: Release compiled package archives
 
 on:
   workflow_dispatch:
