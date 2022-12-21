@@ -1,13 +1,16 @@
 name: Make a refapps release with compiled package archives
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        type: string
+        description: Version tag (without leading 'v')
 
 jobs:
   build-and-release:
-    name: Build refapps and make a release
+    name: Release Sample Apps
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +21,17 @@ jobs:
         with:
           node-version: 16
 
+      - name: Bump root package.json
+        run: npm version ${{ inputs.version }}
+
+      - name: Bump package versions
+        run: ./scripts/run-script.js -e "npm version ${{ inputs.version }}"
+
       - name: Install dependencies
         run: npm install
+
+      - name: Add and commit
+        run: git add . && git commit -m "Release version ${{ inputs.version }}"
 
       - name: Build reference apps
         run: npm run build
@@ -29,7 +41,7 @@ jobs:
 
       - name: Create a release and upload artifacts
         run: >
-          gh release create ${{ github.ref }}
+          gh release create v${{ inputs.version }} --generate-notes
           dist/*.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.SCRAMJET_BOT_TOKEN }}
