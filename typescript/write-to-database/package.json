@@ -26,15 +26,15 @@
     "pack": "si seq pack ./dist/"
   },
   "dependencies": {
-    "@scramjet/types": "^0.28.0",
+    "@scramjet/types": "^0.31.2",
     "mysql": "^2.18.1",
-    "scramjet": "^4.36.8"
+    "scramjet": "^4.36.9"
   },
   "devDependencies": {
-    "@scramjet/types": "^0.28.0",
+    "@scramjet/types": "^0.31.2",
     "@types/mysql": "^2.15.21",
     "@types/node": "15.12.5",
-    "typescript": "^4.7.4",
-    "@scramjet/cli": "^0.28.0"
+    "typescript": "^4.9.4",
+    "@scramjet/cli": "^0.31.2"
   }
 }

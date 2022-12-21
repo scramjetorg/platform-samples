@@ -28,7 +28,7 @@
     "pack": "si seq pack ./dist/"
   },
   "devDependencies": {
-    "@scramjet/cli": "^0.28.0",
-    "@scramjet/types": "^0.28.0"
+    "@scramjet/cli": "^0.31.2",
+    "@scramjet/types": "^0.31.2"
   }
 }
