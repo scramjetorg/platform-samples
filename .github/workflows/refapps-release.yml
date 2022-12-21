@@ -22,7 +22,7 @@ jobs:
           node-version: 16
 
       - name: Bump root package.json
-        run: npm version ${{ inputs.version }}
+        run: npm version --no-git-tag-version ${{ inputs.version }}
 
       - name: Bump package versions
         run: ./scripts/run-script.js -e "npm version ${{ inputs.version }}"
