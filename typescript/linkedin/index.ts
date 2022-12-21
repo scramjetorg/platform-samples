@@ -3,6 +3,7 @@ import { PassThrough } from "stream";
 import csv from 'csv-parser';
 import axios, { AxiosRequestConfig } from 'axios';
 import * as cheerio from 'cheerio';
+import { URL } from "url";
 
 const sleep = (timeMs: number) => new Promise(res => setTimeout(res, timeMs));
 

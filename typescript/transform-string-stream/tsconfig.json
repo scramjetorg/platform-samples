@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./dist"
+    "lib": [ "ESNext" ],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": [
     "./src"

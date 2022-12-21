@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
+    "lib": [ "ESNext" ],
+    "target": "ESNext",
+    "module": "CommonJS",
     "outDir": "./dist",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": [
     "app.ts"

@@ -16,11 +16,16 @@
     "type": "git",
     "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/json-url-stdout"
   },
+  "scripts": {
+    "build": "mkdir -p dist/ && cp -r *.js package.json dist/ && (cd dist && npm i --omit=dev)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
   "engines": {
     "node": "^16.0.0"
   },
   "devDependencies": {
-    "@scramjet/cli": "^0.28.0",
-    "@scramjet/types": "^0.28.0"
+    "@scramjet/cli": "^0.31.2",
+    "@scramjet/types": "^0.31.2"
   }
 }

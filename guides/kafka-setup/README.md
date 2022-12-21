@@ -1,65 +1,74 @@
 # Sequences fetching and sending data from any Kafka server
 
-Easy example of usage Kafka with Scramjet platform. As the part of this PR, three different directories are created for organizational purposes. You need also 3 different terminals to check the whole.
+A simple example showcasing Kafka usage with Scramjet platform. 
+___
+## Prerequisites
+As a part of this PR, 3 different directories are created for organizational purposes. 
 
-On first terminal:
+You will need 3 different terminal windows.
 
-setup kafka in docker container
+## Running
+
+**On the first terminal:**
+
+- setup kafka in a docker container
 
 ```bash
 cd guides/kafka-setup
 docker-compose up -d
 ```
 
-create 'scramjet' topic
+- create '*scramjet*' topic
 
 ```bash
 docker-compose exec kafka kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic scramjet
 ```
 
-run watcher for 'scramjet' topic, you will see here logs directly from kafka
+- run watcher for 'scramjet' topic, you will see here logs directly from kafka
 
 ```bash
 docker-compose exec kafka kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic scramjet --from-beginning
 ```
 
-On a second terminal run STH
+**On the second terminal:**
 
+- run STH
 ```bash
 DEVELOPMENT=1 sth --runtime-adapter=process
+# DEVELOPMENT=1   will make STH output all logs
+# --runtime-adapter=process   will make STH run without docker
 ```
 
-On another terminal you need to make few things. First you need to build our two samples. You can run command visible below in main directory of platform-samples project to build all samples, or you can run it directly from the kafka-transformer and kafka-consumer directories.
+**On the third terminal:**
+
+- build both of the samples. You can run the command below in the root directory of platform-samples which will build all samples, or you can run it separately inside **kafka-transformer** and **kafka-consumer** directories.
 
 ```bash
 npm run build
 ```
 
-Once you've built these packages, you need to run consumer Sequence first. Please note that we are passing two arguments to Sequence, topic name and server name.
+- run **consumer Sequence**
+ > 💡 You need to pass 2 arguments to the Sequence: ***topic name*** and ***server name***.
 
 ```bash
 si seq deploy python/kafka-consumer/dist --args [{\"topic\":\"scramjet\"},{\"server\":\"0.0.0.0:29092\"}]
 ```
 
-Now you can deploy transform Sequence, with exactly same arguments:
+- run **transform Sequence** with exactly the same arguments
 
 ```bash
 si seq deploy python/kafka-transformer/dist --args [{\"topic\":\"scramjet\"},{\"server\":\"0.0.0.0:29092\"}]
 ```
 
-You should be able to list both instances with command:
-
-```bash
-si inst ls
-```
-
-Last step is to start sending some data to transformer Sequence, which sends it to Kafka topic.
+- send some data to the **transformer Sequence**, which will send it to the Kafka topic
 
 ```bash
 si inst input -
+
+# Now type anything into the terminal
 ```
 
-Type anything you want to blinking terminal, you should then see same data in the first terminal, which shows logs from kafka directly, but also you should be able to see information on STH terminal. It should look similar to:
+- you should see the same output on both the first terminal (which shows logs from kafka) and the STH terminal. It should look like this
 
 ```bash
 Topic name=scramjet, Message=b'test message'
