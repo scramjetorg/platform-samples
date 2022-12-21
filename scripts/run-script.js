@@ -24,7 +24,7 @@ const opts = minimist(process.argv.slice(2), {
         list: "l",
         install: "i",
         build: "b",
-        dist: "D",
+        dist: "d",
         verbose: "v",
         fast: "f",
         help: ["h", "?"],
@@ -35,6 +35,7 @@ const opts = minimist(process.argv.slice(2), {
     },
     default: {
         root: env.WORKSPACE_ROOT || cwd(),
+        verbose: !!env.SCRAMJET_VERBOSE,
         build: !env.NO_BUILD,
         dist: !env.NO_COPY_DIST,
         install: !env.NO_INSTALL,
@@ -47,7 +48,7 @@ const opts = minimist(process.argv.slice(2), {
     boolean: ["list", "verbose", "install", "build", "dist", "fast", "help", "exec"]
 });
 
-if (opts.help || (!opts._.length && !opts.list)) {
+if (opts.help || !opts._.length && !opts.list) {
     const pName = relative(cwd(), process.argv[1]);
     const spaces = " ".repeat(pName.length);
 
@@ -60,7 +61,7 @@ if (opts.help || (!opts._.length && !opts.list)) {
     console.error(`       ${spaces} -l,--list - prints list of dirs and exits`);
     console.error(`       ${spaces} -j,--jobs - how many jobs in parallel (default: cpu count)`);
     console.error(`       ${spaces} -r,--root <root> - main directory (default is cwd, env: WORKSPACE_ROOT)`);
-    console.error(`       ${spaces} -e,--exec - treat <script> as a full command to exec, not a npm script. `);
+    console.error(`       ${spaces} -e,--exec - treat <script> as a full command to exec, not a yarn script. `);
 
     process.exit(1);
 }
@@ -68,8 +69,6 @@ if (opts.help || (!opts._.length && !opts.list)) {
 const BUILD_NAME = "run-script";
 
 console.time(BUILD_NAME);
-
-let error = null;
 
 // eslint-disable-next-line complexity
 (async function() {
@@ -106,6 +105,8 @@ let error = null;
         process.exit();
     }
 
+    let error = false;
+
     await DataStream.from(packages)
         .setOptions({ maxParallel: cpus().length })
         .flatMap(async path => {
@@ -121,32 +122,31 @@ let error = null;
                 if (opts._.slice(1).length)
                     console.error("Did you forget to quote the command? Got extra", opts._.slice(1));
 
-                const command = opts._[0]
-                console.log(`> ${path}\n> ${command}\n`)
+                const command = opts._[0];
 
-                const child = exec(command, {cwd: path})
+                console.log(`> ${path}\n> ${command}\n`);
+
+                const child = exec(command, { cwd: path });
 
                 if (opts.verbose) {
-                    child.stdout.pipe(process.stdout)
-                    child.stderr.pipe(process.stderr)
+                    child.stdout.pipe(process.stdout);
+                    child.stderr.pipe(process.stderr);
                 }
 
                 return [
                     [Date.now(), await child]
-                ]
-            } else {
-                if (opts.verbose) runconfig.stdio = "inherit";
-
-                const scriptName = opts._[0];
-                const args = opts._.slice(1);
-
-                return [
-                    [Date.now(), await runScript({ ...runconfig, event: `pre${scriptName}` })],
-                    [Date.now(), await runScript({ ...runconfig, args, event: scriptName })],
-                    [Date.now(), await runScript({ ...runconfig, event: `post${scriptName}` })]
                 ];
             }
+            if (opts.verbose) runconfig.stdio = "inherit";
 
+            const scriptName = opts._[0];
+            const args = opts._.slice(1);
+
+            return [
+                [Date.now(), await runScript({ ...runconfig, event: `pre${scriptName}` })],
+                [Date.now(), await runScript({ ...runconfig, args, event: scriptName })],
+                [Date.now(), await runScript({ ...runconfig, event: `post${scriptName}` })]
+            ];
         })
         .do(([ts, out]) => {
             const { path, event } = out;
@@ -155,17 +155,11 @@ let error = null;
                 console.timeLog(BUILD_NAME, `${path}: script ${event} executed in ${Date.now() - ts}ms.`);
         })
         .catch(e => {
-            if (!e.cause) {
-                error = error || e;
-                return;
-            }
+            if (!e.cause) return;
 
             const { code, stdout, stderr, path, event, script } = e.cause;
 
-            if (!code) {
-                error = error = error || e.cause;
-                return;
-            }
+            if (!code) return;
 
             console.timeLog(BUILD_NAME, `${path}: script ${event} failed with code=${code}!`);
             console.error(`${path}: command was: "${script}"`);
@@ -175,22 +169,11 @@ let error = null;
                 console.error(stderr);
             }
 
-            error = error || e.cause;
+            error = true;
         })
         .run()
     ;
 })()
-    .then(() => {
-        if (error) {
-            console.timeLog(BUILD_NAME, "Script errored out");
-            console.error(error.stack);
-            
-            process.exitCode = error.exitCode || 1;
-
-            return;
-        }
-        console.timeLog(BUILD_NAME, "Build succeeded.");
-    })
     .catch(e => {
         console.timeLog(BUILD_NAME, "Error occured.");
         console.error(e.stack);
