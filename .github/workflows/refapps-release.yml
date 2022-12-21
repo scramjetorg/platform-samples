@@ -24,11 +24,11 @@ jobs:
       - name: Bump root package.json
         run: npm version --no-git-tag-version ${{ inputs.version }}
 
-      - name: Bump package versions
-        run: ./scripts/run-script.js -e "npm version ${{ inputs.version }}"
-
       - name: Install dependencies
         run: npm install
+
+      - name: Bump package versions
+        run: ./scripts/run-script.js -e "npm version ${{ inputs.version }}"
 
       - name: Add and commit
         run: git add . && git commit -m "Release version ${{ inputs.version }}"
