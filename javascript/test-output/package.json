@@ -17,6 +17,11 @@
   "engines": {
     "node": "^16.0.0"
   },
+  "scripts": {
+    "build": "mkdir -p dist/ && cp -rt dist/ *.js package.json && (cd dist && npm i --omit=dev)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
   "devDependencies": {
     "@scramjet/cli": "^0.28.0",
     "@scramjet/types": "^0.28.0"

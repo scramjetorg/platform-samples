@@ -19,8 +19,7 @@
     "node": "^16.0.0"
   },
   "scripts": {
-    "build": "cp -r index.js data.txt package.json dist/ && (cd dist && npm i --omit=dev)",
-    "pack:pub": "DIST_DIR=${DIST_DIR:-.}; si seq pack ./dist -o ${DIST_DIR}/$(basename $(readlink -f ../))-$(basename $(readlink -f .)).tar.gz",
+    "build": "mkdir -p dist/ && cp -r index.js data.txt package.json dist/ && (cd dist && npm i --omit=dev)",
     "pack": "si seq pack ./dist/",
     "clean": "rm -rf ./dist ./*.tar.gz"
   },

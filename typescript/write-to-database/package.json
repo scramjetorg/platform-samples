@@ -23,8 +23,7 @@
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --only=production)",
     "clean": "rm -rf ./dist ./*.tar.gz",
-    "pack": "si seq pack ./dist/",
-    "pack:pub": "DIST_DIR=${DIST_DIR:-.}; si seq pack ./dist -o ${DIST_DIR}/$(basename $(readlink -f ../))-$(basename $(readlink -f .)).tar.gz"
+    "pack": "si seq pack ./dist/"
   },
   "dependencies": {
     "@scramjet/types": "^0.28.0",
