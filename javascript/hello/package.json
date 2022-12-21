@@ -18,6 +18,11 @@
   "engines": {
     "node": "^16.0.0"
   },
+  "scripts": {
+    "build": "mkdir -p dist/ && cp -r index.js data.txt package.json dist/ && (cd dist && npm i --omit=dev)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
   "assets": [
     "data.txt"
   ]
