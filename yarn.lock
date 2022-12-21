@@ -185,7 +185,7 @@
   "version" "0.23.0"
   dependencies:
     "node-fetch" "^2.6.7"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/discord-read@file:/home/mczapracki/src/scramjetorg/platform-samples/typescript/discord-read":
   "resolved" "file:typescript/discord-read"
@@ -194,15 +194,15 @@
     "@discordjs/builders" "^0.11.0"
     "@discordjs/rest" "^0.2.0-canary.0"
     "discord-api-types" "^0.28.0"
-    "discord.js" "^13.10.2"
-    "scramjet" "^4.36.7"
+    "discord.js" "^13.10.3"
+    "scramjet" "^4.36.8"
 
 "@scramjet/discord-write@file:/home/mczapracki/src/scramjetorg/platform-samples/typescript/discord-write":
   "resolved" "file:typescript/discord-write"
   "version" "0.23.0"
   dependencies:
     "axios" "^0.24.0"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/gh-issues-to-clickup@file:/home/mczapracki/src/scramjetorg/platform-samples/python/gh-issues-to-clickup":
   "resolved" "file:python/gh-issues-to-clickup"
@@ -220,7 +220,7 @@
   "resolved" "file:typescript/hexdump"
   "version" "0.23.0"
   dependencies:
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/json-url-output@file:/home/mczapracki/src/scramjetorg/platform-samples/javascript/json-url-output":
   "resolved" "file:javascript/json-url-output"
@@ -237,7 +237,7 @@
     "axios" "^0.24.0"
     "cheerio" "*"
     "csv-parser" "^3.0.0"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/manager-api-client@^0.28.1":
   "integrity" "sha512-6+y+tprXjfGwMP8Xa0huqGs9vvTinclCIo6OIIfautMCTvFRs/omWV6tD4F6FjB5z9tLoXZDXHlIKVdYx3mtZA=="
@@ -253,7 +253,7 @@
   dependencies:
     "@types/eventsource" "^1.1.9"
     "eventsource" "^1.1.2"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/middleware-api-client@^0.28.1":
   "integrity" "sha512-g42mJC0qv+vJby6QL6SlIkVXDk71giXaRyBFF82TNQ8mRPtZYeyJLEshsNDSm2N0mTtb6e+yOz6cvv3GAHL87w=="
@@ -317,7 +317,7 @@
   "resolved" "file:typescript/read-targz-stats"
   "version" "0.23.0"
   dependencies:
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
     "tar-stream" "^2.2.0"
 
 "@scramjet/rpilocator-scraper@file:/home/mczapracki/src/scramjetorg/platform-samples/python/rpilocator-scraper":
@@ -332,7 +332,7 @@
     "axios" "^0.24.0"
     "cheerio" "*"
     "rss-parser" "^3.12.0"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
     "typescript" "^4.7.4"
 
 "@scramjet/scraping@file:/home/mczapracki/src/scramjetorg/platform-samples/typescript/scraping":
@@ -341,20 +341,20 @@
   dependencies:
     "axios" "^0.24.0"
     "cheerio" "*"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/send-to-github@file:/home/mczapracki/src/scramjetorg/platform-samples/typescript/send-to-github":
   "resolved" "file:typescript/send-to-github"
   "version" "0.23.0"
   dependencies:
     "axios" "^0.24.0"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/simple-counter-js@file:/home/mczapracki/src/scramjetorg/platform-samples/javascript/simple-counter-js":
   "resolved" "file:javascript/simple-counter-js"
   "version" "0.23.0"
   dependencies:
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/slack-read@file:/home/mczapracki/src/scramjetorg/platform-samples/typescript/slack-read":
   "resolved" "file:typescript/slack-read"
@@ -368,7 +368,7 @@
   "version" "0.23.0"
   dependencies:
     "axios" "^0.24.0"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/stack-overflow@file:/home/mczapracki/src/scramjetorg/platform-samples/typescript/stack-overflow":
   "resolved" "file:typescript/stack-overflow"
@@ -376,7 +376,7 @@
   dependencies:
     "axios" "^0.24.0"
     "cheerio" "*"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/sth-config@^0.28.1":
   "integrity" "sha512-o8RUEGcwr0ZzDDkLfzuTyBFt1xxKasdMZMgGpv1OF+u0YL6ywFHqmvsPWMmzXHn7xlmagOqy/fClhqEGCiUe+A=="
@@ -398,7 +398,7 @@
   "resolved" "file:typescript/transform-string-stream"
   "version" "0.23.0"
   dependencies:
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@scramjet/types@^0.28.0":
   "integrity" "sha512-NxAfT9lKwkpbfHrrFqWLO7oXZKDcwQSLIohGi48lMbW/FIbUzkvqdfAXlAtckATLPyFCVW1jE6Xx50bKyE8lbw=="
@@ -422,7 +422,7 @@
   dependencies:
     "@scramjet/types" "^0.28.0"
     "mysql" "^2.18.1"
-    "scramjet" "^4.36.7"
+    "scramjet" "^4.36.8"
 
 "@sindresorhus/is@^4.2.0":
   "integrity" "sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw=="
@@ -1258,10 +1258,10 @@
   dependencies:
     "brace-expansion" "^2.0.1"
 
-"minimist@^1.2.0", "minimist@^1.2.6":
-  "integrity" "sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q=="
-  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.6.tgz"
-  "version" "1.2.6"
+"minimist@^1.2.0", "minimist@^1.2.7":
+  "integrity" "sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g=="
+  "resolved" "https://registry.npmjs.org/minimist/-/minimist-1.2.7.tgz"
+  "version" "1.2.7"
 
 "minipass-collect@^1.0.2":
   "integrity" "sha512-6T6lH0H8OG9kITm/Jm6tdooIbogG9e0tLgpY6mphXSm/A9u8Nq1ryBG+Qspiub9LjWlBPsPS3tWQ/Botq4FdxA=="
@@ -1541,7 +1541,7 @@
   "resolved" "https://registry.npmjs.org/scramjet-core/-/scramjet-core-4.32.10.tgz"
   "version" "4.32.10"
 
-"scramjet@^4.36.7", "scramjet@^4.36.8":
+"scramjet@^4.36.7", "scramjet@^4.36.8", "scramjet@^4.36.9":
   "integrity" "sha512-vHRQy3hE1gC3tYDKPLGmvQgEQV4oL3JpOA7tP07eGcez+Py2mX8yFu81OeSBPwSwjHX5BrAe8pXVkgT3CMkC/g=="
   "resolved" "https://registry.npmjs.org/scramjet/-/scramjet-4.36.9.tgz"
   "version" "4.36.9"
