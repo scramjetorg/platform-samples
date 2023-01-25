@@ -1,10 +1,8 @@
-const { Transform } = require("stream");
+const rl = require("readline");
+const { Readable } = require("stream");
 
-module.exports = function(input) {
-    return input.pipe(new Transform({
-        encoding: "utf-8",
-        transform(chunk, _encoding, callback) {
-            callback(null, `Hello ${chunk}`);
-        }
-    }));
+module.exports = async function* (input) {
+    for await (const line of new rl.Interface(input)) {
+        yield `Hello ${line}!`;
+    }
 };
