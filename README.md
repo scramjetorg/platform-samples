@@ -1,7 +1,7 @@
 # Samples 📚
 
 We have prepared some samples for you that show the different uses of a Sequence. Some are super simple, some are a little more advanced. They show the use of data from various resources, such as local disk, external API, or plain keyboard input.  The samples are differentiated according to language in which they were written. Every sample contains a short readme with a guidance describing the procedure for running the example as well as is linked to its source code on GitHub. Please take a look at our samples and if you have any questions or difficulties, feel free to ask us on [Discord](https://bit.ly/discordwww).
-
+123
 The execution will be performed from the command line using our CLI, which full description and documentation you will find in [CLI Reference](./cli-reference).
 
 In samples we are using methods and definitions described in [API Reference](./api-reference).
