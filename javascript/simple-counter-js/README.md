@@ -15,17 +15,10 @@ Open the terminal and run the following commands:
 cd javascript/simple-counter-js
 
 # instal dependencies
-npm install
-
-# go back to javascript/ directory
-cd ../
+npm run build
 
 # deploy 'simple-counter-js' Sequence
-si seq deploy simple-counter-js
-
-# See output of Instance process
-si inst stdout -
-```
+si seq deploy dist
 
 > 💡**NOTE:** Command `deploy` performs three actions at once: `pack`, `send` and `start` the Sequence. It is the same as if you would run those three commands separately:
 
@@ -63,21 +56,11 @@ si seq start -    # start the Sequence, this will output Instance ID
 # go to 'simple-counter-js' directory
 cd samples/simple-counter-js
 
-# instal node_modules
-npm install
+# instal dependencies
+npm run build
 
-# make a compressed package with Sequence
-si seq pack . -o simple-counter-js.tar.gz
-
-# send Sequence to transform hub, this will output Sequence ID
-si seq send simple-counter-js.tar.gz
-
-# start a Sequence with "start" and "end" parameters, this will output Instance ID
-si seq start - 100 2000
-
-# See output
-si inst stdout -
-```
+# deploy sequence with arguments 
+si seq deploy dist --args [100, 200]
 
 ## Output
 
@@ -97,5 +80,4 @@ si inst stdout -
 { x: 197 }
 { x: 198 }
 { x: 199 }
-{ x: 200 }
 ```
