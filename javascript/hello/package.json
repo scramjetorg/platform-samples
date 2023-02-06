@@ -16,7 +16,7 @@
     "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/hello"
   },
   "engines": {
-    "node": "^16.0.0"
+    "node": ">=16"
   },
   "scripts": {
     "build": "mkdir -p dist/ && cp -r index.js data.txt package.json dist/ && (cd dist && npm i --omit=dev)",

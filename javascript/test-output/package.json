@@ -15,7 +15,7 @@
     "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/test-output"
   },
   "engines": {
-    "node": "^16.0.0"
+    "node": ">=16"
   },
   "scripts": {
     "build": "mkdir -p dist/ && cp -rt dist/ *.js package.json && (cd dist && npm i --omit=dev)",
