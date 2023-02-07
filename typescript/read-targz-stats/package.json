@@ -16,7 +16,7 @@
     "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/read-targz-stats"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
