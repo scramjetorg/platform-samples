@@ -16,13 +16,13 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm install
+        run: ( cd scripts && npm install )
 
       - name: Build sample sequences
-        run: npm run build
+        run: ( cd scripts && npm run build )
 
       - name: Pack sample sequences
-        run: npm run pack
+        run: ( cd scripts && npm run pack )
 
       - name: List packages
         run: ls -la dist/
