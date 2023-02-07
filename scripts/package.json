@@ -5,10 +5,10 @@
   "description": "A collection of example applications for Scramjet Cloud Platform.",
   "scripts": {
     "all": "npm run build && npm run pack",
-    "build": "scripts/run-script.js -w packages build",
-    "pack": "export DIST_DIR=$PWD/dist/; mkdir -p $DIST_DIR; scripts/run-script.js -w packages -e 'si seq pack ./dist -o ${DIST_DIR}/$(basename $(readlink -f ../))-$(basename $(readlink -f .)).tar.gz'",
-    "test": "scripts/run-script.js -w packages test",
-    "clean": "LOCAL_PACKAGES=true scripts/run-script.js -w packages clean && npm run clean:root",
+    "build": "./run-script.js -w packages build",
+    "pack": "export DIST_DIR=$PWD/../dist/; mkdir -p $DIST_DIR; ./run-script.js -w packages -e 'si seq pack ./dist -o ${DIST_DIR}/$(basename $(readlink -f ../))-$(basename $(readlink -f .)).tar.gz'",
+    "test": "./run-script.js -w packages test",
+    "clean": "LOCAL_PACKAGES=true ./run-script.js -w packages clean && npm run clean:root",
     "clean:root": "rm -rf ./dist/",
     "clean:modules": "find -name node_modules -or -name __pypackages__ -prune -exec rm -rf {} ';' 2> /dev/null"
   },
@@ -24,13 +24,14 @@
     "glob": "^7.2.3",
     "globrex": "^0.1.2",
     "minimist": "^1.2.7",
-    "scramjet": "^4.36.9"
+    "scramjet": "^4.36.9",
+    "typescript": "4.9.5"
   },
   "workspaces": {
     "packages": [
-      "javascript/*",
-      "typescript/*",
-      "python/*"
+      "../javascript/*",
+      "../typescript/*",
+      "../python/*"
     ]
   }
 }
