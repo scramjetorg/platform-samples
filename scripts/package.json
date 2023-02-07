@@ -24,7 +24,8 @@
     "glob": "^7.2.3",
     "globrex": "^0.1.2",
     "minimist": "^1.2.7",
-    "scramjet": "^4.36.9"
+    "scramjet": "^4.36.9",
+    "typescript": "4.9.5"
   },
   "workspaces": {
     "packages": [
