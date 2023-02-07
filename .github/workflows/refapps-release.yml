@@ -25,7 +25,7 @@ jobs:
         run: ( cd scripts && npm version --no-git-tag-version ${{ inputs.version }} )
 
       - name: Install dependencies
-        run: ( cd scripts && npm install )
+        run: ( cd scripts && npm install && ./scripts/run-script.js -w packages -e "npm install" )
 
       - name: Bump package versions
         run: ./scripts/run-script.js -w packages -e "npm version ${{ inputs.version }}"
