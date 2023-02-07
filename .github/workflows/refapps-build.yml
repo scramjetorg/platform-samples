@@ -16,7 +16,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: ( cd scripts && npm install && ./scripts/run-script.js -w packages -e "npm install" )
+        run: ( cd scripts && npm install && ./run-script.js -w packages -e "npm install" )
 
       - name: Build sample sequences
         run: ( cd scripts && npm run build )
