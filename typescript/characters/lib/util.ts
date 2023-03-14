@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { dbPush, dbRead, } from "./db";
+import { dbPush, dbRead } from "./db";
 import * as fs from "fs";
 import { Character, CharacterType } from "./types";
 const file = `${__dirname}/list.json`;
@@ -17,7 +17,7 @@ class Warrior extends Character {
 }
 
 class Wizard extends Character {
-    constructor(info : CharacterType) {
+    constructor(info: CharacterType) {
         super(info);
         if (!info.spell) {
             throw new Error("Your Wizard class doesn't have required parameter: 'Spells'");
@@ -33,33 +33,36 @@ class Wizard extends Character {
     }
 }
 
-export function readList():Promise<string> {
+export function readList(): Promise<string> {
     return new Promise((resolve, reject) => {
         let output = "";
 
-        const readable = fs.createReadStream(file, { encoding:"utf-8" });
+        const readable = fs.createReadStream(file, { encoding: "utf-8" });
 
-        readable.on("error", (err) => {
-            console.log(err);
-            reject();
-        }).on("data", (chunk) => {
-            output += chunk.toString();
-        }).on("end", () => {
-            charactersStore = JSON.parse(output);
-            resolve(output);
-        });
+        readable
+            .on("error", (err) => {
+                console.log(err);
+                reject();
+            })
+            .on("data", (chunk) => {
+                output += chunk.toString();
+            })
+            .on("end", () => {
+                charactersStore = JSON.parse(output);
+                resolve(output);
+            });
     });
 }
 export function save() {
     const data = JSON.stringify(
-        charactersStore.map(char => ({
+        charactersStore.map((char) => ({
             spec: char.spec,
             weapon: char.weapon,
-            hp: char.hp
+            hp: char.hp,
         }))
     );
 
-    fs.writeFile(file, data, err => {
+    fs.writeFile(file, data, (err) => {
         if (err) {
             console.error(err);
         }
@@ -107,39 +110,48 @@ export async function createCharacter(param) {
     return char;
 }
 
-export async function decide(chunk:string, arg1:string, arg2:string, arg3:string, arg4?:string): Promise<string> {
+export async function decide(chunk: string, arg1: string, arg2: string, arg3: string, arg4?: string): Promise<string> {
     let message = "";
 
-    switch (chunk.toString())
-    { case "add\n" :
-        try {
-            const char = await createCharacter({ spec: arg1.toLowerCase(), weapon: arg2, hp: arg3, spell: arg4 });
+    switch (chunk.toString()) {
+        case "add\n":
+            try {
+                const char = await createCharacter({ spec: arg1.toLowerCase(), weapon: arg2, hp: arg3, spell: arg4 });
 
-            charactersStore.push(char);
-            await save();
+                charactersStore.push(char);
+                await save();
 
-            message += char.message();
-        } catch (error) {
-            message += error;
-        }
-        break;
-        case "list\n" :
-            message += await readList().then(l => l, _e => "Error reading list");
+                message += char.message();
+            } catch (error) {
+                message += error;
+            }
             break;
-        case "db\n" :
-            message += await dbPush(charactersStore).then(l => l, e => e);
+        case "list\n":
+            message += await readList().then(
+                (l) => l,
+                (_e) => "Error reading list"
+            );
             break;
-        case "dblist\n" :
-            message += await dbRead().then(l => l, e => e);
+        case "db\n":
+            message += await dbPush(charactersStore).then(
+                (l) => l,
+                (e) => e
+            );
             break;
-        default :
+        case "dblist\n":
+            message += await dbRead().then(
+                (l) => l,
+                (e) => e
+            );
+            break;
+        default:
             message += "unknown command";
     }
 
     return message + "\n";
 }
 export async function listToObject() {
-    await readList().then(c => {
+    await readList().then((c) => {
         JSON.parse(c).map(async (charData) => {
             charactersStore.push(await createCharacter(charData));
         });
