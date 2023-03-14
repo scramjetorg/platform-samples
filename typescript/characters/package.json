@@ -21,5 +21,9 @@
   "dependencies": {
     "@scramjet/types": "^0.33.1",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3"
+
   }
 }
