@@ -68,26 +68,6 @@ export function save() {
         }
     });
 }
-export async function checkIfExists() {
-    return new Promise<void>((resolve, reject) => {
-        fs.access(file, fs.constants.F_OK, (err) => {
-            if (err) {
-                fs.writeFile(file, "", (e) => {
-                    if (e) {
-                        console.log(e);
-                        reject();
-
-                        return;
-                    }
-                    resolve();
-                });
-            } else {
-                resolve();
-            }
-        });
-    });
-}
-
 export async function createCharacter(param) {
     let factory: typeof Wizard | typeof Warrior;
 
@@ -104,8 +84,6 @@ export async function createCharacter(param) {
     }
 
     const char = new factory(param);
-
-    await checkIfExists();
 
     return char;
 }
