@@ -1,0 +1,25 @@
+{
+  "name": "characters",
+  "version": "1.0.0",
+  "description": "Sequence that allows exporting and importing data from database and filesystem and creating new classes",
+  "keywords": [
+    "Classes",
+    "Databases",
+    "File stystem",
+    "Events"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "cp -r package.json dist/ && cp -r lib/list.json dist/lib && (cd dist && npm i --omit=dev)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
+  "author": "Piotr",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@scramjet/types": "^0.33.1",
+    "mysql": "^2.18.1"
+  }
+}

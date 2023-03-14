@@ -1,0 +1,4 @@
+[
+    {"spec":"warrior","weapon":"sword","hp":"120"},
+    {"spec":"wizard","weapon":"blunt","hp":"115","spell":"fireball"}
+]
