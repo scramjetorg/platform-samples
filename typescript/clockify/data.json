@@ -1,0 +1,9 @@
+{
+    "apikey":"YOUR-API-KEY-HERE",
+    "workspace":"WORKSPACE-ID",
+    "weekDayProjectId":"WEEKDAY-PROJECT-ID",
+    "satProjectId":"SATURDAY-PROJECT-ID",
+    "sunProjectId":"SUNDAY-PROJECT-ID",
+    "startHour": 9,
+    "endHour" : 17
+}

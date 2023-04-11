@@ -1,0 +1,29 @@
+{
+  "name": "@scramjet/clockify",
+  "version": "1.0.0",
+  "description": "Sequence thats add new entries to clockify on a daily basis",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "cp -r package.json dist/ && (cd dist && npm i --only=production)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
+  "keywords": [
+    "api",
+    "clockify",
+    "HTTP"
+  ],
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "date-and-time": "^2.4.3"
+  },
+  "devDependencies": {
+    "@scramjet/types": "0.33.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/clockify"
+  }
+}
