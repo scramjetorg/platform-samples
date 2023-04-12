@@ -15,14 +15,12 @@ provides = {
 def get_mail(user):
 	return user['data']['object']['email']
 def get_fullname(user):
-	temp = user['data']['object']
-	return temp['name']
+	return user['data']['object']['name']
 
 async def get_event(stream):
 	await asyncio.sleep(3)
 	compared = stripe.Event.list(type="customer.created")['data'][-1]
 	stream.write(compared['data']['object']['email'])
-	#print(compared['data']['object']['email'])
 	compared = compared['id']
 	while True:
 		test = stripe.Event.list(type="customer.created", ending_before=compared, limit=3)['data']

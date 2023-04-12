@@ -16,39 +16,36 @@ requires = {
 mailchimp = Client()
 
 def get_info(info, given):
-    result = info["members"]
-    for i in range(0, len(result)):
-        if given == result[i]["email_address"]:
-            return result[i]["id"]
+    for member in info['members']:
+    	if given == member["email_address"]:
+    		return member['id']
             
 async def insert_info(info):
+	email, fname, lname = info.split(" ")
 	response = mailchimp.ping.get()
-	info = info.split(" ")
 	try:
-		print(info[0],info[1] , info[2])
 		member_info = {
-				"email_address": info[0],
+				"email_address": email,
 				"status":"unsubscribed",
 				"merge_fields" : {
-					"FNAME":info[1],
-					"LNAME":info[2].replace("\n", "")
+					"FNAME":fname,
+					"LNAME":lname.replace("\n", "")
 		}}
 		try:
 			response = mailchimp.lists.add_list_member(run.audience_id, member_info)
-			#print(response);
 		except ApiClientError as error:
 			print("An exception occurred: {}".format(error.text))
 			error = json.loads(error.text)
 			if error["title"] == "Member Exists":
 				try:
 					response = mailchimp.lists.get_list_members_info(run.audience_id)
-					user_id = get_info(response, info[0])
+					user_id = get_info(response, email)
 					response = mailchimp.lists.update_list_member(run.audience_id, user_id, {"status" : "subscribed"})			
 				except ApiClientError as err:
 					info =""	
 
 	except:
-		info = "Brak danych"
+		info = "No data received."
 		print(info);
 
 async def run(context, input):
