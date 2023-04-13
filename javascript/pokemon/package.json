@@ -21,7 +21,7 @@
     "clean": "rm -rf ./dist ./*.tar.gz"
   },
   "engines": {
-    "node": "^16.0.0"
+    "node": ">=16"
   },
   "dependencies": {
     "node-fetch": "^2.6.7"

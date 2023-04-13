@@ -1,4 +1,4 @@
-name: Make a refapps release with compiled package archives
+name: Release compiled package archives
 
 on:
   workflow_dispatch:
@@ -21,23 +21,23 @@ jobs:
         with:
           node-version: 16
 
-      - name: Bump root package.json
-        run: npm version ${{ inputs.version }}
-
-      - name: Bump package versions
-        run: ./scripts/run-script.js -e "npm version ${{ inputs.version }}"
+      - name: Bump scripts package.json
+        run: ( cd scripts && npm version --no-git-tag-version ${{ inputs.version }} )
 
       - name: Install dependencies
-        run: npm install
+        run: ( cd scripts && npm install && ./scripts/run-script.js -w packages -e "npm install" )
+
+      - name: Bump package versions
+        run: ./scripts/run-script.js -w packages -e "npm version ${{ inputs.version }}"
 
       - name: Add and commit
         run: git add . && git commit -m "Release version ${{ inputs.version }}"
 
       - name: Build reference apps
-        run: npm run build
+        run: ( cd scripts && npm run build )
 
       - name: Pack reference apps
-        run: npm run pack
+        run: ( cd scripts && npm run pack )
 
       - name: Create a release and upload artifacts
         run: >

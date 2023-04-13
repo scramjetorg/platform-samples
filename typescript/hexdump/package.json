@@ -16,7 +16,7 @@
     "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/hexdump"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "assets": [
     "scramjet.ico"
