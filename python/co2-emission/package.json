@@ -1,0 +1,14 @@
+{
+    "name": "@scramjet/python-co2-emission",
+    "main": "./main.py",
+    "author": "gierwialo",
+    "engines": {
+      "python3": "3.10.0"
+    },
+    "scripts": {
+      "build": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+      "clean": "rm -rf ./dist ./*.tar.gz",
+      "pack": "si seq pack ./dist/"
+    }
+  }
+  
