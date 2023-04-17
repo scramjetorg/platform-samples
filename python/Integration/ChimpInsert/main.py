@@ -42,11 +42,10 @@ async def insert_info(info):
 					user_id = get_info(response, email)
 					response = mailchimp.lists.update_list_member(run.audience_id, user_id, {"status" : "subscribed"})			
 				except ApiClientError as err:
-					info =""	
+					print(err)	
 
 	except:
-		info = "No data received."
-		print(info);
+		print("No data received.");
 
 async def run(context, input):
 	run.audience_id = context.config['audience_id']
