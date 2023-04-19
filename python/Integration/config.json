@@ -1,0 +1,9 @@
+{
+"mailchimp_api" : "<your_api_key>",
+"stripe_api" : "<your_api_key>",
+"audience_id" : "<your_audience>",
+"mailchimp_server" : "<your_server>",
+"auth" : "Bearer <your_api_key>",
+"auth0_query_url" : "https://dev-scp.eu.auth0.com/api/v2/users?per_page=5&sort=created_at%3A1&fields=created_at%2Cupdated_at%2Cemail%2Cnickname&q=user_metadata.newsletter%3D%22true%22"
+}
+

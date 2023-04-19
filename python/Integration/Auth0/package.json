@@ -1,0 +1,24 @@
+{
+  "name": "@scramjet/stripe-read",
+  "version": "0.1.0",
+  "main": "main.py",
+  "author": "gzukowski",
+  "license": "GPL-3.0",
+  "description": "Reading from stripe",
+  "keywords": [
+    "Stripe",
+    "Mailchimp",
+    "Auth0"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "python3": "3.8.0"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp -t ./dist/ *.py *.json",
+    "clean": "rm -rf ./dist"
+  }
+}
