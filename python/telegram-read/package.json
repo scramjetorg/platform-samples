@@ -1,5 +1,5 @@
 {
-  "name": "@scramjet/telegram-read-loop",
+  "name": "@scramjet/telegram-read",
   "version": "0.1.0",
   "main": "main.py",
   "author": "gzukowski",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/telegram-write"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/telegram-read"
   },
   "engines": {
     "python3": "3.8.0"
