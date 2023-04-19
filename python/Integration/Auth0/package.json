@@ -6,7 +6,9 @@
   "license": "GPL-3.0",
   "description": "Reading from stripe",
   "keywords": [
-    "Telegram"
+    "Stripe",
+    "Mailchimp",
+    "Auth0"
   ],
   "repository": {
     "type": "git",
