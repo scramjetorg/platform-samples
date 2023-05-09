@@ -21,7 +21,10 @@ def get_info(info, given):
     		return member['id']
             
 async def insert_info(info):
-	email, fname, lname = info.split(" ")
+	try:
+		email, fname, lname = info.split(" ")
+	except:
+		print("No data received.")
 	response = mailchimp.ping.get()
 	try:
 		member_info = {
@@ -45,7 +48,7 @@ async def insert_info(info):
 					print(err)	
 
 	except:
-		print("No data received.");
+		print("No data received.")
 
 async def run(context, input):
 	run.audience_id = context.config['audience_id']
