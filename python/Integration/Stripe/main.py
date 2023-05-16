@@ -2,9 +2,6 @@ import requests
 import stripe
 import asyncio
 from scramjet.streams import Stream
-from mailchimp_marketing import Client
-from mailchimp_marketing.api_client import ApiClientError
-
 
 provides = {
     'provides': 'pipe',
@@ -33,12 +30,6 @@ async def get_event(stream):
 
 async def run(context, input):
 	stripe.api_key = context.config['stripe_api']
-	audience_id = context.config['audience_id']
-	mailchimp = Client()
-	mailchimp.set_config({
-	  "api_key": context.config['mailchimp_api'],
-	  "server": context.config['mailchimp_server'],
-	})
 	stream = Stream()
 	asyncio.gather(get_event(stream), return_exceptions=True)
 	return stream.map(lambda x : x + "\n")

@@ -8,10 +8,12 @@ ___
 
 ## Get your API keys
 
+:warning: Remember you can generate keys with minimal permissions :warning:
+
 - [Mailchimp](https://mailchimp.com/help/about-api-keys/#:~:text=To%20generate%20an%20API%20key%2C%20follow%20these%20steps)
 - [AudienceID](https://mailchimp.com/help/find-audience-id/)
-- [Auth0](https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-access-tokens-for-testing#get-access-tokens-manually)
-- [Stripe](https://dashboard.stripe.com/test/apikeys)
+- [Auth0](https://auth0.com/docs/secure/tokens/access-tokens/get-management-api-access-tokens-for-testing#get-access-tokens-manually) (read:users read:user_idp_tokens)
+- [Stripe](https://dashboard.stripe.com/test/apikeys) (event_read  customer_read   customer.created)
 
 Now open config.json file and fill all the empty spaces with the information you got. mailchimp_server is everything after "-" in mailchimp's API key eg. "us21".
 
