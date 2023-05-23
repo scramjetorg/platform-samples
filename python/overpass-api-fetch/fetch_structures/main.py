@@ -5,7 +5,7 @@ provides = {
    'provides': 'structures-xml',
    'contentType': 'text/plain'
 }
-import time
+
 
 def fetch_tall_structures(min_lat, min_lon, max_lat, max_lon, height=50):
     overpass_url = "http://overpass-api.de/api/interpreter"
@@ -17,7 +17,6 @@ def fetch_tall_structures(min_lat, min_lon, max_lat, max_lon, height=50):
         out geom;
     """
     resp = requests.get(overpass_url, params={'data': query})
-    print(resp.text)
     return resp.text
 
 
