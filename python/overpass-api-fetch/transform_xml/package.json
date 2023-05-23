@@ -1,0 +1,15 @@
+{
+  "name": "transform-xml",
+  "version": "1.0.0",
+  "main": "main.py",
+  "author": "AM",
+  "license": "GPL-3.0",
+  "description": "Removes certain XML tags from a valid xml file",
+  "engines": {
+    "python3": "3.8.0"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp -t ./dist/ *.py *.json",
+    "clean": "rm -rf ./dist"
+  }
+}
