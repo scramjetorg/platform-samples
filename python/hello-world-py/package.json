@@ -1,0 +1,26 @@
+{
+  "name": "@scramjet/hello-world-py",
+  "version": "1.0.0",
+  "main": "./hello_world.py",
+  "author": "S4adam",
+  "license": "GPL-3.0",
+  "description": "Simple Sequence that prints out 'Hello World!' to the Instance output.",
+  "keywords": [
+    "sample",
+    "easy",
+    "streaming",
+    "Data Producer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/hello-world-py"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+    "clean": "rm -rf ./dist ./*.tar.gz",
+    "pack": "si seq pack ./dist/"
+  },
+  "engines": {
+    "python3": "3.8.0"
+  }
+}

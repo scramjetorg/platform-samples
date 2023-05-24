@@ -1,6 +1,6 @@
-# Hello world ts
+# Hello world js
 
-Simple sequence that outputs "Hello world" written in typescript.
+Simple sequence that outputs "Hello world" written in javascript.
 
 ## Running
 
@@ -11,20 +11,17 @@ Open two terminals and run the following commands:
 **The first terminal:**
 
 ```bash
-# install dependencies
+# go to 'hello-world-js' directory
+cd javascript/hello-world-js
+
+# install node_modules
 npm install
 
-# transpile TS->JS to dist/
-npm run build
+# go back to javascript/ directory
+cd ../
 
-# make a compressed package with Sequence
-si seq pack dist
-
-# send Sequence to transform hub, this will output Sequence ID
-si seq send dist.tar.gz
-
-# start a Sequence
-si seq start -
+# deploy 'hello-world-js' Sequence
+si seq deploy hello-world-js
 ```
 
 **The second terminal**
