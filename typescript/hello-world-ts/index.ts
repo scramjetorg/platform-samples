@@ -1,7 +1,7 @@
 import { PassThrough } from "stream";
 import { ReadableApp } from "@scramjet/types";
 
-const app:ReadableApp<any> = async function(_input) {
+const app: ReadableApp<any> = async function(_input) {
     // create a clean output stream
     const out = new PassThrough({ encoding: "utf-8" });
 

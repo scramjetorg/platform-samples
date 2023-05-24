@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "Simple Sequence that prints out 'Hello World!' to the Instance output.",
   "main": "index.js",
-
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
     "clean": "rm -rf ./dist .bic_cache"
-},
+  },
   "keywords": [
     "easy"
   ],
