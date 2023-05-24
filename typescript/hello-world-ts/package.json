@@ -1,0 +1,26 @@
+{
+  "name": "hello-world-ts",
+  "version": "1.0.0",
+  "description": "Simple Sequence that prints out 'Hello World!' to the Instance output.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)",
+    "clean": "rm -rf ./dist .bic_cache"
+  },
+  "keywords": [
+    "easy"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "piotrek6641",
+  "license": "ISC",
+  "devDependencies": {
+    "@scramjet/types": "^0.33.5",
+    "@types/node": "^20.2.3"
+  },
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
+}
