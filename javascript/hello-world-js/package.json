@@ -1,0 +1,26 @@
+{
+  "name": "@scramjet/hello-world-js",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "a-tylenda",
+  "license": "GPL-3.0",
+  "description": "Simple Sequence that prints out 'Hello World!' to the Instance output.",
+  "keywords": [
+    "sample",
+    "easy",
+    "streaming",
+    "Data Producer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/hello-world-js"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/ && cp -r index.js package.json dist/ && (cd dist && npm i --omit=dev)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

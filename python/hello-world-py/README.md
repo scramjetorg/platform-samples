@@ -1,6 +1,6 @@
-# Hello world ts
+# Hello world py
 
-Simple sequence that outputs "Hello world" written in typescript.
+Simple Sequence that outputs "Hello world" written in python
 
 ## Running
 
@@ -10,11 +10,13 @@ Open two terminals and run the following commands:
 
 **The first terminal:**
 
-```bash
-# install dependencies
-npm install
+Open the terminal and run the following commands:
 
-# transpile TS->JS to dist/
+```bash
+# go to 'hello-world-py' directory
+cd python/hello-world-py
+
+# build
 npm run build
 
 # make a compressed package with Sequence
