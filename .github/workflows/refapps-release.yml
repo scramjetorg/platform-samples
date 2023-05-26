@@ -11,10 +11,10 @@ on:
 jobs:
   build-and-release:
     name: Release Sample Apps
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest 
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3 
 
       - name: Setup Nodejs v16
         uses: actions/setup-node@v2
@@ -28,7 +28,7 @@ jobs:
         run: ( cd scripts && npm install && ./run-script.js -w packages -e "npm install" )
 
       - name: Bump package versions
-        run: ./scripts/run-script.js -w packages -e "npm version ${{ inputs.version }}"
+        run: ( cd scripts && ./run-script.js -w packages -e "npm version ${{ inputs.version }}" )
 
       - name: Add and commit
         run: git add . && git commit -m "Release version ${{ inputs.version }}"
