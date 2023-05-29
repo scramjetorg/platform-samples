@@ -1,8 +1,11 @@
-# Integration
+# Stripe
 
-A tool to provide integration between the three Stripe :left_right_arrow: Auth0 :left_right_arrow: Mailchimp services.
+A component of the tool that provides integration between the three Stripe :left_right_arrow: Auth0 :left_right_arrow: Mailchimp services.
 
 :warning: To use the given solution, API and authorization keys must be prepared, for each of the mentioned services. :warning:
+
+:warning: Remember, three sequences (ChimpInsert, Auth0, Stripe) are required for proper operation. Start with "ChimpInsert" directory.:warning:
+
 ___
 
 
@@ -20,22 +23,19 @@ Now open config.json file and fill all the empty spaces with the information you
 Query url is already set, generator of such url can be found [here](https://auth0.com/docs/api/management/v2#!/Users/get_users)
 
 ## Running
-
-Start STH :rocket:
-
-```bash
-sth
-```
-Later, deploy each of the sequences contained in the folder. Start with "ChimpInsert" directory.
+:white_check_mark:Make sure the ChimpInsert sequence is already running:white_check_mark:
 
 Open terminal:
 
 ```bash
+
+# Go into Stripe's sequence  directory
+cd Stripe
+
 # Build sequence
 npm run build
 
 # Deploy sample to STH
-si seq deploy dist -f ../config.json
+si seq deploy dist -f config.json
 
 ```
-:repeat: Repeat the process for the other two sequences. :repeat:
