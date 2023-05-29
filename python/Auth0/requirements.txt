@@ -1,4 +1,2 @@
 scramjet-framework-py
 requests
-stripe
-mailchimp-marketing
