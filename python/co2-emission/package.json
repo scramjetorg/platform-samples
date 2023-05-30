@@ -7,7 +7,10 @@
       "API Integration"
     ],
 
-    "repository": "",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/co2-emission"
+    },
     "main": "./main.py",
     "author": "gierwialo",
     "engines": {
