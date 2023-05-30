@@ -13,7 +13,10 @@
     "API",
     "Tranform"
   ],
-  "repository": "",
+  "repository": {
+    "type":"git",
+    "url":"https://github.com/scramjetorg/platform-samples/tree/main/typescript/audio2text"
+  },
   "author": "piotrek6641",
   "license": "ISC",
   "dependencies": {
