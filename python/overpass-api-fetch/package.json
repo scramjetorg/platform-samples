@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "main.py",
   "author": "AM",
+  "repository": "",
+  "keywords": [
+    "Python", 
+    "XML"
+  ],
   "license": "GPL-3.0",
   "description": "Removes certain XML tags from a valid xml file",
   "engines": {

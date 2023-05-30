@@ -1,4 +1,6 @@
-# CO₂ country emission fetching data from CO2Signal
+# CO₂ country emission fetching data from CO2Signal 
+
+___
 
 ## Preparation
 
