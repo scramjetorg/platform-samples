@@ -1,0 +1,34 @@
+name: "Check readme files & packages in sequences"
+
+on:
+  push:
+    branches:
+      - feat/check-readme
+
+jobs:
+  check-syntax:
+    runs-on: ubuntu-latest        
+    steps:
+      - uses: actions/checkout@v3
+
+
+      - name: Check readme files
+        id: check-readme
+        uses: ./.github/actions/check-readme
+
+      - name: Check packages files
+        id: check-package
+        uses: ./.github/actions/check-package
+
+      - name: Handle Error
+        run: |
+          error_count_readme=${{ env.error_count_readme }}
+          error_count_package=${{ env.error_count_package}}
+
+          if [ $error_count_readme -gt 0 ] || [ $error_count_package -gt 0 ]; then
+              echo "Error:  $error_count_readme errors in readme files."
+              echo "Error:  $error_count_package errors in package files."
+            fi
+
+            exit 1
+          fi

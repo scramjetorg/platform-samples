@@ -1,0 +1,9 @@
+name: 'Check readme'
+description: 'Check readme for # <content> ___ '
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check
+      run: bash ./.github/actions/check-readme/action.sh
+      shell: bash

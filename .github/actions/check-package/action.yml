@@ -1,0 +1,10 @@
+name: 'Check package'
+description: 'Check packaeg for specific fields'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Check
+      run: bash ./.github/actions/check-package/action.sh
+      shell: bash
+
