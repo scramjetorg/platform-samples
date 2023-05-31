@@ -1,0 +1,130 @@
+#!/bin/bash
+
+TARGET_FOLDERS=("python" "javascript" "typescript" )
+PACKAGE_FILE="package.json"
+README_FILE="README.md"
+
+REPO_FOLDER="$PWD"
+ERROR_COUNT_README=0
+ERROR_COUNT_PACKAGE=0
+
+
+
+check_json_file_syntax() {
+    file="$1"
+    
+    if [ ! -f "$file" ]; then
+        echo "Error: File $file does not exist."
+        return 1
+    fi
+    
+    required_fields=("name" "description" "keywords" "repository")
+    missing_fields=()
+    empty_fields=()
+    
+    for field in "${required_fields[@]}"; do
+        if ! jq --exit-status ".$field" "$file" >/dev/null 2>&1; then
+            missing_fields+=("$field")
+        else
+            # check if field is empty
+            if [ -z "$(jq -r ".$field" "$file")" ]; then
+                empty_fields+=("$field")
+            fi
+        fi
+    done
+    
+    # check if repository url field exists and is not empty
+    if ! jq --exit-status '.repository.url' "$file" >/dev/null 2>&1; then
+        missing_fields+=("repository.url")
+    else
+        # check if repository url field is a valid URL
+        if ! echo "$(jq -r '.repository.url' "$file")" | grep -P '^https?://.+' >/dev/null 2>&1; then
+            empty_fields+=("repository.url is not a valid URL")
+        fi
+    fi
+
+
+    if [ ${#empty_fields[@]} -gt 0 ]; then
+        echo "Warning: The following fields are empty or invalid in $file:"
+        ((ERROR_COUNT_PACKAGE++))
+
+        for field in "${empty_fields[@]}"; do
+            echo "- $field"
+        done
+    fi
+
+    if [ ${#missing_fields[@]} -gt 0 ]; then
+        echo "Warning: File $file does not contain the required fields:"
+        ((ERROR_COUNT_PACKAGE++))
+
+        for field in "${missing_fields[@]}"; do
+            echo "- $field"
+        done
+    fi
+    
+    if [ ${#missing_fields[@]} -gt 0 ] || [ ${#empty_fields[@]} -gt 0 ]; then
+        echo ""  # adds a new line for better readability
+        return 1
+    fi
+
+    return 0
+}
+
+
+
+check_package_files() {
+    local folder=$1
+    while IFS= read -r -d '' file; do
+        check_json_file_syntax "$file"
+    done < <(find "$folder" -maxdepth 2 -type f -iname "$PACKAGE_FILE" -print0)
+}
+
+check_package_files_in_folders() {
+    for folder in "${TARGET_FOLDERS[@]}"; do
+        folder_path="$REPO_FOLDER/$folder"
+        if [ -d "$folder_path" ]; then
+            check_package_files "$folder_path"
+        else
+            echo "Folder $folder not found in repo"
+        fi
+    done
+}
+
+check_readme_syntax() {
+    content=$(cat "$file")
+    if [[ $content == *"#"* && $content != *"___"* ]]; then
+        echo "Warning: syntax error in $file"
+        ((ERROR_COUNT_README++))
+    fi
+
+}
+
+check_readme_files() {
+    local folder=$1
+    while IFS= read -r -d '' file; do
+        check_readme_syntax "$file"
+    done < <(find "$folder" -maxdepth 2 -type f -iname "$README_FILE" -print0)
+}
+
+
+check_readme_files_in_folders() {
+    for folder in "${TARGET_FOLDERS[@]}"; do
+        folder_path="$REPO_FOLDER/$folder"
+        if [ -d "$folder_path" ]; then
+            check_readme_files "$folder_path"
+        else
+            echo "Folder $folder not found in repo"
+        fi
+    done
+}
+
+
+echo "REMEMBER: Your README.md should include a section that starts with # and ends with ___"
+echo "REMEMBER: Your package.json should include 'name' 'description' 'keywords' 'repository' fields"
+echo ""
+check_readme_files_in_folders
+echo ""
+check_package_files_in_folders
+
+echo "Errors in README: $ERROR_COUNT_README"
+echo "Errors in PACKAGE: $ERROR_COUNT_PACKAGE"
