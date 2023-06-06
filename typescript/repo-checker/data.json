@@ -1,0 +1,11 @@
+{
+    "gitHubRepos": [
+        {
+            "owner":"owner",
+            "repo":"repo-name"
+        }
+    ],
+    "dockerHubRepos": ["owner/repo-name"],
+    "pyPiRepos":["repo-name"],
+    "npmRepos":["repo-name"]
+}
