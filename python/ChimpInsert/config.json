@@ -1,0 +1,5 @@
+{
+      "mailchimp_api" : "<your_api_key>",
+      "audience_id" : "<your_audience>",
+      "mailchimp_server" : "<your_server>"
+}

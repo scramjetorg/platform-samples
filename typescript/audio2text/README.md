@@ -1,16 +1,21 @@
-# Hello world ts
+# Audio to text 
 
- ___
+___
 
-Simple sequence that outputs "Hello world" written in typescript.
+Sequence used to transcript audio file to a text using AssemblyAi api.
+
+For now this sequence lets transcript only file that is in a dist folder
+
+## Prerequirements
+
+To run this sequence it is required to have own api key from [AssemblyAi](https://www.assemblyai.com)
+
 
 ## Running
 
 > ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
 
-Open two terminals and run the following commands:
-
-**The first terminal:**
+Open the terminal and run the following commands:
 
 ```bash
 # install dependencies
@@ -25,16 +30,13 @@ si seq pack dist
 # send Sequence to transform hub, this will output Sequence ID
 si seq send dist.tar.gz
 
-# start a Sequence
-si seq start -
+# start a Sequence, provide AssemblyAi-key as an argument parameter
+si seq start - --args [\"AssemblyAi-key\"]
 ```
 
-**The second terminal**
-
-Read the Instance output:
+To get a output:
 
 ```bash
-si inst output -
-```
+si inst stdout -
 
-You should see "Hello World!" printed out in the terminal.
+```

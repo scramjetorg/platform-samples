@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "main": "main.py",
   "author": "AM",
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/overpass-api-fetch"
+  },
+  "keywords": [
+    "Python", 
+    "XML"
+  ],
   "license": "GPL-3.0",
   "description": "Removes certain XML tags from a valid xml file",
   "engines": {
