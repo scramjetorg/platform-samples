@@ -1,10 +1,10 @@
-# Audio to text 
-
-___
+# Audio to text
 
 Sequence used to transcript audio file to a text using AssemblyAi api.
 
 For now this sequence lets transcript only file that is in a dist folder
+
+___
 
 ## Prerequirements
 

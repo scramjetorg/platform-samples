@@ -1,7 +1,7 @@
 {
   "name": "audio2text",
   "version": "1.0.0",
-  "description": "",
+  "description": "sequence that allows transcripting audio from file",
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -11,7 +11,7 @@
   },
   "keywords": [
     "API",
-    "Tranform"
+    "Transform"
   ],
   "repository": {
     "type":"git",

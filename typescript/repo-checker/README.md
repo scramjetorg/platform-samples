@@ -2,6 +2,8 @@
 
 Sequence thats fetch data from various sides and saves it in topic.
 
+___
+
 ## Description
 
 This sequence supports retriveing data from those platforms:
