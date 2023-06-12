@@ -2,6 +2,8 @@
 
 Sequence which daily adds a new entry in Clockify
 
+___
+
 > ❗ By default this code adds 5 same entries for all weekdays. For weekends it adds new entries with 0 hours on them.
 
 ## Requirements
