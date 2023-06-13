@@ -5,6 +5,15 @@
   "author": "Ray_Nawfal",
   "license": "GPL-3.0",
   "description": "Transcription of an audio file using AssemblyAI API.",
+  "keywords": [
+   "AudioToText",
+   "Transcription",
+   "AssemblyAI"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/audio2text"
+  },
   "engines": {
     "python3": "3.8.0"
   },
