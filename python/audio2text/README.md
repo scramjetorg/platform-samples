@@ -1,10 +1,10 @@
-
 # Audio to Text 
 
-## Description
----
 This Sequence transcribes an audio file to a text using AssemblyAI API.
 The example audio file is provided with this sample, replacing this audio file with another is possible but the file must be renamed to `song.wav`.<br/>
+
+___
+
 
 ## Requirements
 ---
