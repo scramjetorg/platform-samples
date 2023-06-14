@@ -48,9 +48,9 @@ class AssemblyAi():
         return transcription_result
 
 
-def run(context, input, args1):
+def run(context, input, args):
     file = "song.wav" 
-    key = args1
+    key = args
     
     try:
         audio_1 = AssemblyAi(key, file)
