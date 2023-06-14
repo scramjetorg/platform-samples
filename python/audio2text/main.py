@@ -6,12 +6,7 @@ from scramjet.streams import Stream
 
 class AssemblyAi():
 
-    def __init__(self, token, file):
-        """Main constructor
-        Args:
-            token (str): Auth token for AssemblyAi
-            file (str): Path to file with song
-        """
+    def __init__(self, token: str, file: str):
         self.token = token
         self.file = file
 
