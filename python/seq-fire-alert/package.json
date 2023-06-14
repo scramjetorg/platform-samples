@@ -1,0 +1,29 @@
+{
+  "name": "@scramjet/fire-alert",
+  "version": "0.0.1",
+  "main": "main.py",
+  "author": "mcdominik",
+  "license": "GPL-3.0",
+  "description": "raspberry pi internal parameters fetcher example",
+  "keywords": [
+    "fire",
+    "python",
+    "machine learning",
+    "topics"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples"
+  },
+  "engines": {
+    "python3": "3.8.0"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp main.py package.json ./dist/",
+    "pack" : "si seq pack dist",
+    "clean": "rm -rf ./dist"
+  },
+  "dependencies": {
+    "@scramjet/api-client": "0.32.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "topic": "EMISSION",
+    "auth_token": "<YOUR-AUTH-TOKEN>",
+    "country_codes": ["PL","DE"],
+    "delay": 60
+}

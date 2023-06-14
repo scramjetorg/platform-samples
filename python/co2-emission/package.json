@@ -1,0 +1,25 @@
+{
+    "name": "@scramjet/python-co2-emission",
+    "description": "Sequent Python-CO2-Emission is a Python library that fetches CO2 emission information from an API, enabling easy access and analysis of carbon dioxide data.",
+    "keywords": [
+      "Python",
+      "CO2", 
+      "API Integration"
+    ],
+
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/co2-emission"
+    },
+    "main": "./main.py",
+    "author": "gierwialo",
+    "engines": {
+      "python3": "3.10.0"
+    },
+    "scripts": {
+      "build": "mkdir -p dist/__pypackages__/ && cp *.py package.json dist/ && pip3 install -t dist/__pypackages__/ -r requirements.txt",
+      "clean": "rm -rf ./dist ./*.tar.gz",
+      "pack": "si seq pack ./dist/"
+    }
+  }
+  
