@@ -4,7 +4,7 @@
   "main": "main.py",
   "author": "gzukowski",
   "license": "GPL-3.0",
-  "description": "Reading from auth0",
+  "description": "Reading from Auth0",
   "keywords": [
     "Stripe",
     "Mailchimp",
