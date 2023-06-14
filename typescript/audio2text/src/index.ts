@@ -7,9 +7,13 @@ const app: ReadableApp<any> = async function(
     ) {
     const assembly = new Assembly(token);
 
-    await assembly.processFile();
+    assembly.logger.outputLogStream.pipe(this.logger.inputLogStream);
 
-    return Promise.resolve("finished");
+    return assembly.processFileFs().then(res => {
+        this.logger.info("Result", res);
+
+        return res;
+    });
 };
 
 export default app;

@@ -1,21 +1,23 @@
-# Audio to text
+# Audio to Text
 
-Sequence used to transcript audio file to a text using AssemblyAi api.
-
-For now this sequence lets transcript only file that is in a dist folder
+This Sequence transcribes an audio file to a text using AssemblyAI API.
+The example audio file is provided with this sample, replacing this audio file with another is possible but the file must be renamed to `song.wav`.<br/>
 
 ___
 
-## Prerequirements
 
-To run this sequence it is required to have own api key from [AssemblyAi](https://www.assemblyai.com)
+## Requirements
+---
+For this Sequence to run properly, it is required to register and acquire an API key from <a href ="https://www.assemblyai.com/" target="_blank">AssemblyAI</a>
 
+## Install and Run
+---
+Install the <a href="https://docs.scramjet.org/platform/self-hosted-installation/" target="_blank">Transform-Hub</a> locally or use
+<a href="https://docs.scramjet.org/platform/get-started/" target="_blank">Scramjet's Cloud Platform</a> environment for the Sequence deployment.
+For more information on the below commands check the
+<a href="https://docs.scramjet.org/platform/cli-reference/#useful-commands" target="_blank">CLI reference</a> section on Scramjet's Website.
 
-## Running
-
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
-
-Open the terminal and run the following commands:
+On the terminal run the following commands:
 
 ```bash
 # install dependencies
@@ -32,11 +34,7 @@ si seq send dist.tar.gz
 
 # start a Sequence, provide AssemblyAi-key as an argument parameter
 si seq start - --args [\"AssemblyAi-key\"]
-```
 
-To get a output:
-
-```bash
+# Transcription of the audio file as text output
 si inst stdout -
-
 ```
