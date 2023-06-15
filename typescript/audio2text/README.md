@@ -36,5 +36,5 @@ si seq send dist.tar.gz
 si seq start - --args [\"AssemblyAi-key\"]
 
 # Transcription of the audio file as text output
-si inst stdout -
+si inst output -
 ```
