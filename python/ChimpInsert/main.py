@@ -58,11 +58,15 @@ async def insert_info(info):
 		print("No data received.")
 
 async def run(context, input):
-	run.audience_id = context.config['audience_id']
-	mailchimp.set_config({
-	  "api_key": context.config['mailchimp_api'],
-	  "server": context.config['mailchimp_server'],
-	})
+	try:
+		run.audience_id = context.config['audience_id']
+		mailchimp.set_config({
+		"api_key": context.config['mailchimp_api'],
+		"server": context.config['mailchimp_server'],
+		})
+	except Exception as error:
+		raise Exception(f"Config not loaded: {error}")
+		return
 	return input.each(insert_info)
 	
 	

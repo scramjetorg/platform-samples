@@ -29,7 +29,11 @@ async def get_event(stream):
 		
 
 async def run(context, input):
-	stripe.api_key = context.config['stripe_api']
+	try:
+		stripe.api_key = context.config['stripe_api']
+	except Exception as error:
+		raise Exception(f"Config not loaded: {error}")
+		return
 	stream = Stream()
 	asyncio.gather(get_event(stream), return_exceptions=True)
 	return stream.map(lambda x : x + "\n")

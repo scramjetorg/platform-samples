@@ -1,6 +1,7 @@
 import asyncio
 from scramjet.streams import Stream
 import requests
+import json
 
 class ShiftArray:
 	def __init__(self):
@@ -32,11 +33,21 @@ provides = {
 }
 
 async def get_auth(stream):
-	headers = {'authorization' : run.auth}
+	token_header = {'content-type': 'application/json',}
 	last = ""
 	buffer = ShiftArray()
+	response = requests.post(run.api_url, headers=token_header, data=run.data)
+	token = json.loads(response.text)['access_token']
+	
 	while True:
+		headers = {'authorization' : f"Bearer {token}"}
 		users = requests.get(run.query, headers=headers).json()
+		
+		if "error" in str(users):
+			response = requests.post(run.api_url, headers=token_header, data=run.data)
+			token = json.loads(response.text)['access_token']
+			continue
+
 		if users[-1]['email'] != last:
 			for result, has_more in lookahead(users):
 				if not buffer.contains(result['email']):
@@ -49,7 +60,12 @@ async def get_auth(stream):
 async def run(context, input):
 	config = context.config
 	stream = Stream()
-	run.auth = config["auth"]
-	run.query = config['auth0_query_url']
-	asyncio.gather(get_auth(stream), return_exceptions=True)
+	try:
+		run.query = config['auth0_query_url']
+		run.api_url = config['api_url']
+		run.data = json.dumps(config['request_data'])
+		asyncio.gather(get_auth(stream), return_exceptions=True)
+	except Exception as error:
+		raise Exception(f"Config not loaded: {error}")
+		return
 	return stream.map(lambda x : x + '\n')

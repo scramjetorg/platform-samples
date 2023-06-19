@@ -1,10 +1,10 @@
 {
-  "name": "@scramjet/stripe-read",
+  "name": "@scramjet/auth0-read",
   "version": "0.1.0",
   "main": "main.py",
   "author": "gzukowski",
   "license": "GPL-3.0",
-  "description": "Reading from stripe",
+  "description": "Reading from Auth0",
   "keywords": [
     "Stripe",
     "Mailchimp",
