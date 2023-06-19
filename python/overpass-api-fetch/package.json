@@ -1,0 +1,29 @@
+{
+  "name": "fetch-stuctures-xml",
+  "version": "1.0.0",
+  "main": "main.py",
+  "author": "AM",
+  "repository": {
+    "type":"git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/overpass-api-fetch"
+  },
+  "keywords": [
+    "Python", 
+    "XML"
+  ],
+  "license": "GPL-3.0",
+  "description": "Removes certain XML tags from a valid xml file",
+  "engines": {
+    "python3": "3.8.0"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run build:fetch && npm run build:transform",
+    "build:fetch": "( cd fetch_structures && npm run build && npx si seq pack dist -o ../dist/fetch.tar.gz)",
+    "build:transform": "(cd transform_xml && npm run build && npx si seq pack dist -o ../dist/transform.tar.gz)",
+    "prebuild": "mkdir -p dist",
+    "deploy:fetch": "si seq deploy dist/fetch.tar.gz",
+    "deploy:transform": "si seq deploy dist/transform.tar.gz"
+  },
+  "dependencies": { "@scramjet/cli": "^0.30.0" }
+}

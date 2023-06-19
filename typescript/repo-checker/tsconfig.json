@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": [ "ESNext" ],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "./clients/",
+    "./utils/",
+    "./index.ts"]
+}

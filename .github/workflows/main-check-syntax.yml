@@ -1,0 +1,44 @@
+name: "Check readme files & packages in sequences"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-syntax:
+    runs-on: ubuntu-latest        
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check readme files
+        id: check-readme
+        uses: ./.github/actions/check-readme
+
+      - name: Check packages files
+        id: check-package
+        uses: ./.github/actions/check-package
+
+      - name: Handle Error
+        run: |
+          error_count_readme=${{ env.error_count_readme }}
+          error_count_package=${{ env.error_count_package }}
+      
+          if [ "$error_count_readme" -gt 0 ]; then
+              echo "Error: $error_count_readme errors in readme files."
+              echo "REMEMBER: Your README.md should include a section that starts with # and ends with ___"
+              echo "Correct syntax is essential for building documentation from the main-page repository."
+              echo ""
+          fi
+      
+          if [ "$error_count_package" -gt 0 ]; then
+              echo "Error: $error_count_package errors in package files."
+              echo "REMEMBER: Your package.json should include 'name', 'description', 'keywords', and 'repository' with correct 'url' fields"
+              echo "Correct syntax is essential for building documentation from the main-page repository."
+              echo ""
+          fi
+      
+          if [ "$error_count_readme" -gt 0 ] || [ "$error_count_package" -gt 0 ]; then
+              exit 1
+          fi
+      

@@ -1,0 +1,12 @@
+{
+    "workspace":"WORKSPACE-ID",
+    "weekDayProjectId":"WEEKDAY-PROJECT-ID",
+    "satProjectId":"SATURDAY-PROJECT-ID",
+    "sunProjectId":"SUNDAY-PROJECT-ID",
+    "startHour": 9,
+    "endHour" : 17,
+    "satStartHour": 9,
+    "satEndHour":9,
+    "sunStartHour": 9,
+    "sunEndHour": 9
+}

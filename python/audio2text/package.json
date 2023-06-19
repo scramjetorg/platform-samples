@@ -1,0 +1,24 @@
+{
+  "name": "audio2text_py",
+  "version": "1.0.0",
+  "main": "./main.py",
+  "author": "Ray_Nawfal",
+  "license": "GPL-3.0",
+  "description": "Transcription of an audio file using AssemblyAI API.",
+  "keywords": [
+   "AudioToText",
+   "Transcription",
+   "AssemblyAI"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/python/audio2text"
+  },
+  "engines": {
+    "python3": "3.8.0"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp -t ./dist/ *.py *.json *.wav", 
+    "clean": "rm -rf ./dist"
+  }
+}

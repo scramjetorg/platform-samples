@@ -60,8 +60,12 @@ async def get_auth(stream):
 async def run(context, input):
 	config = context.config
 	stream = Stream()
-	run.query = config['auth0_query_url']
-	run.api_url = config['api_url']
-	run.data = json.dumps(config['request_data'])
-	asyncio.gather(get_auth(stream), return_exceptions=True)
+	try:
+		run.query = config['auth0_query_url']
+		run.api_url = config['api_url']
+		run.data = json.dumps(config['request_data'])
+		asyncio.gather(get_auth(stream), return_exceptions=True)
+	except Exception as error:
+		print(error)
+		return
 	return stream.map(lambda x : x + '\n')
