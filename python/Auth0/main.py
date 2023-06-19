@@ -66,6 +66,6 @@ async def run(context, input):
 		run.data = json.dumps(config['request_data'])
 		asyncio.gather(get_auth(stream), return_exceptions=True)
 	except Exception as error:
-		print(error)
+		raise Exception(f"Config not loaded: {error}")
 		return
 	return stream.map(lambda x : x + '\n')
