@@ -50,12 +50,14 @@ async def insert_info(info):
 				try:
 					response = mailchimp.lists.get_list_members_info(run.audience_id, offset=get_offset(run.audience_id))
 					user_id = get_info(response, email)
-					response = mailchimp.lists.update_list_member(run.audience_id, user_id, {"status" : "subscribed"})
-					print(f"{email} Stripe user successfully synchronized")	
+					if "stripe" in lname:
+						response = mailchimp.lists.update_list_member_tags(run.audience_id, user_id, {"tags" : [{"name": "Stripe", "status": "active"}]})
+						print(f"{email} Stripe user successfully synchronized")
 				except ApiClientError as err:
-					print("Error")	
+					print("Error")
 	except:
 		print("No data received.")
+
 
 async def run(context, input):
 	try:
