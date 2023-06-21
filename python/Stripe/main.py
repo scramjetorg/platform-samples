@@ -24,7 +24,6 @@ async def get_event(stream):
 	tako = stripe.Event.list(type="customer.created")['data']
 
 	stream.write(get_mail(compared)+ " " +get_fullname(compared))
-	get_fullname(compared)
 	compared = compared['id']
 	while True:
 		test = stripe.Event.list(type="customer.created", ending_before=compared, limit=3)['data']
