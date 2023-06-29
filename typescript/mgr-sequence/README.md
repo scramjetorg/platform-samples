@@ -12,6 +12,8 @@ This Sequence generates and sends timestamps to the output stream. Upon receivin
 
 ## STH deployment command
 
+>**Build each Sequence before deployment (`npm run build`)**
+
 ```bash
 sth -S typescript/mgr-sequence/seq-config.json -E -D typescript/mgr-sequence --runtime-adapter process --config typescript/mgr-sequence/shh-config.json
 ```
@@ -72,3 +74,4 @@ Average of 5 averages: 0.2116 (milliseconds)
 ```
 
 To find out what each Sequence does look into the comments included in the code.
+___
