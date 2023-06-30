@@ -1,9 +1,10 @@
 {
-  "name": "assembly",
+  "name": "audio2text-input",
   "version": "1.0.0",
   "description": "Sequence that uses AssemblyAi to transcript Audio sent by input channel",
-  "main": "index.js",
+  "main": "audio2text-input/src/index.js",
   "scripts": {
+    "prebuild": "cd ../audio2text && npm install",
     "build": "tsc -p tsconfig.json",
     "postbuild": "cp -r package.json dist/ && (cd dist && npm i --omit=dev)"
   },
@@ -20,12 +21,13 @@
   "license": "ISC",
   "dependencies": {
     "@scramjet/obj-logger": "^0.34.3",
-    "@scramjet/utility": "^0.33.5",
+    "@scramjet/utility": "^0.34.3",
     "axios": "^1.3.6",
     "date-and-time": "^2.4.3"
   },
   "devDependencies": {
     "@scramjet/types": "0.33.5",
-    "@types/node": "^20.2.5"
+    "@types/node": "^20.2.5",
+    "typescript": "^5.1.6"
   }
 }
