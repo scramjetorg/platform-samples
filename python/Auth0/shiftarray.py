@@ -1,9 +1,10 @@
 class ShiftArray:
-	def __init__(self):
+	def __init__(self, length=5):
 		self.array = []
+		self.length = length
 
 	def append(self, value):
-		if len(self.array) == 5:
+		if len(self.array) == self.length:
 			self.array.pop(-1)
 		self.array.append(value)
 

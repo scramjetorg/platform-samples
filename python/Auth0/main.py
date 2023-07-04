@@ -1,11 +1,14 @@
 import asyncio
 from scramjet.streams import Stream
 import requests
+import requests_async
 import json
 from shiftarray import ShiftArray
 
 provides = {"provides": "pipe", "contentType": "text/plain"}
 
+WAIT_TIME_ON_USER = 5
+WAIT_TIME_ERROR = 3
 
 class Auth0:
     def __init__(self, verified_url, users_url, api_url, request_data, stream):
@@ -37,15 +40,17 @@ class Auth0:
         token = json.loads(response.text)["access_token"]
         while True:
             headers = {"authorization": f"Bearer {token}"}
-            verified = requests.get(self.verified_url, headers=headers).json()
-            users = requests.get(self.users_url, headers=headers).json()
-            if "error" in str(verified):
+            verified =  await requests_async.get(self.verified_url, headers=headers)
+            users = await requests_async.get(self.users_url, headers=headers)
+            if verified.status_code != 200:
+                await asyncio.sleep(WAIT_TIME_ERROR)
                 response = requests.post(
                     self.api_url, headers=self.token_header, data=self.request_data
                 )
                 token = json.loads(response.text)["access_token"]
                 continue
-
+            verified = verified.json()
+            users = users.json()
             if verified[-1]["email"] != last_verified:
                 for result, has_more in self.lookahead(verified):
                     if not buffer_verified.contains(result["email"]):
@@ -65,7 +70,7 @@ class Auth0:
                         buffer_users.append(result["email"])
                     if not has_more:
                         last_user = result["email"]
-            await asyncio.sleep(5)
+            await asyncio.sleep(WAIT_TIME_ON_USER)
 
 
 async def run(context, input):
@@ -76,12 +81,11 @@ async def run(context, input):
         run.users_url = config["auth0_users_url"] 
         run.api_url = config["api_url"]
         run.data = json.dumps(config["request_data"])
+    except Exception as error:
+        raise Exception(f"Config not loaded: {error}")
 
-        asyncio.gather(
+    asyncio.gather(
             Auth0(run.verified_url,run.users_url ,run.api_url, run.data, stream).get_auth(),
             return_exceptions=True,
         )
-    except Exception as error:
-        raise Exception(f"Config not loaded: {error}")
-        return
     return stream.map(lambda x: x + "\n")
