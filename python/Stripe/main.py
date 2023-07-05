@@ -25,7 +25,6 @@ class Stripe:
       async def get_event(self):
             await asyncio.sleep(3)
             compared = stripe.Event.list(type="customer.created")['data'][-1]
-            tako = stripe.Event.list(type="customer.created")['data']
 
             self.stream.write(self.get_mail(compared)+ " " +self.get_fullname(compared))
             compared = compared['id']
