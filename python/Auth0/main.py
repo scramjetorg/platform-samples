@@ -1,71 +1,91 @@
 import asyncio
 from scramjet.streams import Stream
 import requests
+import requests_async
 import json
+from shiftarray import ShiftArray
 
-class ShiftArray:
-	def __init__(self):
-		self.array = []
+provides = {"provides": "pipe", "contentType": "text/plain"}
 
-	def append(self, value):
-		if len(self.array) == 5:
-			self.array.pop(-1)
-		self.array.append(value)
+WAIT_TIME_ON_USER = 5
+WAIT_TIME_ERROR = 3
 
-	def contains(self, value):
-		return value in self.array
+class Auth0:
+    def __init__(self, verified_url, users_url, api_url, request_data, stream):
+        self.verified_url = verified_url
+        self.users_url = users_url
+        self.api_url = api_url
+        self.request_data = request_data
+        self.token_header = {
+            "content-type": "application/json",
+        }
+        self.stream = stream
 
-	def get_values(self):
-		return self.array
+    def lookahead(self, iterable):
+        it = iter(iterable)
+        last = next(it)
+        for val in it:
+            yield last, True
+            last = val
+        yield last, False
 
+    async def get_auth(self):
+        last_verified = ""
+        last_user = ""
+        buffer_verified = ShiftArray()
+        buffer_users = ShiftArray()
+        response = requests.post(
+            self.api_url, headers=self.token_header, data=self.request_data
+        )
+        token = json.loads(response.text)["access_token"]
+        while True:
+            headers = {"authorization": f"Bearer {token}"}
+            verified =  await requests_async.get(self.verified_url, headers=headers)
+            users = await requests_async.get(self.users_url, headers=headers)
+            if verified.status_code != 200:
+                await asyncio.sleep(WAIT_TIME_ERROR)
+                response = requests.post(
+                    self.api_url, headers=self.token_header, data=self.request_data
+                )
+                token = json.loads(response.text)["access_token"]
+                continue
+            verified = verified.json()
+            users = users.json()
+            if verified[-1]["email"] != last_verified:
+                for result, has_more in self.lookahead(verified):
+                    if not buffer_verified.contains(result["email"]):
+                        self.stream.write(
+                            result["email"] + " " + result["nickname"] + " auth0-newsletter"
+                        )
+                        buffer_verified.append(result["email"])
+                    if not has_more:
+                        last_verified = result["email"]
 
-def lookahead(iterable):
-    it = iter(iterable)
-    last = next(it)
-    for val in it:
-        yield last, True
-        last = val
-    yield last, False
+            if users[-1]["email"] != last_user:
+                for result, has_more in self.lookahead(users):
+                    if not buffer_users.contains(result["email"]):
+                        self.stream.write(
+                            result["email"] + " " + result["nickname"] + " auth0-user"
+                        )
+                        buffer_users.append(result["email"])
+                    if not has_more:
+                        last_user = result["email"]
+            await asyncio.sleep(WAIT_TIME_ON_USER)
 
-provides = {
-    'provides': 'pipe',
-    'contentType': 'text/plain'
-}
-
-async def get_auth(stream):
-	token_header = {'content-type': 'application/json',}
-	last = ""
-	buffer = ShiftArray()
-	response = requests.post(run.api_url, headers=token_header, data=run.data)
-	token = json.loads(response.text)['access_token']
-	
-	while True:
-		headers = {'authorization' : f"Bearer {token}"}
-		users = requests.get(run.query, headers=headers).json()
-		
-		if "error" in str(users):
-			response = requests.post(run.api_url, headers=token_header, data=run.data)
-			token = json.loads(response.text)['access_token']
-			continue
-
-		if users[-1]['email'] != last:
-			for result, has_more in lookahead(users):
-				if not buffer.contains(result['email']):
-					stream.write(result['email'] +" "+result['nickname']+" auth0-user")
-					buffer.append(result['email'])
-				if not has_more:
-					last = result['email']
-		await asyncio.sleep(5) 
 
 async def run(context, input):
-	config = context.config
-	stream = Stream()
-	try:
-		run.query = config['auth0_query_url']
-		run.api_url = config['api_url']
-		run.data = json.dumps(config['request_data'])
-		asyncio.gather(get_auth(stream), return_exceptions=True)
-	except Exception as error:
-		raise Exception(f"Config not loaded: {error}")
-		return
-	return stream.map(lambda x : x + '\n')
+    config = context.config
+    stream = Stream()
+    try:
+        run.verified_url = config["auth0_verified_url"]
+        run.users_url = config["auth0_users_url"] 
+        run.api_url = config["api_url"]
+        run.data = json.dumps(config["request_data"])
+    except Exception as error:
+        raise Exception(f"Config not loaded: {error}")
+
+    asyncio.gather(
+            Auth0(run.verified_url,run.users_url ,run.api_url, run.data, stream).get_auth(),
+            return_exceptions=True,
+        )
+    return stream.map(lambda x: x + "\n")
