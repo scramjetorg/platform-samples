@@ -1,7 +1,7 @@
 {
   "name": "@scramjet/timestamp-manager",
   "version": "0.1.0",
-  "main": "dist/index.js",
+  "main": "index.js",
   "author": "Scramjet <open-source@scramjet.org>",
   "license": "ISC",
   "description": "This package contains a Scramjet Sequence that starts multiple instances of the '@scramjet/timestamp-producer' sequence, calculates the time differences between received timestamps and local timestamps, and returns the overall average difference in milliseconds to the Instance output and stdout.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/mgr-sequence"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/mgr-sequence/timestamp-manager"
   },
   "assets": [
     "real-hrtime.node"
