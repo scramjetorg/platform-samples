@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "author": "Scramjet <open-source@scramjet.org>",
   "license": "ISC",
-  "description": "This package contains a Scramjet Sequence that starts multiple instances of the '@scramjet/timestamp-producer' sequence, calculates the time differences between received timestamps and local timestamps, and returns the overall average difference in milliseconds to the Instance output and stdout.",
+  "description": "This package contains a Scramjet Sequence that starts multiple instances of the '@scramjet/timestamp-producer' sequence, calculates the time differences between received timestamps and local timestamps, and returns the overall average difference in milliseconds to the Instance output and stdout. ",
   "keywords": [
     "sample",
     "easy",
