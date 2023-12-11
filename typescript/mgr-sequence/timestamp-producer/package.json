@@ -1,7 +1,7 @@
 {
   "name": "@scramjet/timestamp-producer",
   "version": "0.1.0",
-  "main": "dist/index.js",
+  "main": "index.js",
   "author": "Scramjet <open-source@scramjet.org>",
   "license": "ISC",
   "description": "This package contains a Scramjet Sequence that generates and sends timestamps to the output stream. Upon receiving the 'start' event, the Sequence starts generating the specified number of timestamps at the given interval and pushes them to the output stream. It uses the 'real-hrtime' module to generate timestamps. After generating the desired number of timestamps, it pushes an end indicator to signify the end of data.",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/mgr-sequence"
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/typescript/mgr-sequence/timestamp-producer"
   },
   "assets": [
     "real-hrtime.node"
