@@ -136,8 +136,8 @@ class ChimpInsert:
                   self.logger.error("ChimpInsert: Failed to send message to Slack.")
 
             elif slack_message_resp == SlackHookResponse.NOT_SENT.value:
-                  self.logger.error("ChimpInsert: Duplicated request.")
-                  
+                  self.logger.error(f"ChimpInsert: Duplicated request - ({email})")
+
             else:
                   self.logger.info("ChimpInsert: Slack message sent successfully.")
             
