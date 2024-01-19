@@ -28,7 +28,7 @@ class Stripe:
       async def get_event(self):
             compared = stripe.Event.list(type="customer.created")['data'][-1]
 
-            self.logger.info(f"New user in stripe {self.get_mail(compared)}")
+            self.logger.info(f"Stripe: New user in stripe {self.get_mail(compared)}")
             self.stream.write(self.get_mail(compared)+ " " + self.get_fullname(compared))
 
             compared = compared['id']
@@ -37,7 +37,7 @@ class Stripe:
                   events = stripe.Event.list(type="customer.created", ending_before=compared, limit=3)['data']
                   
                   for i in range(len(events)):
-                        self.logger.info(f"New user in stripe {self.get_mail(events[i])}")
+                        self.logger.info(f"Stripe: New user in stripe {self.get_mail(events[i])}")
                         self.stream.write(self.get_mail(events[i]) + " " + self.get_fullname(events[i]))
                   if len(events) != 0:
                         compared = events[0]['id']

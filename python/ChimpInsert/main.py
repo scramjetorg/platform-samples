@@ -19,24 +19,40 @@ class TopicInfo(enum.Enum):
       AUTH0 = "auth0-user"
       A0_NEWSLETTER = "auth0-newsletter"
 
+class SlackHookResponse(enum.Enum):
+      SUCCESS = 200
+      FAILURE = 0
+      NOT_SENT = -1
+
 
 class ChimpInsert:
-      def __init__(self, audience_id, config, slack_channel_id, slack_api_url, logger):
+      def __init__(self, audience_id, config, slack_api_url, logger):
             self.mailchimp = Client()
             self.audience_id = audience_id
             self.mailchimp.set_config(config)
-            self.slack_channel_id = slack_channel_id
             self.slack_api_url = slack_api_url
             self.token_header = {'content-type': 'application/json',}
             self.logger = logger
       
+      async def post_slackMSG(self, text):
+            try:
+                  response = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{text}"}))
+            except Exception as error:
+                self.logger.error("ChimpInsert: Failed to send a request to slack.")
+                return SlackHookResponse.FAILURE.value
+            
+            if response.status_code != SlackHookResponse.SUCCESS.value:
+                  return SlackHookResponse.FAILURE.value
+            
+            return SlackHookResponse.SUCCESS.value
+
       def get_offset(self, audience_id):
             response = self.mailchimp.lists.get_list(audience_id)['stats']
             users_num = response['member_count'] + response['unsubscribe_count']
             if users_num < 5:
                   return 0
-            else:
-                  return users_num-5
+            
+            return users_num-5
       
       def get_info(self, info, given):
             for member in info['members']:
@@ -54,66 +70,85 @@ class ChimpInsert:
                   }}
             return member_info
       
-      def insert_info(self, info):
+      async def insert_info(self, info):
 
             try:
                   email, fname, lname = info.split(" ")
             except ValueError:
                   self.logger.info("ChimpInsert: Bad data received at topic")
                   return
+
+            await self.post_slackMSG(f"{email} added!")
+
             
             member_info = {}
 
             try:
                   member_info = self.prepare_member_info(email, fname, lname)
             except:
-                  self.logger.info("ChimpInsrt: No data received")
+                  self.logger.info("ChimpInsert: No data received")
                   return
 
+            slack_message_resp = SlackHookResponse.NOT_SENT.value
 
-            if TopicInfo.AUTH0.value in lname:
-                  try:
+            try:
+                  if TopicInfo.AUTH0.value in lname:
                         response = self.mailchimp.lists.add_list_member(self.audience_id, member_info)
                         self.logger.info("ChimpInsert: Auth0 user successfully added")
-                        slack_message_resp = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{email} Auth0 user successfully added"}))
-                  except ApiClientError as error:
-                        return
+                        slack_message_resp = await self.post_slackMSG("Auth0 user successfully added")
                   
             
-            elif TopicInfo.A0_NEWSLETTER.value in lname:
-                  try:
-                        member_info['status'] = "subscribed"
-                        response = self.mailchimp.lists.add_list_member(self.audience_id, member_info)
-                        self.logger.info(f"ChimpInsert: {email} Auth0 user with newsletter successfully added")
-                        slack_message_resp = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{email} Auth0 user with newsletter successfully added"}))
-                  except ApiClientError as error:
-                        error = json.loads(error.text)
-                        if error["title"] == "Member Exists":
-                              response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=self.get_offset(self.audience_id))
-                              user_id = self.get_info(response, email)
-                              if user_id == -1:
-                                    return
-                              response = self.mailchimp.update_list_member(self.audience_id, user_id, {"status" : "subscribed"})
+                  elif TopicInfo.A0_NEWSLETTER.value in lname:
+                        try:
+                              member_info['status'] = "subscribed"
+                              response = self.mailchimp.lists.add_list_member(self.audience_id, member_info)
                               self.logger.info(f"ChimpInsert: {email} Auth0 user with newsletter successfully added")
+                              slack_message_resp = await self.post_slackMSG("Auth0 user with newsletter successfully added")
 
-            elif TopicInfo.AUTH0.stripe in lname:
-                  response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=self.get_offset(self.audience_id))
-                  user_id = self.get_info(response, email)
-                  if user_id == -1:
-                        return
-                  response = self.mailchimp.lists.update_list_member_tags(self.audience_id, user_id, {"tags" : [{"name": "Stripe", "status": "active"}]})
-                  self.logger.info(f"ChimpInsert: {email} Stripe user successfully synchronized")
-                  slack_message_resp = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{email} Stripe user successfully synchronized"}))
+                        except ApiClientError as error:
+                              error = json.loads(error.text)
+                              if error["title"] == "Member Exists":
+                                    response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=self.get_offset(self.audience_id))
+                                    user_id = self.get_info(response, email)
+                                    if user_id == -1:
+                                          return
+                                    response = self.mailchimp.lists.update_list_member(self.audience_id, user_id, {"status" : "subscribed"})
+                                    self.logger.info(f"ChimpInsert: {email} Auth0 user with newsletter successfully added")
+
+                  elif TopicInfo.STRIPE.value in lname:
+                        response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=self.get_offset(self.audience_id))
+                        user_id = self.get_info(response, email)
+                        if user_id == -1:
+                              return
+                        response = self.mailchimp.lists.update_list_member_tags(self.audience_id, user_id, {"tags" : [{"name": "Stripe", "status": "active"}]})
+                        self.logger.info(f"ChimpInsert: {email} Stripe user successfully synchronized")
+                        slack_message_resp = await self.post_slackMSG("Stripe user successfully synchronized")
+
+            except ApiClientError as error:
+                  self.logger.error(f"ChimpInsert: Mailchimp API error - {error}")
+                  slack_message_resp = SlackHookResponse.FAILURE.value
+
+            except Exception as error:
+                  self.logger.error(f"ChimpInsert: An error occurred during insertion - {error}")
+                  slack_message_resp = SlackHookResponse.FAILURE.value
+
+            if slack_message_resp == SlackHookResponse.FAILURE.value:
+                  self.logger.error("ChimpInsert: Failed to send message to Slack.")
+
+            elif slack_message_resp == SlackHookResponse.NOT_SENT.value:
+                  self.logger.error("ChimpInsert: Duplicated request.")
+                  
+            else:
+                  self.logger.info("ChimpInsert: Slack message sent successfully.")
             
 
 async def run(context, input):
       try:
-            slack_channel_id = context.config['slack_channel_id']
-            slack_api_url = context.config['slack_api_url']
+            slack_api_url = context.config['slack_hook_url']
             audience_id = context.config['audience_id']
             config = {"api_key": context.config['mailchimp_api'], "server": context.config['mailchimp_server']}  
       except Exception as error:
             raise Exception(f"ChimpInsert: Config not loaded: {error}")
 
-      inserter = ChimpInsert(audience_id, config, slack_channel_id, slack_api_url, context.logger)
+      inserter = ChimpInsert(audience_id, config, slack_api_url, context.logger)
       return input.each(inserter.insert_info)
