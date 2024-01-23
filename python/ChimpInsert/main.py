@@ -38,7 +38,6 @@ class ChimpInsert:
             try:
                   response = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{text}"}))
             except Exception as error:
-                self.logger.error("ChimpInsert: Failed to send a request to slack.")
                 return SlackHookResponse.FAILURE.value
             
             if response.status_code != SlackHookResponse.SUCCESS.value:
@@ -114,6 +113,7 @@ class ChimpInsert:
                                           return
                                     response = self.mailchimp.lists.update_list_member(self.audience_id, user_id, {"status" : "subscribed"})
                                     self.logger.info(f"ChimpInsert: {email} Auth0 user with newsletter successfully added")
+                                    slack_message_resp = await self.post_slackMSG("Auth0 user with newsletter successfully added")
 
                   elif TopicInfo.STRIPE.value in lname:
                         response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=self.get_offset(self.audience_id))

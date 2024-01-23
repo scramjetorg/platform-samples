@@ -51,6 +51,5 @@ async def run(context, input):
             stripeReader = Stripe(stream, stripe.api_key, context.logger)
       except Exception as error:
             raise Exception(f"Config not loaded: {error}")
-            return
       asyncio.gather(stripeReader.get_event(), return_exceptions=True)
       return stream.map(lambda x : x + "\n")
