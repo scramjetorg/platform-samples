@@ -48,7 +48,6 @@ class Auth0:
         
 
     async def get_auth(self):
-
         code, token = await self.refresh_token()
 
         if code != 200:
