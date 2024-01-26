@@ -43,7 +43,17 @@ class ChimpInsert:
             self.slack_api_url = slack_api_url
             self.token_header = {'content-type': 'application/json',}
             self.logger = logger
+
+            self.queue = asyncio.Queue()
+            self.processing_task = asyncio.create_task(self.process_queue())
       
+      async def process_queue(self):
+        while True:
+            info = await self.queue.get()
+            await self.insert_info(info)
+            self.queue.task_done()
+            await asyncio.sleep(TASK_DELAY)
+
       async def post_slackMSG(self, text):
             try:
                   response = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{text}"}))
@@ -67,8 +77,6 @@ class ChimpInsert:
             except Exception:
                   return InsertionResponse.FAILURE.value
             
-            
-            
       async def handle_auth0_newsletter_user(self, email, member_info):
             try:
                   member_info['status'] = "subscribed"
@@ -84,12 +92,19 @@ class ChimpInsert:
                         user_id = self.get_info(email)
                         await asyncio.sleep(REQUEST_DELAY)
 
-                        self.mailchimp.lists.update_list_member(self.audience_id, user_id, {"status" : "subscribed"})
-                        self.logger.info(f"ChimpInsert: {email} Auth0 user updated.")
-
-                        return InsertionResponse.SUCCESS.value
+                        try:
+                              self.mailchimp.lists.update_list_member(self.audience_id, user_id, {"status" : "subscribed"})
+                              self.logger.info(f"ChimpInsert: {email} Auth0 user updated.")
+                              return InsertionResponse.SUCCESS
+                        
+                        except ApiClientError as update_error:
+                              self.logger.error(f"ChimpInsert: Error updating Auth0 user: {update_error}")
+                              return InsertionResponse.API_ERROR
+                        
+                  self.logger.error(f"ChimpInsert: Error adding Auth0 user with newsletter: {error}")
+                  return InsertionResponse.FAILURE.value
             
-            return InsertionResponse.FAILURE.value
+            
 
       async def handle_stripe_user(self, email):
             try:
@@ -108,7 +123,7 @@ class ChimpInsert:
                   self.logger.error(f"ChimpInsert: Unexpected error: {e}")
                   return InsertionResponse.FAILURE.value
             
-            
+
       def get_info(self, email):
             bytes_of_message = email.lower().encode('utf-8')
             md = hashlib.md5()
@@ -133,7 +148,7 @@ class ChimpInsert:
             except ValueError:
                   self.logger.info("ChimpInsert: Bad data received at topic")
                   return
-            
+
             member_info = {}
 
             try:
@@ -150,18 +165,21 @@ class ChimpInsert:
                   status = await self.handle_auth0_user(email, member_info)
 
                   if status == InsertionResponse.SUCCESS.value:
+                        await asyncio.sleep(REQUEST_DELAY)
                         await self.post_slackMSG(f"{email} - Auth0 user successfully added.")
 
             elif TopicInfo.A0_NEWSLETTER.value in lname:
                   status = await self.handle_auth0_newsletter_user(email, member_info)
 
                   if status == InsertionResponse.SUCCESS.value:
+                        await asyncio.sleep(REQUEST_DELAY)
                         slack_message_resp = await self.post_slackMSG(f"{email} - Auth0 user with newsletter successfully added.")
 
             elif TopicInfo.STRIPE.value in lname:
                   status = await self.handle_stripe_user(email)
 
                   if status == InsertionResponse.SUCCESS.value:
+                        await asyncio.sleep(REQUEST_DELAY)
                         slack_message_resp = await self.post_slackMSG(f"{email} - Stripe user successfully added.")
                   
 
@@ -189,18 +207,24 @@ async def run(context, input):
 
       inserter = ChimpInsert(audience_id, config, slack_api_url, context.logger)
 
-      queue = asyncio.Queue()
-
-      async def process_queue():
-            while True:
-                  info = await queue.get()
-                  await inserter.insert_info(info)
-                  queue.task_done()
-                  await asyncio.sleep(TASK_DELAY)
-
-      processing_task = asyncio.create_task(process_queue())
 
       async for item in input:
-            await queue.put(item)
+            await inserter.queue.put(item)  # Put the item into the queue for processing
+    
+      inserter.processing_task.cancel()
+      #return input.each(inserter.insert_info)
+      # queue = asyncio.Queue()
 
-      processing_task.cancel()
+      # async def process_queue():
+      #       while True:
+      #             info = await queue.get()
+      #             await inserter.insert_info(info)
+      #             queue.task_done()
+      #             await asyncio.sleep(TASK_DELAY)
+
+      # processing_task = asyncio.create_task(process_queue())
+
+      # async for item in input:
+      #       await queue.put(item)
+
+      # processing_task.cancel()
