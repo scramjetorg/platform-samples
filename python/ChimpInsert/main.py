@@ -2,6 +2,7 @@ import requests
 import asyncio
 import json
 import enum
+import hashlib
 from scramjet.streams import Stream
 import mailchimp_marketing
 from mailchimp_marketing import Client
@@ -55,6 +56,8 @@ class ChimpInsert:
       async def handle_auth0_user(self, email, member_info):
             try:
                   self.mailchimp.lists.add_list_member(self.audience_id, member_info)
+                  await asyncio.sleep(REQUEST_DELAY)
+                  
                   self.logger.info(f"ChimpInsert: {email} - Auth0 user successfully added.")
                   return InsertionResponse.SUCCESS.value
             
@@ -64,7 +67,7 @@ class ChimpInsert:
             except ApiClientError:
                   return InsertionResponse.API_ERROR.value
             
-      async def handle_auth0_newsletter_user(self, email, member_info, offset):
+      async def handle_auth0_newsletter_user(self, email, member_info):
             try:
                   member_info['status'] = "subscribed"
                   self.mailchimp.lists.add_list_member(self.audience_id, member_info)
@@ -75,12 +78,9 @@ class ChimpInsert:
             except ApiClientError as error:
                   error = json.loads(error.text)
                   if error["title"] == "Member Exists":
-                        response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=offset)
+                        user_id = self.get_info(email)
                         await asyncio.sleep(REQUEST_DELAY)
 
-                        user_id = self.get_info(response, email)
-                        if user_id == -1:
-                              return
                         self.mailchimp.lists.update_list_member(self.audience_id, user_id, {"status" : "subscribed"})
                         self.logger.info(f"ChimpInsert: {email} Auth0 user updated.")
 
@@ -88,14 +88,11 @@ class ChimpInsert:
             
             return InsertionResponse.FAILURE.value
 
-      async def handle_stripe_user(self, email, offset):
+      async def handle_stripe_user(self, email):
             try:
-                  response = self.mailchimp.lists.get_list_members_info(self.audience_id, offset=offset)
+                  user_id = self.get_info(email)
                   await asyncio.sleep(REQUEST_DELAY)
 
-                  user_id = self.get_info(response, email)
-                  if user_id == -1:
-                        return
                   self.mailchimp.lists.update_list_member_tags(self.audience_id, user_id, {"tags" : [{"name": "Stripe", "status": "active"}]})
                   self.logger.info(f"ChimpInsert: {email} Stripe user successfully synchronized")
 
@@ -106,25 +103,13 @@ class ChimpInsert:
             
             except ApiClientError:
                   return InsertionResponse.API_ERROR.value
-                  
-      def get_offset(self, audience_id):
-            try:
-                  response = self.mailchimp.lists.get_list(audience_id)['stats']
-                  users_num = response['member_count'] + response['unsubscribe_count']
-                  if users_num < 5:
-                        return 0
-                  
-                  return users_num-5
-            except Exception:
-                  return -1
-            except ApiClientError:
-                  return -1
-      
-      def get_info(self, info, given):
-            for member in info['members']:
-                  if given == member["email_address"]:
-                        return member['id']
-            return -1
+            
+      def get_info(self, email):
+            bytes_of_message = email.lower().encode('utf-8')
+            md = hashlib.md5()
+            md5 = md.update(bytes_of_message)
+            email_hash = md.hexdigest()
+            return email_hash
 
       def prepare_member_info(self, email, fname, lname):
             member_info = {
@@ -163,25 +148,13 @@ class ChimpInsert:
                         await self.post_slackMSG(f"{email} - Auth0 user successfully added.")
 
             elif TopicInfo.A0_NEWSLETTER.value in lname:
-                  offset = self.get_offset(self.audience_id)
-                  
-                  if offset == -1:
-                        self.logger.error(f"ChimpInsert: Mailchimp API error - failed to get the audience's info.")
-                        return
-
-                  status = await self.handle_auth0_newsletter_user(email, member_info, offset)
+                  status = await self.handle_auth0_newsletter_user(email, member_info)
 
                   if status == InsertionResponse.SUCCESS.value:
                         slack_message_resp = await self.post_slackMSG(f"{email} - Auth0 user with newsletter successfully added.")
 
             elif TopicInfo.STRIPE.value in lname:
-                  offset = self.get_offset(self.audience_id)
-                  
-                  if offset == -1:
-                        self.logger.error(f"ChimpInsert: Mailchimp API error - failed to get the audience's info.")
-                        return
-
-                  status = await self.handle_stripe_user(email, offset)
+                  status = await self.handle_stripe_user(email)
 
                   if status == InsertionResponse.SUCCESS.value:
                         slack_message_resp = await self.post_slackMSG(f"{email} - Stripe user successfully added.")
@@ -189,13 +162,16 @@ class ChimpInsert:
 
             if status == InsertionResponse.API_ERROR.value:
                   self.logger.error(f"ChimpInsert: Mailchimp API error: Duplicated request.")
+            
+            if status == InsertionResponse.FAILURE.value:
+                  self.logger.error(f"ChimpInsert: Insertion failed.")
 
             if slack_message_resp == SlackHookResponse.FAILURE.value:
                   self.logger.error("Slack: Failed to send message.")
 
             elif slack_message_resp == SlackHookResponse.NOT_SENT.value:
                   self.logger.error(f"Slack: Duplicated request - ({email})")
-                  
+
             else:
                   self.logger.info("Slack: Message sent successfully.")
             
