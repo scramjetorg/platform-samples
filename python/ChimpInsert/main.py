@@ -209,22 +209,7 @@ async def run(context, input):
 
 
       async for item in input:
-            await inserter.queue.put(item)  # Put the item into the queue for processing
+            await inserter.queue.put(item)
     
       inserter.processing_task.cancel()
-      #return input.each(inserter.insert_info)
-      # queue = asyncio.Queue()
 
-      # async def process_queue():
-      #       while True:
-      #             info = await queue.get()
-      #             await inserter.insert_info(info)
-      #             queue.task_done()
-      #             await asyncio.sleep(TASK_DELAY)
-
-      # processing_task = asyncio.create_task(process_queue())
-
-      # async for item in input:
-      #       await queue.put(item)
-
-      # processing_task.cancel()
