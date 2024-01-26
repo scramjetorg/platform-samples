@@ -134,7 +134,6 @@ class ChimpInsert:
                   self.logger.info("ChimpInsert: Bad data received at topic")
                   return
             
-            self.logger.info(f"wlaaaaaaaaaaaaaaaaaaaaazl {email}")
             member_info = {}
 
             try:
