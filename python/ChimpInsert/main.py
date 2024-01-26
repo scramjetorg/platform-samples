@@ -15,6 +15,8 @@ requires = {
 
 WAIT_TIME_ERROR = 3
 REQUEST_DELAY = 1
+TASK_DELAY = 0.5
+
 
 class TopicInfo(enum.Enum):
       STRIPE = "stripe"
@@ -56,25 +58,26 @@ class ChimpInsert:
       async def handle_auth0_user(self, email, member_info):
             try:
                   self.mailchimp.lists.add_list_member(self.audience_id, member_info)
-                  await asyncio.sleep(REQUEST_DELAY)
-                  
+
                   self.logger.info(f"ChimpInsert: {email} - Auth0 user successfully added.")
                   return InsertionResponse.SUCCESS.value
             
+            except ApiClientError:
+                  return InsertionResponse.API_ERROR.value
             except Exception:
                   return InsertionResponse.FAILURE.value
             
-            except ApiClientError:
-                  return InsertionResponse.API_ERROR.value
+            
             
       async def handle_auth0_newsletter_user(self, email, member_info):
             try:
                   member_info['status'] = "subscribed"
                   self.mailchimp.lists.add_list_member(self.audience_id, member_info)
+
                   self.logger.info(f"ChimpInsert: {email} Auth0 user with newsletter successfully added.")
 
                   return InsertionResponse.SUCCESS.value
-                  
+            
             except ApiClientError as error:
                   error = json.loads(error.text)
                   if error["title"] == "Member Exists":
@@ -91,18 +94,20 @@ class ChimpInsert:
       async def handle_stripe_user(self, email):
             try:
                   user_id = self.get_info(email)
-                  await asyncio.sleep(REQUEST_DELAY)
-
+                  
                   self.mailchimp.lists.update_list_member_tags(self.audience_id, user_id, {"tags" : [{"name": "Stripe", "status": "active"}]})
+
                   self.logger.info(f"ChimpInsert: {email} Stripe user successfully synchronized")
-
                   return InsertionResponse.SUCCESS.value
-
-            except Exception:
+            
+            except ApiClientError as api_error:
+                  self.logger.error(f"ChimpInsert: Mailchimp API error: {api_error}")
                   return InsertionResponse.FAILURE.value
             
-            except ApiClientError:
-                  return InsertionResponse.API_ERROR.value
+            except Exception as e:
+                  self.logger.error(f"ChimpInsert: Unexpected error: {e}")
+                  return InsertionResponse.FAILURE.value
+            
             
       def get_info(self, email):
             bytes_of_message = email.lower().encode('utf-8')
@@ -128,7 +133,8 @@ class ChimpInsert:
             except ValueError:
                   self.logger.info("ChimpInsert: Bad data received at topic")
                   return
-
+            
+            self.logger.info(f"wlaaaaaaaaaaaaaaaaaaaaazl {email}")
             member_info = {}
 
             try:
@@ -160,8 +166,6 @@ class ChimpInsert:
                         slack_message_resp = await self.post_slackMSG(f"{email} - Stripe user successfully added.")
                   
 
-            if status == InsertionResponse.API_ERROR.value:
-                  self.logger.error(f"ChimpInsert: Mailchimp API error: Duplicated request.")
             
             if status == InsertionResponse.FAILURE.value:
                   self.logger.error(f"ChimpInsert: Insertion failed.")
@@ -185,4 +189,19 @@ async def run(context, input):
             raise Exception(f"ChimpInsert: Config not loaded: {error}")
 
       inserter = ChimpInsert(audience_id, config, slack_api_url, context.logger)
-      return input.each(inserter.insert_info)
+
+      queue = asyncio.Queue()
+
+      async def process_queue():
+            while True:
+                  info = await queue.get()
+                  await inserter.insert_info(info)
+                  queue.task_done()
+                  await asyncio.sleep(TASK_DELAY)
+
+      processing_task = asyncio.create_task(process_queue())
+
+      async for item in input:
+            await queue.put(item)
+
+      processing_task.cancel()
