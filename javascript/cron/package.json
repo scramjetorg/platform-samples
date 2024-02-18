@@ -1,0 +1,36 @@
+{
+  "name": "@scramjet/cron",
+  "version": "0.1.0",
+  "main": "./index",
+  "author": "Budleigh Salterton <cz@scramjet.org>",
+  "license": "GPL-3.0",
+  "description": "Sequence that schedules other sequences based on sent config",
+  "devDependencies": {
+    "@scramjet/types": "^0.38.0"
+  },
+  "keywords": [
+    "easy",
+    "cron",
+    "streaming",
+    "data transformation",
+    "Data Transformer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples/tree/main/javascript/hello"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "build": "mkdir -p dist/ && cp -r index.js data.txt package.json dist/ && (cd dist && npm i --omit=dev)",
+    "pack": "si seq pack ./dist/",
+    "clean": "rm -rf ./dist ./*.tar.gz"
+  },
+  "assets": [
+    "data.txt"
+  ],
+  "dependencies": {
+    "cron-parser": "^4.9.0"
+  }
+}
