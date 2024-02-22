@@ -1,6 +1,6 @@
-# MailChimp
+# Integ-Master
 
-A component of the tool that provides integration between the three Stripe :left_right_arrow: Auth0 :left_right_arrow: Mailchimp services.
+A component of the tool that provides integration between the three Stripe :left_right_arrow: Auth0 :left_right_arrow: Mailchimp services. It manage two sources stripe and auth0.
 
 :warning: To use the given solution, API and authorization keys must be prepared, for each of the mentioned services. :warning:
 
@@ -35,8 +35,8 @@ Open terminal:
 
 ```bash
 
-# Go into ChimpInsert's sequence  directory
-cd ChimpInsert
+# Go into Integ-Master's sequence  directory
+cd Integ-Master
 
 # Build sequence
 npm run build
