@@ -1,8 +1,0 @@
-{
-
-      "auth0_verified_url" : "https://your_tenant.auth0.com/api/v2/users?per_page=5&sort=created_at%3A-1&fields=created_at%2Cnickname%2Cemail%2Cupdated_at&q=user_metadata.newsletter%3D%22true%22",
-      "auth0_users_url" :"https://your_tenant.auth0.com/api/v2/users?per_page=5&sort=created_at%3A-1",
-      "api_url" : "https://your_tenant.auth0.com/oauth/token",
-      "request_data" : {"client_id":"<your client id>","client_secret":"<your client secret>","audience":"<your audience>","grant_type":"client_credentials"}
-
-}

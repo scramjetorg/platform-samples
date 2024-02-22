@@ -1,3 +1,0 @@
-scramjet-framework-py
-requests
-stripe
