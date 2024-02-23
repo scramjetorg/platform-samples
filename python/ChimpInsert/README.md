@@ -4,7 +4,7 @@ A component of the tool that provides integration between the three Stripe :left
 
 :warning: To use the given solution, API and authorization keys must be prepared, for each of the mentioned services. :warning:
 
-:warning: Remember, three sequences (ChimpInsert, Auth0, Stripe) are required for proper operation. Start with "ChimpInsert" directory.:warning:
+:warning: Remember, two sequences (Integ-Master, ChimpInsert) are required for proper operation. Start with "ChimpInsert" directory.:warning:
 
 ___
 

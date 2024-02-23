@@ -5,7 +5,7 @@ import asyncio
 from shiftarray import ShiftArray
 from scramjet.streams import Stream
 
-provides = {"provides": "pipe", "contentType": "text/plain"}
+
 
 WAIT_TIME_ON_USER = 5
 WAIT_TIME_ERROR = 3
@@ -44,6 +44,7 @@ class Auth0:
             return TokenRefreshResult.SUCCESS.value, json.loads(response.text)["access_token"]
         
         self.logger.error("Auth0: Refreshing the token has failed!")
+        self.logger.error(f"Auth0: {response.text}")
         return TokenRefreshResult.FAILURE.value, None
         
 
@@ -73,6 +74,7 @@ class Auth0:
             if users.status_code != 200:
                 await asyncio.sleep(WAIT_TIME_ERROR)
                 self.logger.info("Auth0: Token's refresh was forced.")
+                self.logger.error(f"Auth0: {users.text}")
 
                 code, token = await self.refresh_token()
                 continue
@@ -104,21 +106,3 @@ class Auth0:
                         last_verified = result["email"]
             await asyncio.sleep(WAIT_TIME_ON_USER)
 
-
-async def run(context, input):
-    config = context.config
-    stream = Stream()
-
-    try:
-        run.verified_url = config["auth0_verified_url"]
-        run.users_url = config["auth0_users_url"] 
-        run.api_url = config["api_url"]
-        run.data = json.dumps(config["request_data"])
-    except Exception as error:
-        raise Exception(f"Auth0: Config not loaded: {error}")
-
-    asyncio.gather(
-            Auth0(run.verified_url, run.users_url , run.api_url, run.data, stream, context.logger).get_auth(),
-            return_exceptions=True,
-        )
-    return stream.map(lambda x: x + "\n")

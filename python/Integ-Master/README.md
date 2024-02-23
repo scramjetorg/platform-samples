@@ -1,10 +1,10 @@
-# Stripe
+# Integ-Master
 
-A component of the tool that provides integration between the three Stripe :left_right_arrow: Auth0 :left_right_arrow: Mailchimp services.
+A component of the tool that provides integration between the three Stripe :left_right_arrow: Auth0 :left_right_arrow: Mailchimp services. It manage two sources stripe and auth0.
 
 :warning: To use the given solution, API and authorization keys must be prepared, for each of the mentioned services. :warning:
 
-:warning: Remember, three sequences (ChimpInsert, Auth0, Stripe) are required for proper operation. Start with "ChimpInsert" directory.:warning:
+:warning: Remember, two sequences (Integ-Master, ChimpInsert) are required for proper operation. Start with "ChimpInsert" directory.:warning:
 
 ___
 
@@ -24,14 +24,19 @@ Now open config.json file and fill all the empty spaces with the information you
 Query url is already set, generator of such url can be found [here](https://auth0.com/docs/api/management/v2#!/Users/get_users)
 
 ## Running
-:white_check_mark:Make sure the ChimpInsert sequence is already running:white_check_mark:
+
+Start STH :rocket:
+
+```bash
+sth
+```
 
 Open terminal:
 
 ```bash
 
-# Go into Stripe's sequence  directory
-cd Stripe
+# Go into Integ-Master's sequence  directory
+cd Integ-Master
 
 # Build sequence
 npm run build
