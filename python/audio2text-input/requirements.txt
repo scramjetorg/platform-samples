@@ -1,0 +1,5 @@
+scramjet-framework-py
+requests
+pyee
+urllib3==1.26.6
+pyOpenSSL

@@ -81,3 +81,5 @@ TypeScript compiles to JavaScript. It means that TypeScript packages except depe
 
 - [kafka-setup](guides/kafka-setup/) - how to set up a kafka instance and consume data from it with Scramjet Cloud Platform
 - [discord-slack-connection](guides/discord-slack-connection/) - how to interconnect discord and slack with Scramjet Cloud Platform
+
+---
