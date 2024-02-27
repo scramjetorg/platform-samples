@@ -10,7 +10,7 @@ For this Sequence to run properly on your Linux machine use the following comman
 $ DEVELOPMENT=true sth --runtime-adapter=process
 ```
 
-**NOTE:** To run this Sequence, you'll need your <a href="https://www.assemblyai.com/" target="_blank">AssemblyAI</a> token, which must be included when executing the start command
+**NOTE:** To run this Sequence, you'll need your <a href="https://www.assemblyai.com/" target="_blank">AssemblyAI</a> token, which must be included when executing the **si** start command
 
 
 ## Install and Run
@@ -36,11 +36,11 @@ On the Linux terminal execute the following commands:
 ~$ si sequence send audio2text-input.tar.gz --progress
 
 # Start the Sequence with argument, you'll need your AssemblyAI token
-~$ si seq start - --args=[\"token\"] 
+~$ si seq start <Sequence-id> --args=[\"token\"] 
 
 # Send the audio file as input
 ~$ si instance input <Instance-id> local/path/to/audio.wav -e -t application/octet-stream
 
-# Return list of S3 Bucket objects as output
+# Return transcript from AssemblyAI as output
 ~$ si instance output <Instance-id>
 ```
