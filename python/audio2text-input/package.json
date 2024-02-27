@@ -18,7 +18,7 @@
     "python3": "3.8.0"
   },
   "scripts": {
-    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp -t ./dist/ *.py *.json *.wav", 
+    "build": "mkdir -p dist/__pypackages__/ && pip3 install -t dist/__pypackages__/ -r requirements.txt && cp -t ./dist/ *.py *.json", 
     "clean": "rm -rf ./dist"
   }
 }
