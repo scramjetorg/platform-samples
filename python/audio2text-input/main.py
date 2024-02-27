@@ -3,12 +3,12 @@ import time
 from scramjet.streams import Stream
 import json
 
-async def run(context, input, args1):
+async def run(context, input, token):
     audio_file = await input.reduce(lambda a, b: a+b)
     base_url = "https://api.assemblyai.com/v2"
 
     headers = {
-        "authorization": args1
+        "authorization": token
     }
 
     response = requests.post(
@@ -37,6 +37,5 @@ async def run(context, input, args1):
 
         else:
             time.sleep(3)
-
 
     return Stream.read_from(f"{transcription_result['text']} \n")
