@@ -2,9 +2,10 @@
 
 This Sequence demonstrates how to turn voice data into summaries with <a href="https://www.assemblyai.com/" target="_blank">AssemblyAI</a> Speech models. Audio is sent to Scramjet Transform Hub using data streaming with an audio transcript as an output.
 
+--- 
 
-Requirements<br/>
----
+### Requirements
+
 For this Sequence to run properly on your Linux machine use the following command to start <a href="https://docs.scramjet.org/transform-hub/installation" target="_blank">STH</a>.
 
 ```bash
