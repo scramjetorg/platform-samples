@@ -13,7 +13,7 @@ You need to have a [clockify account](https://app.clockify.me/signup) and a [acc
 You also need to have scramjet cli installed, for guide how to install [visit our documentation](https://docs.scramjet.org/platform/get-started/)
 ## Preparations
 
-Before running the code enter valid data in `data.json`, you need to fill all options to make the code working. For more informations how to get those details visit [Clockify Api documentation](https://docs.clockify.me/).
+Before running the code enter valid data in `data.json`, you need to fill all options to make the code working. For more information how to get those details visit [Clockify Api documentation](https://docs.clockify.me/).
 
 ```json
 {
@@ -51,4 +51,4 @@ si sequence deploy dist --args [1,\"key\"]
 
 ```
 
-After completeing all steps the instance should be running and adding new entries to clockify daily.
+After completing all steps the instance should be running and adding new entries to clockify daily.

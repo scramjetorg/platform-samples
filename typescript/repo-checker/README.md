@@ -16,12 +16,12 @@ This sequence supports retriveing data from those platforms:
 
 ## Prerequisites
 
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/transform-hub/installation) or use the [platform's environment](https://docs.scramjet.org/platform/get-started/) for the sequence deployment.
 
-As this apps is using github API, the key is required to use it. For informations how to get one please refer to [creating-personal-access-token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+As this apps is using github API, the key is required to use it. For information how to get one please refer to [creating-personal-access-token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 
-To get this app running you need to provide informations in a `data.json` file to match repositories you want to check
+To get this app running you need to provide information in a `data.json` file to match repositories you want to check
 
 ```json
 {
@@ -67,7 +67,7 @@ npm install
 # transpile TS->JS to dist/
 npm run build
 
-# deploy the Sequence withh a following arguments where first one is a time interval in ms which determines how often to check for data and second is github api key
+# deploy the Sequence with a following arguments where first one is a time interval in ms which determines how often to check for data and second is github api key
 si seq deploy dist --args '[10000,"YOUR-GITHUB-API-KEY-HERE"]'
 
 ```

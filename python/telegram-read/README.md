@@ -55,7 +55,7 @@ At last, our bot must be added to the desired channel. In the Telegram client:
 ## Running
 > 💡**NOTE:** Packaging of Python Sequences is not very "pythonic" for now. If you have any idea, how we should resolve it for your comfort, please let us know [here](https://github.com/scramjetorg/transform-hub/issues/598).
 
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/transform-hub/installation) or use the [platform's environment](https://docs.scramjet.org/platform/get-started/) for the sequence deployment.
 
 Open the terminal and run the following commands:
 
