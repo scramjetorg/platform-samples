@@ -18,7 +18,7 @@ The Sequence takes three arguments:
 
 ## Running
 
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/get-started/) for the sequence deployment.
 
 Sequence is ready to use, id doesn't use any external modules so no dependencies need to be installed.
 

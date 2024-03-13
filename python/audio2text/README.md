@@ -14,7 +14,7 @@ For this Sequence to run properly, it is required to register and acquire an API
 
 ## Install and Run
 ---
-Install the <a href="https://docs.scramjet.org/platform/self-hosted-installation/" target="_blank">Transform-Hub</a> locally or use 
+Install the <a href="https://docs.scramjet.org/transform-hub/installation" target="_blank">Transform-Hub</a> locally or use 
 <a href="https://docs.scramjet.org/platform/get-started/" target="_blank">Scramjet's Cloud Platform</a> environment for the Sequence deployment.
 For more information on the below commands check the 
 <a href="https://docs.scramjet.org/platform/cli-reference/#useful-commands" target="_blank">CLI reference</a> section on Scramjet's Website.

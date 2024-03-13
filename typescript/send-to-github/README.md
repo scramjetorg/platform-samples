@@ -8,7 +8,7 @@ In this sample, Sequence after deployment takes JSON objects on input stream and
 
 For the sequence to work the Github repository is necessary. Also Personal Access Token needs to be provided and it can be obtained [here](https://github.com/settings/tokens).
 
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/transform-hub/installation) or use the [platform's environment](https://docs.scramjet.org/platform/get-started/) for the sequence deployment.
 
 ## Running
 

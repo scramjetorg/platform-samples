@@ -2,11 +2,11 @@
 
 ___
 
-Easy example of usage Kaffka with Scramjet platform.
+Easy example of usage Kafka with Scramjet platform.
 
 ## Running
 
-> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/self-hosted-installation) or use the [platform's environment](https://docs.scramjet.org/platform/quick-start) for the sequence deployment.
+> ❗ Remember to [setup transform-hub locally](https://docs.scramjet.org/platform/get-started/) or use the [platform's environment](https://docs.scramjet.org/platform/get-started/) for the sequence deployment.
 
 Open two terminals and run the following commands:
 

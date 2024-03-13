@@ -12,7 +12,7 @@ Prepare configuration:
 cp config-example.json config.json
 ```
 
-and replace ```<YOUR-TOKEN>``` in ```config.json``` with token recevied from CO2Signal.
+and replace ```<YOUR-TOKEN>``` in ```config.json``` with token received from CO2Signal.
 
 ## Running
 
