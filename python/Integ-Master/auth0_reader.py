@@ -46,7 +46,35 @@ class Auth0:
         self.logger.error("Auth0: Refreshing the token has failed!")
         self.logger.error(f"Auth0: {response.text}")
         return TokenRefreshResult.FAILURE.value, None
-        
+    
+
+    async def process_users(self, last_user, users, buffer_users):
+        for result, has_more in self.lookahead(users):
+            if not buffer_users.contains(result["email"]):
+                self.logger.info(f"Auth0: New user registered in auth0: {result['email']}")
+                self.stream.write(
+                    result["email"] + " " + result["nickname"] + " auth0-user"
+                )
+                buffer_users.append(result["email"])
+            if not has_more:
+                last_user = result["email"]
+        return last_user
+
+    async def process_verified(self, last_verified, verified, buffer_verified):
+        for result, has_more in self.lookahead(verified):
+            if not buffer_verified.contains(result["email"]):
+                self.logger.info(f"Auth0: User allowed the newsletter: {result['email']}")
+                self.stream.write(
+                    result["email"] + " " + result["nickname"] + " auth0-newsletter"
+                )
+                self.logger.info(f"Auth0: User allowed the newsletter: {result['email']} wpiiiiisane")
+
+                buffer_verified.append(result["email"])
+            if not has_more:
+                last_verified = result["email"]
+        return last_verified
+    
+
 
     async def get_auth(self):
         code, token = await self.refresh_token()
@@ -82,27 +110,12 @@ class Auth0:
             verified = verified.json()
             users = users.json()
 
-
             if users[-1]["email"] != last_user:
-                for result, has_more in self.lookahead(users):
-                    if not buffer_users.contains(result["email"]):
-                        self.logger.info(f"Auth0: New user registered in auth0: {result['email']}")
-                        self.stream.write(
-                            result["email"] + " " + result["nickname"] + " auth0-user"
-                        )
-                        buffer_users.append(result["email"])
-                    if not has_more:
-                        last_user = result["email"]
+                last_user = await self.process_users(last_user, users, buffer_users)
             
             if verified[-1]["email"] != last_verified:
-                for result, has_more in self.lookahead(verified):
-                    if not buffer_verified.contains(result["email"]):
-                        self.logger.info(f"Auth0: User allowed the newsletter: {result['email']}")
-                        self.stream.write(
-                            result["email"] + " " + result["nickname"] + " auth0-newsletter"
-                        )
-                        buffer_verified.append(result["email"])
-                    if not has_more:
-                        last_verified = result["email"]
+                last_verified = await self.process_verified(last_verified, verified, buffer_verified)
+
+
             await asyncio.sleep(WAIT_TIME_ON_USER)
 

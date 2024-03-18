@@ -1,7 +1,6 @@
 
 from auth0_reader import Auth0
 from stripe_reader import Stripe
-import stripe
 import json
 import asyncio
 from scramjet.streams import Stream
@@ -12,8 +11,6 @@ provides = {
     'provides': 'pipe',
     'contentType': 'text/plain'
 }
-
-
 
 class Master:
       def __init__(self, auth0_client, stripe_client, stream) -> None:
@@ -44,7 +41,6 @@ async def run(context, input):
 
       auth0_client = Auth0(run.verified_url, run.users_url , run.api_url, run.data, stream, context.logger)
       stripe_client = Stripe (run.stripe_api, stream, context.logger)
-
 
       asyncio.gather(
                   Master(auth0_client, stripe_client, stream).read(),
