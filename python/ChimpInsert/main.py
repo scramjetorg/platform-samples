@@ -44,16 +44,6 @@ class ChimpInsert:
             self.token_header = {'content-type': 'application/json',}
             self.logger = logger
 
-            self.queue = asyncio.Queue()
-            self.processing_task = asyncio.create_task(self.process_queue())
-      
-      async def process_queue(self):
-        while True:
-            info = await self.queue.get()
-            await self.insert_info(info)
-            self.queue.task_done()
-            await asyncio.sleep(TASK_DELAY)
-
       async def post_slackMSG(self, text):
             try:
                   response = requests.post(self.slack_api_url, headers=self.token_header, data=str({"text":f"{text}"}))
@@ -142,7 +132,6 @@ class ChimpInsert:
             return member_info
       
       async def insert_info(self, info):
-
             try:
                   email, fname, lname = info.split(" ")
             except ValueError:
@@ -198,7 +187,7 @@ class ChimpInsert:
             
 
 async def run(context, input):
-      try:
+      try:  
             slack_api_url = context.config['slack_hook_url']
             audience_id = context.config['audience_id']
             config = {"api_key": context.config['mailchimp_api'], "server": context.config['mailchimp_server']}  
@@ -206,10 +195,8 @@ async def run(context, input):
             raise Exception(f"ChimpInsert: Config not loaded: {error}")
 
       inserter = ChimpInsert(audience_id, config, slack_api_url, context.logger)
-
-
+      
       async for item in input:
-            await inserter.queue.put(item)
-    
-      inserter.processing_task.cancel()
+            await inserter.insert_info(item)
+
 
