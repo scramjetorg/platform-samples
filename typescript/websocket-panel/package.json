@@ -1,0 +1,36 @@
+{
+  "name": "@scramjet/pi-buttons",
+  "version": "0.22.0",
+  "main": "index.ts",
+  "scripts": {
+    "prepack": "PACKAGES_DIR=js node ../../scripts/publish.js",
+    "build": "rm ./dist -rf && npm i && tsc -p tsconfig.json && npm run copy",
+    "postbuild": "cp package.json dist/package.json && jq 'del(.scripts) | .main = \"index.js\"' dist/package.json > temp.json && mv temp.json dist/package.json && cd dist && npm i",
+    "copy": "cp ./www ./dist/www -r",
+    "packseq": "PACKAGES_DIR=js node ../../scripts/packsequence.js",
+    "clean": "rm -rf ./dist .bic_cache"
+  },
+  "author": "Scramjet <open-source@scramjet.org>",
+  "license": "ISC",
+  "devDependencies": {
+    "@scramjet/types": "^0.38.0",
+    "@types/node": "15.12.5",
+    "@types/ws": "^8.5.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scramjetorg/transform-hub.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scramjetorg/transform-hub/issues"
+  },
+  "homepage": "https://github.com/scramjetorg/transform-hub#readme",
+  "dependencies": {
+    "@scramjet/api-server": "^0.38.0",
+    "@scramjet/obj-logger": "^0.38.0",
+    "http-status-codes": "^2.3.0",
+    "scramjet": "^4.37.0",
+    "ws": "^8.16.0"
+  },
+  "description": ""
+}

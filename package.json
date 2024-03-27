@@ -1,0 +1,29 @@
+{
+  "name": "@scramjet/platform-samples",
+  "version": "1.0.1",
+  "private": true,
+  "description": "A repo with samples for the @scramjet/sth package",
+  "scripts": {
+    "postinstall": "cd scripts && yarn",
+    "build:packages": "scripts/run-script.js -v -p typescript -p python -p javascript build",
+    "cloc": "cloc . --fullpath --include-lang TypeScript,JavaScript,Python,Dockerfile,Markdown  --match-d=\"(packages|bdd/step-definitions|bdd/lib)\" --not-match-d \"(node_modules|test|dist)\" --by-percent cmb",
+    "clean": "yarn clean:root && scripts/run-script.js clean",
+    "clean:root": "rm -rf ./dist/"
+  },
+  "author": "Scramjet <open-source@scramjet.org>",
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scramjetorg/platform-samples.git"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  },
+  "dependencies": {
+    "minimist": "^1.2.7",
+    "npm": "8",
+    "scramjet": "^4.36.9"
+  }
+}

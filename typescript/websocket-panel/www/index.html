@@ -1,0 +1,45 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+  
+    .button-container button {
+      min-width: 100px;
+      min-height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="center wrap button-container">
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+  </div>
+
+  <script>
+    // Create a WebSocket connection
+    const socket = new WebSocket(`ws://${location.host}`);
+
+    // Add event listeners to the buttons
+    const buttons = document.querySelectorAll('.button-container button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Send the button value to the WebSocket
+        socket.send(JSON.stringify({ value: button.textContent }));
+      });
+    });
+  </script>
+</body>
